@@ -1,13 +1,17 @@
 import React, { Fragment, useState, useRef } from "react";
 
+import useHttp from "../../hooks/use-http";
+import { addAlgorithm } from "../../lib/api";
 import classes from "./NewAlgorithmForm.module.css";
 
 const NewAlgorithmForm = () => {
+  const { sendRequest } = useHttp(addAlgorithm);
+
+  const [showForm, setShowForm] = useState(false);
+
   const titleInputRef = useRef();
   const logicInputRef = useRef();
   const descriptionInputRef = useRef();
-
-  const [showForm, setShowForm] = useState(false);
 
   const showFormHandler = () => {
     setShowForm((currentState) => !currentState);
@@ -15,6 +19,14 @@ const NewAlgorithmForm = () => {
 
   const submitFormHandler = (evnet) => {
     evnet.preventDefault();
+
+    sendRequest({
+      title: titleInputRef.current.value,
+      logic: logicInputRef.current.value,
+      description: descriptionInputRef.current.value,
+    });
+
+    setShowForm((currentState) => !currentState);
 
     titleInputRef.current.value = "";
     logicInputRef.current.value = "";
