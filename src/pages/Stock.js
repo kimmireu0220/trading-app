@@ -49,7 +49,7 @@ const Stock = () => {
     );
   }
 
-  if (todayDataStatus === "completed" && dailyDataStatus === "completed") {
+  if (todayData && dailyData) {
     content = (
       <div>
         <StockPrice
@@ -65,7 +65,10 @@ const Stock = () => {
   if (
     todayDataStatus === "completed" &&
     dailyDataStatus === "completed" &&
-    (todayData === null || dailyData === null)
+    (!todayData ||
+      !dailyData ||
+      dailyData.xValues.length === 0 ||
+      dailyData.yValues.length === 0)
   ) {
     content = (
       <NotFound text="Can't find stock data. Please check your ticker or just retry it" />

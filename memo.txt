@@ -1,0 +1,4 @@
+1. 회사 이름 alphatvantage API 작업
+2. Firebase 연결 -> Algorithm post & get
+3. Algorithm list 리덕스 or 컨텍스트 이용해서 상태 관리
+4. 주식 검색 화면에서 Algorithm 선택 기능 구현
