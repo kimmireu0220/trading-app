@@ -5,7 +5,7 @@ import classes from "./StockPrice.module.css";
 const StockPrice = (props) => {
   return (
     <Card>
-      <h1>{`${props.ticker}`}</h1>
+      <h1>{`${props.name} (${props.ticker})`}</h1>
       <div>
         <span>{`$${props.price} `}</span>
         <span

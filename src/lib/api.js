@@ -20,6 +20,23 @@ export const getTodayStockData = async (ticker) => {
   return result;
 };
 
+export const getStockDetailData = async (ticker) => {
+  const OVERVIEW_API = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${ticker}&apikey=${API_KEY}`;
+
+  const response = await fetch(OVERVIEW_API);
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || "Could not get today stock data.");
+  }
+
+  const result = {
+    name: data["Name"],
+  };
+
+  return result;
+};
+
 export const getDailyStockData = async (ticker) => {
   const TIME_SERIES_DAILY_ADJUSTED_API = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${ticker}&outputsize=compact&apikey=${API_KEY}`;
 
