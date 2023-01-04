@@ -31,13 +31,14 @@ const MainNavigation = () => {
           placeholder="Search for ticker"
           onChange={tickerChangeHandler}
           value={searchedTicker}
+          autoFocus
         />
         <button>Search</button>
       </form>
       <nav className={classes.nav}>
         <ul>
           <li>
-            <NavLink to="/algorithm" activeClassName={classes.active}>
+            <NavLink to="/algorithms" activeClassName={classes.active}>
               Algorithm
             </NavLink>
           </li>

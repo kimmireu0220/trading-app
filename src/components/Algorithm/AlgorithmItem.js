@@ -1,13 +1,19 @@
-import Card from "../UI/Card";
+import { Link } from "react-router-dom";
+
+import classes from "./AlgorithmItem.module.css";
 
 const AlgorithmItem = (props) => {
   return (
-    <li>
-      <Card className="centered">
-        <div>{`Title : ${props.title}`}</div>
-        <div>{`Logic : ${props.logic}`}</div>
-        <div>{`Description : ${props.description}`}</div>
-      </Card>
+    <li className={classes.item}>
+      <figure>
+        <blockquote>
+          <p>{props.title}</p>
+        </blockquote>
+        <figcaption>{props.logic}</figcaption>
+      </figure>
+      <Link className={classes.detailButton} to={`/algorithms/${props.id}`}>
+        View Detail
+      </Link>
     </li>
   );
 };

@@ -3,8 +3,10 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import Layout from "./components/layout/Layout";
 import Main from "./pages/Main";
 import Stock from "./pages/Stock";
-import Algorithm from "./pages/Algorithm";
+import AllAlgorithms from "./pages/AllAlgorithms";
+import AlgorithmDetail from "./pages/AlgorithmDetail";
 import NotFound from "./pages/NotFound";
+import NewAlgorithm from "./pages/NewAlgorithm";
 
 function App() {
   return (
@@ -19,8 +21,14 @@ function App() {
         <Route path="/trading/:ticker">
           <Stock />
         </Route>
-        <Route path="/algorithm" exact>
-          <Algorithm />
+        <Route path="/algorithms" exact>
+          <AllAlgorithms />
+        </Route>
+        <Route path="/algorithms/:algorithmId">
+          <AlgorithmDetail />
+        </Route>
+        <Route path="/new-algorithm">
+          <NewAlgorithm />
         </Route>
         <Route path="*">
           <NotFound text="Page not found!" />

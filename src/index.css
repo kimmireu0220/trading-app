@@ -12,6 +12,10 @@ li {
   list-style: none;
 }
 
+.no--wrap {
+  white-space: nowrap;
+}
+
 .centered {
   margin: 3rem auto;
   text-align: center;
@@ -22,6 +26,7 @@ li {
 
 .float--right {
   float: right;
+  margin: 1.25rem;
 }
 
 .focused {

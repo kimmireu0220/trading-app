@@ -101,3 +101,21 @@ export const getAllAlgorithms = async () => {
 
   return transformedAlgorithms;
 };
+
+export const getSingleAlgorithm = async (algorithmId) => {
+  const response = await fetch(
+    `${FIREBASE_DOMAIN}/algorithms/${algorithmId}.json`
+  );
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || "Could not fetch quote.");
+  }
+
+  const loaedAlgorithm = {
+    id: algorithmId,
+    ...data,
+  };
+
+  return loaedAlgorithm;
+};

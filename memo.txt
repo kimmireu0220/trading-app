@@ -1,2 +1,0 @@
-1. Algorithm list 리덕스 or 컨텍스트 이용해서 상태 관리
-2. 주식 검색 화면에서 Algorithm 선택 기능 구현                
