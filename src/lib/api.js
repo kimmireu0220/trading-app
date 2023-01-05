@@ -2,6 +2,23 @@ const API_KEY = process.env.REACT_APP_API_KEY;
 const FIREBASE_DOMAIN =
   "https://react-project-b1f7d-default-rtdb.firebaseio.com";
 
+export const getStockDetailData = async (ticker) => {
+  const OVERVIEW_API = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${ticker}&apikey=${API_KEY}`;
+
+  const response = await fetch(OVERVIEW_API);
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || "Could not get today stock data.");
+  }
+
+  const result = {
+    name: data["Name"],
+  };
+
+  return result;
+};
+
 export const getTodayStockData = async (ticker) => {
   const GLOBAL_QUOTE_API = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${ticker}&apikey=${API_KEY}`;
 
@@ -15,23 +32,6 @@ export const getTodayStockData = async (ticker) => {
   const result = {
     price: +data["Global Quote"]["05. price"],
     change: +data["Global Quote"]["10. change percent"].slice(0, -1),
-  };
-
-  return result;
-};
-
-export const getStockDetailData = async (ticker) => {
-  const OVERVIEW_API = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${ticker}&apikey=${API_KEY}`;
-
-  const response = await fetch(OVERVIEW_API);
-  const data = await response.json();
-
-  if (!response.ok) {
-    throw new Error(data.message || "Could not get today stock data.");
-  }
-
-  const result = {
-    name: data["Name"],
   };
 
   return result;

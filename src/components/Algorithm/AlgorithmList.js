@@ -1,10 +1,12 @@
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
 
+import AlgorithmContext from "../../store/algorithm-context";
 import AlgorithmItem from "./AlgorithmItem";
 import classes from "./AlgorithmItem.module.css";
 
-const AlgorithmList = (props) => {
-  const { algorithms } = props;
+const AlgorithmList = () => {
+  const algorithmCtx = useContext(AlgorithmContext);
+  const { algorithms } = algorithmCtx;
 
   return (
     <Fragment>

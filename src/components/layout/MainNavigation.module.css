@@ -1,12 +1,16 @@
 .header {
   width: 100%;
-  height: 5rem;
+  height: 5.5rem;
   display: flex;
-  padding: 0 10%;
+  padding: 0 5%;
   margin-bottom: 5rem;
   justify-content: space-between;
   align-items: center;
   background-color: #008080;
+}
+
+.link {
+  text-decoration: none;
 }
 
 .logo {

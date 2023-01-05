@@ -12,6 +12,7 @@ const NewQuote = () => {
   useEffect(() => {
     if (status === "completed") {
       history.push("/algorithms");
+      window.location.reload();
     }
   }, [status, history]);
 
@@ -19,12 +20,7 @@ const NewQuote = () => {
     sendRequest(algorithmData);
   };
 
-  return (
-    <AlgorithmForm
-      isLoading={status === "pending"}
-      onAddAlgorithm={addAlgorithmHandler}
-    />
-  );
+  return <AlgorithmForm onAddAlgorithm={addAlgorithmHandler} />;
 };
 
 export default NewQuote;

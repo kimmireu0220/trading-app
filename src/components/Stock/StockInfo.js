@@ -1,8 +1,8 @@
 import Card from "../UI/Card";
 
-import classes from "./StockPrice.module.css";
+import classes from "./StockInfo.module.css";
 
-const StockPrice = (props) => {
+const StockInfo = (props) => {
   return (
     <Card>
       <h1>{`${props.name} (${props.ticker})`}</h1>
@@ -16,4 +16,4 @@ const StockPrice = (props) => {
   );
 };
 
-export default StockPrice;
+export default StockInfo;

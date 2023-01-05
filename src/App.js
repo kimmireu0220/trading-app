@@ -5,8 +5,8 @@ import Main from "./pages/Main";
 import Stock from "./pages/Stock";
 import AllAlgorithms from "./pages/AllAlgorithms";
 import AlgorithmDetail from "./pages/AlgorithmDetail";
-import NotFound from "./pages/NotFound";
 import NewAlgorithm from "./pages/NewAlgorithm";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (

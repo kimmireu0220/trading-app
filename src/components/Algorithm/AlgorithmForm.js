@@ -2,7 +2,6 @@ import { Fragment, useRef, useState } from "react";
 import { Prompt, useHistory } from "react-router-dom";
 
 import Card from "../UI/Card";
-import LoadingSpinner from "../UI/LoadingSpinner";
 import classes from "./AlgorithmForm.module.css";
 
 const AlgorithmForm = (props) => {
@@ -52,12 +51,6 @@ const AlgorithmForm = (props) => {
           className={classes.form}
           onSubmit={submitFormHandler}
         >
-          {props.isLoading && (
-            <div className={classes.loading}>
-              <LoadingSpinner />
-            </div>
-          )}
-
           <div className={classes.control}>
             <label htmlFor="title">Title</label>
             <input type="text" id="title" ref={titleInputRef} />

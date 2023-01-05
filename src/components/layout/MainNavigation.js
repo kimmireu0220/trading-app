@@ -20,7 +20,7 @@ const MainNavigation = () => {
 
   return (
     <header className={classes.header}>
-      <Link to="/trading" style={{ textDecoration: "none" }}>
+      <Link className={classes.link} to="/trading">
         <div className={classes.logo}>Trading App</div>
       </Link>
       <form onSubmit={searchTickerHandler}>
@@ -28,7 +28,7 @@ const MainNavigation = () => {
         <input
           className={classes.input}
           id="ticker"
-          placeholder="Search for ticker"
+          placeholder="Search a ticker"
           onChange={tickerChangeHandler}
           value={searchedTicker}
           autoFocus
