@@ -1,0 +1,14 @@
+.form {
+  margin-top: 2.5rem;
+}
+
+.select {
+  background-color: transparent;
+  padding: 0.25rem 1.25rem 0.25rem 1rem;
+  margin-right: 1rem;
+  height: 3rem;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+}

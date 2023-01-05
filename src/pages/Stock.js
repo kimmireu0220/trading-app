@@ -11,6 +11,7 @@ import LoadingSpinner from "../components/UI/LoadingSpinner";
 import StockChart from "../components/Stock/StockChart";
 import NotFound from "../pages/NotFound";
 import StockInfo from "../components/Stock/StockInfo";
+import StockAlgoritm from "../components/Stock/StockAlgorithm";
 
 const Stock = () => {
   const params = useParams();
@@ -35,8 +36,6 @@ const Stock = () => {
   } = useHttp(getDailyStockData);
 
   let name, price, change, xValues, yValues;
-
-  console.log(detailData, todayData, dailyData);
 
   if (detailData && todayData && dailyData) {
     name = detailData.name;
@@ -76,6 +75,7 @@ const Stock = () => {
           change={change.toFixed(2)}
         />
         <StockChart xValues={xValues} yValues={yValues} />
+        <StockAlgoritm />
       </div>
     );
   }
@@ -92,7 +92,10 @@ const Stock = () => {
       dailyData.yValues.length === 0)
   ) {
     content = (
-      <NotFound text="Can't find stock data. Please check your ticker or just retry it" />
+      <Fragment>
+        <NotFound text="Can't find stock data. Please check your ticker or just retry it" />
+        <StockAlgoritm />
+      </Fragment>
     );
   }
 
