@@ -5,27 +5,46 @@ import Card from "../UI/Card";
 import classes from "./AlgorithmForm.module.css";
 
 const AlgorithmForm = (props) => {
+  const history = useHistory();
+
   const [isEntering, setIsEntering] = useState(false);
+  const [enteredBuyAlgorithm, setEnteredBuyAlgorithm] = useState();
+  const [enteredSellAlgorithm, setEnteredSellAlgorithm] = useState();
 
   const titleInputRef = useRef();
-  const logicInputRef = useRef();
+  const buyTargetInutRef = useRef();
+  const sellTargetInputRef = useRef();
   const descriptionInputRef = useRef();
-
-  const history = useHistory();
 
   function submitFormHandler(event) {
     event.preventDefault();
 
     const enteredTitle = titleInputRef.current.value;
-    const enteredLogic = logicInputRef.current.value;
+    const enteredBuyTarget = buyTargetInutRef.current.value;
+    const enteredSellTarget = sellTargetInputRef.current.value;
     const enteredDescription = descriptionInputRef.current.value;
 
     props.onAddAlgorithm({
       title: enteredTitle,
-      logic: enteredLogic,
+      buyAlgorithm: enteredBuyAlgorithm,
+      buyTarget: enteredBuyTarget,
+      sellAlgorithm: enteredSellAlgorithm,
+      sellTarget: enteredSellTarget,
       description: enteredDescription,
     });
   }
+
+  const formFocusedHandler = () => {
+    setIsEntering(true);
+  };
+
+  const addBuyAlgorithmHandler = (event) => {
+    setEnteredBuyAlgorithm(event.target.value);
+  };
+
+  const addSellAlgorithmHandler = (event) => {
+    setEnteredSellAlgorithm(event.target.value);
+  };
 
   const cancelHandler = () => {
     history.push("/algorithms");
@@ -33,10 +52,6 @@ const AlgorithmForm = (props) => {
 
   const finishEnteringHandler = () => {
     setIsEntering(false);
-  };
-
-  const formFocusedHandler = () => {
-    setIsEntering(true);
   };
 
   return (
@@ -55,9 +70,24 @@ const AlgorithmForm = (props) => {
             <label htmlFor="title">Title</label>
             <input type="text" id="title" ref={titleInputRef} />
           </div>
-          <div className={classes.control}>
-            <label htmlFor="logic">Logic</label>
-            <textarea id="logic" rows="5" ref={logicInputRef}></textarea>
+
+          <div className={classes.logicControl}>
+            <div className={classes.signal}>
+              <label htmlFor="buy">Buy</label>
+              <select onChange={addBuyAlgorithmHandler}>
+                <option value="rsi">RSI</option>
+                <option value="price">Price</option>
+              </select>
+              <input type="number" ref={buyTargetInutRef} />
+            </div>
+            <div className={classes.signal}>
+              <label htmlFor="sell">Sell</label>
+              <select onChange={addSellAlgorithmHandler}>
+                <option value="rsi">RSI</option>
+                <option value="price">Price</option>
+              </select>
+              <input type="number" ref={sellTargetInputRef} />
+            </div>
           </div>
           <div className={classes.control}>
             <label htmlFor="description">Description</label>

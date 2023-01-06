@@ -9,7 +9,10 @@ const AlgorithmItem = (props) => {
         <blockquote>
           <p>{props.title}</p>
         </blockquote>
-        <figcaption>{props.logic}</figcaption>
+        <figcaption>
+          <p>{`Buy : ${props.buyAlgorithm} $${props.buyTarget} `}</p>
+          <p>{`Sell : ${props.sellAlgorithm} $${props.sellTarget} `}</p>
+        </figcaption>
       </figure>
       <Link className={classes.detailButton} to={`/algorithms/${props.id}`}>
         View Detail

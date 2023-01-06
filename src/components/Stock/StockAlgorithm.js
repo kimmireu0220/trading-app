@@ -1,10 +1,14 @@
 import { useContext, useState } from "react";
 
 import AlgorithmContext from "../../store/algorithm-context";
+import Card from "../UI/Card";
 import classes from "./StockAlgorithm.module.css";
+import StockTradeResult from "./StockTradeResult";
 
-const StockAlgoritm = () => {
-  const [selectedAlgorithm, setSelectedAlgorithm] = useState();
+const StockAlgoritm = (props) => {
+  const { days, closePrices } = props;
+  const [selectedAlgorithm, setSelectedAlgorithm] = useState(null);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const algorithmCtx = useContext(AlgorithmContext);
   const { algorithms } = algorithmCtx;
@@ -13,32 +17,54 @@ const StockAlgoritm = () => {
     event.preventDefault();
 
     if (selectedAlgorithm) {
-      console.log(selectedAlgorithm);
+      setIsSubmitted(true);
     } else {
-      console.log("Please select algorithm");
+      setIsSubmitted(false);
     }
   };
 
   const selectAlgorithmHandler = (event) => {
-    setSelectedAlgorithm(event.target.value);
+    if (event.target.value) {
+      const algorithm = JSON.parse(event.target.value);
+      const { buyAlgorithm, buyTarget, sellAlgorithm, sellTarget } = algorithm;
+      setSelectedAlgorithm({
+        buyAlgorithm,
+        buyTarget,
+        sellAlgorithm,
+        sellTarget,
+      });
+    } else {
+      setIsSubmitted(false);
+      setSelectedAlgorithm(null);
+    }
   };
 
   return (
-    <form onSubmit={startTradingHandler} className={classes.form}>
-      <select
-        onChange={selectAlgorithmHandler}
-        id="algorithm"
-        className={classes.select}
-      >
-        <option value="">Select Algorithm</option>
-        {algorithms.map((algorithm) => (
-          <option key={algorithm.id} value={algorithm.logic}>
-            {algorithm.title}
-          </option>
-        ))}
-      </select>
-      <button className="btn">Trade</button>
-    </form>
+    <Card>
+      <form onSubmit={startTradingHandler} className={classes.form}>
+        <select
+          onChange={selectAlgorithmHandler}
+          id="algorithm"
+          className={classes.select}
+        >
+          <option value="">Select Algorithm</option>
+          {algorithms.map((algorithm) => (
+            <option key={algorithm.id} value={JSON.stringify(algorithm)}>
+              {algorithm.title}
+            </option>
+          ))}
+        </select>
+        <button className="btn">Trade</button>
+      </form>
+      {selectedAlgorithm && (
+        <StockTradeResult
+          days={days}
+          closePrices={closePrices}
+          algorithm={selectedAlgorithm}
+          isSubmitted={isSubmitted}
+        />
+      )}
+    </Card>
   );
 };
 

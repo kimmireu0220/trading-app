@@ -47,17 +47,17 @@ export const getDailyStockData = async (ticker) => {
     throw new Error(data.message || "Could not get daily stock data.");
   }
 
-  let xValues = [];
-  let yValues = [];
+  let days = [];
+  let closePrices = [];
 
   for (const key in data["Time Series (Daily)"]) {
-    xValues.push(key);
-    yValues.push(data["Time Series (Daily)"][key]["4. close"]);
+    days.push(key);
+    closePrices.push(data["Time Series (Daily)"][key]["4. close"]);
   }
 
   const result = {
-    xValues,
-    yValues,
+    days,
+    closePrices,
   };
 
   return result;

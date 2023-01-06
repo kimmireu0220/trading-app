@@ -1,0 +1,20 @@
+hr {
+  margin: 2rem 1rem 0 1rem;
+  border: dashed;
+}
+
+.result {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+
+.result p {
+  border: 1px solid black;
+  padding: 0.5rem 1rem;
+  margin: 0.25rem 1rem;
+}
+
+.result li {
+  margin: 0.75rem 1.5rem 0rem 0rem;
+}

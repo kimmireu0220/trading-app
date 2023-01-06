@@ -16,7 +16,10 @@ const AlgorithmList = () => {
             key={algorithm.id}
             id={algorithm.id}
             title={algorithm.title}
-            logic={algorithm.logic}
+            buyAlgorithm={algorithm.buyAlgorithm}
+            buyTarget={algorithm.buyTarget}
+            sellAlgorithm={algorithm.sellAlgorithm}
+            sellTarget={algorithm.sellTarget}
             description={algorithm.description}
           />
         ))}

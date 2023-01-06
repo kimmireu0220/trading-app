@@ -37,11 +37,18 @@ const AlgorithmDetail = () => {
     return <p>No algorithm found!</p>;
   }
 
+  console.log(loadedAlgorithm);
+
   return (
     <Fragment>
       <HighlightedAlgorithm
         title={loadedAlgorithm.title}
-        logic={loadedAlgorithm.logic}
+        buyAlgorithm={loadedAlgorithm.buyAlgorithm}
+        buyTarget={loadedAlgorithm.buyTarget}
+        buyTiming={loadedAlgorithm.buyTiming}
+        sellAlgorithm={loadedAlgorithm.sellAlgorithm}
+        sellTarget={loadedAlgorithm.sellTarget}
+        sellTiming={loadedAlgorithm.sellTiming}
         description={loadedAlgorithm.description}
       />
       <Link

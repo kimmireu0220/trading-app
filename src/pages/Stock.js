@@ -35,14 +35,14 @@ const Stock = () => {
     status: dailyDataStatus,
   } = useHttp(getDailyStockData);
 
-  let name, price, change, xValues, yValues;
+  let name, price, change, days, closePrices;
 
   if (detailData && todayData && dailyData) {
     name = detailData.name;
     price = todayData.price;
     change = todayData.change;
-    xValues = dailyData.xValues;
-    yValues = dailyData.yValues;
+    days = dailyData.days;
+    closePrices = dailyData.closePrices;
   }
 
   useEffect(() => {
@@ -67,16 +67,16 @@ const Stock = () => {
 
   if (detailData && todayData && dailyData) {
     content = (
-      <div>
+      <Fragment>
         <StockInfo
           name={name}
           ticker={ticker.toUpperCase()}
           price={price.toFixed(2)}
           change={change.toFixed(2)}
         />
-        <StockChart xValues={xValues} yValues={yValues} />
-        <StockAlgoritm />
-      </div>
+        <StockChart xValues={days} yValues={closePrices} />
+        <StockAlgoritm days={days} closePrices={closePrices} />
+      </Fragment>
     );
   }
 
@@ -88,8 +88,8 @@ const Stock = () => {
       !todayData ||
       !dailyData ||
       detailData.name === undefined ||
-      dailyData.xValues.length === 0 ||
-      dailyData.yValues.length === 0)
+      dailyData.days.length === 0 ||
+      dailyData.closePrices.length === 0)
   ) {
     content = (
       <Fragment>

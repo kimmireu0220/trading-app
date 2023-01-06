@@ -40,6 +40,25 @@
   outline-color: teal;
 }
 
+.logicControl {
+  display: flex;
+}
+
+.signal {
+  display: flex;
+  flex-direction: column;
+}
+
+.signal * {
+  margin: 0.25rem 1rem 0.5rem 0;
+  height: 1.5rem;
+  font-size: 1rem;
+}
+
+.signal input {
+  width: 15rem;
+}
+
 .actions {
   text-align: right;
 }
