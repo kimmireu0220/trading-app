@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 
 import AlgorithmContext from "../../store/algorithm-context";
 import Card from "../UI/Card";
+import ErrorModal from "../UI/ErrorModal";
 import classes from "./StockAlgorithm.module.css";
 import StockTradeResult from "./StockTradeResult";
 
@@ -13,14 +14,14 @@ const StockAlgoritm = (props) => {
   const algorithmCtx = useContext(AlgorithmContext);
   const { algorithms } = algorithmCtx;
 
+  const errorHandler = () => {
+    setIsSubmitted(false);
+  };
+
   const startTradingHandler = (event) => {
     event.preventDefault();
 
-    if (selectedAlgorithm) {
-      setIsSubmitted(true);
-    } else {
-      setIsSubmitted(false);
-    }
+    setIsSubmitted(true);
   };
 
   const selectAlgorithmHandler = (event) => {
@@ -62,6 +63,13 @@ const StockAlgoritm = (props) => {
           closePrices={closePrices}
           algorithm={selectedAlgorithm}
           isSubmitted={isSubmitted}
+        />
+      )}
+      {isSubmitted && !selectedAlgorithm && (
+        <ErrorModal
+          title="Error"
+          message="Please select your algorithm"
+          onConfirm={errorHandler}
         />
       )}
     </Card>

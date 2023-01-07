@@ -1,8 +1,8 @@
 import { Fragment, useRef, useState } from "react";
 import { Prompt, useHistory } from "react-router-dom";
 
-import Card from "../UI/Card";
 import classes from "./AlgorithmForm.module.css";
+import Card from "../UI/Card";
 
 const AlgorithmForm = (props) => {
   const history = useHistory();

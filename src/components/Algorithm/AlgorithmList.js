@@ -5,8 +5,7 @@ import AlgorithmItem from "./AlgorithmItem";
 import classes from "./AlgorithmItem.module.css";
 
 const AlgorithmList = () => {
-  const algorithmCtx = useContext(AlgorithmContext);
-  const { algorithms } = algorithmCtx;
+  const { algorithms } = useContext(AlgorithmContext);
 
   return (
     <Fragment>

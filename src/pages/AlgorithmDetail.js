@@ -1,10 +1,10 @@
 import { Fragment, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 
-import HighlightedAlgorithm from "../components/Algorithm/HighlightedAlgorithm";
 import useHttp from "../hooks/use-http";
 import { getSingleAlgorithm } from "../lib/api";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
+import HighlightedAlgorithm from "../components/Algorithm/HighlightedAlgorithm";
 
 const AlgorithmDetail = () => {
   const params = useParams();

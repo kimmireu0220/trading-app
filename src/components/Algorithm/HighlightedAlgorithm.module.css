@@ -1,0 +1,14 @@
+h1,
+h2,
+h3 {
+  padding-left: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.buy {
+  color: rgb(237, 13, 13);
+}
+
+.sell {
+  color: rgb(11, 11, 227);
+}

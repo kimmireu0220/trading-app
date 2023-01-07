@@ -14,7 +14,7 @@ const AlgorithmItem = (props) => {
           <p>{`Sell : ${props.sellAlgorithm} $${props.sellTarget} `}</p>
         </figcaption>
       </figure>
-      <Link className={classes.detailButton} to={`/algorithms/${props.id}`}>
+      <Link className={classes.link} to={`/algorithms/${props.id}`}>
         View Detail
       </Link>
     </li>

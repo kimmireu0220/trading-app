@@ -2,22 +2,11 @@
   position: relative;
 }
 
-.loading {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .control {
   margin-bottom: 0.5rem;
 }
 
 .control label {
-  font-weight: bold;
   display: block;
   margin-bottom: 0.5rem;
 }
@@ -67,7 +56,6 @@
   margin: 0.5rem 0 0 1rem;
   padding: 0.75rem;
   width: 20%;
-  white-space: nowrap;
   font-size: 1.25rem;
   border: none;
   border-radius: 0.5rem;

@@ -9,14 +9,9 @@
   background-color: #c2e7f0;
 }
 
-.item:last-of-type {
-  border-bottom: none;
-}
-
 .item figure {
   margin: 0;
   padding: 0;
-  width: 70%;
 }
 
 .item blockquote {
@@ -36,18 +31,19 @@
   color: #566d6d;
 }
 
-.detailButton {
+.link {
   text-decoration: none;
   background-color: rgb(56, 115, 225);
   color: white;
   border-radius: 4px;
   padding: 0.75rem 1.5rem;
+  margin-right: 0.5rem;
   border: 1px solid teal;
   cursor: pointer;
 }
 
-.detailButton:hover,
-.detailButton:active {
+.link:hover,
+.link:active {
   background-color: #1735c9;
   border-color: #1735c9;
 }

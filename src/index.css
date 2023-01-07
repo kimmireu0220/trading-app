@@ -12,8 +12,8 @@ li {
   list-style: none;
 }
 
-.no--wrap {
-  white-space: nowrap;
+label {
+  font-weight: bold;
 }
 
 .centered {
@@ -27,12 +27,6 @@ li {
 .float--right {
   float: right;
   margin: 1.25rem;
-}
-
-.focused {
-  font-size: 3rem;
-  font-weight: bold;
-  color: white;
 }
 
 .btn {
@@ -51,19 +45,6 @@ li {
   border-color: #11acac;
 }
 
-.btn--flat {
-  cursor: pointer;
-  font: inherit;
-  color: teal;
-  border: none;
-  background-color: none;
-  text-decoration: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 4px;
-}
-
-.btn--flat:hover,
-.btn--flat:active {
-  background-color: teal;
-  color: white;
+.no--wrap {
+  white-space: nowrap;
 }
