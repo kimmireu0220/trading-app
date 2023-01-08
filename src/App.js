@@ -5,6 +5,7 @@ import Main from "./pages/Main";
 import Stock from "./pages/Stock";
 import AllAlgorithms from "./pages/AllAlgorithms";
 import AlgorithmDetail from "./pages/AlgorithmDetail";
+import EditAlgorithm from "./pages/EditAlgorithm";
 import NewAlgorithm from "./pages/NewAlgorithm";
 import NotFound from "./pages/NotFound";
 
@@ -24,8 +25,11 @@ function App() {
         <Route path="/algorithms" exact>
           <AllAlgorithms />
         </Route>
-        <Route path="/algorithms/:algorithmId">
+        <Route path="/algorithms/:algorithmId" exact>
           <AlgorithmDetail />
+        </Route>
+        <Route path="/algorithms/:algorithmId/edit" exact>
+          <EditAlgorithm />
         </Route>
         <Route path="/new-algorithm">
           <NewAlgorithm />

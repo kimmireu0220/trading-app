@@ -5,6 +5,7 @@ import classes from "./AlgorithmForm.module.css";
 import Card from "../UI/Card";
 
 const AlgorithmForm = (props) => {
+  const { algorithmId } = props;
   const history = useHistory();
 
   const [isEntering, setIsEntering] = useState(false);
@@ -24,14 +25,28 @@ const AlgorithmForm = (props) => {
     const enteredSellTarget = sellTargetInputRef.current.value;
     const enteredDescription = descriptionInputRef.current.value;
 
-    props.onAddAlgorithm({
-      title: enteredTitle,
-      buyAlgorithm: enteredBuyAlgorithm,
-      buyTarget: enteredBuyTarget,
-      sellAlgorithm: enteredSellAlgorithm,
-      sellTarget: enteredSellTarget,
-      description: enteredDescription,
-    });
+    if (props.action === "add") {
+      props.onAddAlgorithm({
+        title: enteredTitle,
+        buyAlgorithm: enteredBuyAlgorithm,
+        buyTarget: enteredBuyTarget,
+        sellAlgorithm: enteredSellAlgorithm,
+        sellTarget: enteredSellTarget,
+        description: enteredDescription,
+      });
+    }
+
+    if (props.action === "edit") {
+      props.onEditAlgorithm({
+        title: enteredTitle,
+        buyAlgorithm: enteredBuyAlgorithm,
+        buyTarget: enteredBuyTarget,
+        sellAlgorithm: enteredSellAlgorithm,
+        sellTarget: enteredSellTarget,
+        description: enteredDescription,
+        algorithmId,
+      });
+    }
   }
 
   const formFocusedHandler = () => {

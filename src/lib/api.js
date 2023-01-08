@@ -1,6 +1,5 @@
 const API_KEY = process.env.REACT_APP_API_KEY;
-const FIREBASE_DOMAIN =
-  "https://react-project-b1f7d-default-rtdb.firebaseio.com";
+const FIREBASE_DOMAIN = process.env.REACT_APP_FIREBASE_DOMAIN;
 
 export const getStockDetailData = async (ticker) => {
   const OVERVIEW_API = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${ticker}&apikey=${API_KEY}`;
@@ -63,7 +62,7 @@ export const getDailyStockData = async (ticker) => {
   return result;
 };
 
-export async function addAlgorithm(algorithmData) {
+export const addAlgorithm = async (algorithmData) => {
   const response = await fetch(`${FIREBASE_DOMAIN}/algorithms.json`, {
     method: "POST",
     body: JSON.stringify(algorithmData),
@@ -78,7 +77,46 @@ export async function addAlgorithm(algorithmData) {
   }
 
   return null;
-}
+};
+
+export const editAlgorithm = async (algorithmData) => {
+  const {
+    algorithmId,
+    title,
+    buyAlgorithm,
+    buyTarget,
+    sellAlgorithm,
+    sellTarget,
+    description,
+  } = algorithmData;
+
+  const body = {
+    title,
+    buyAlgorithm,
+    buyTarget,
+    sellAlgorithm,
+    sellTarget,
+    description,
+  };
+
+  const response = await fetch(
+    `${FIREBASE_DOMAIN}/algorithms/${algorithmId}.json`,
+    {
+      method: "PUT",
+      body: JSON.stringify(body),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || "Could not create algorithm.");
+  }
+
+  return null;
+};
 
 export const getAllAlgorithms = async () => {
   const response = await fetch(`${FIREBASE_DOMAIN}/algorithms.json`);
