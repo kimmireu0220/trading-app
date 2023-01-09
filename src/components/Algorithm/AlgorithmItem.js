@@ -1,20 +1,25 @@
-import { Link } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 
 import classes from "./AlgorithmItem.module.css";
 
 const AlgorithmItem = (props) => {
+  const { pathname } = useLocation();
+
+  const { title, buyAlgorithm, buyTarget, sellAlgorithm, sellTarget, id } =
+    props;
+
   return (
     <li className={classes.item}>
       <figure>
         <blockquote>
-          <p>{props.title}</p>
+          <p>{title}</p>
         </blockquote>
         <figcaption>
-          <p>{`Buy : ${props.buyAlgorithm} $${props.buyTarget} `}</p>
-          <p>{`Sell : ${props.sellAlgorithm} $${props.sellTarget} `}</p>
+          <p>{`Buy : ${buyAlgorithm} $${buyTarget} `}</p>
+          <p>{`Sell : ${sellAlgorithm} $${sellTarget} `}</p>
         </figcaption>
       </figure>
-      <Link className={classes.link} to={`/algorithms/${props.id}`}>
+      <Link className={classes.link} to={`${pathname}/${id}`}>
         View Detail
       </Link>
     </li>

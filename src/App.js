@@ -6,7 +6,7 @@ import Stock from "./pages/Stock";
 import AllAlgorithms from "./pages/AllAlgorithms";
 import AlgorithmDetail from "./pages/AlgorithmDetail";
 import EditAlgorithm from "./pages/EditAlgorithm";
-import NewAlgorithm from "./pages/NewAlgorithm";
+import AddAlgorithm from "./pages/AddAlgorithm";
 import NotFound from "./pages/NotFound";
 
 function App() {
@@ -28,11 +28,11 @@ function App() {
         <Route path="/algorithms/:algorithmId" exact>
           <AlgorithmDetail />
         </Route>
-        <Route path="/algorithms/:algorithmId/edit" exact>
+        <Route path="/algorithms/:algorithmId/edit">
           <EditAlgorithm />
         </Route>
-        <Route path="/new-algorithm">
-          <NewAlgorithm />
+        <Route path="/add-algorithm">
+          <AddAlgorithm />
         </Route>
         <Route path="*">
           <NotFound text="Page not found!" />

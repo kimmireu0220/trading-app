@@ -1,19 +1,17 @@
-import { Fragment, useContext } from "react";
+import { useContext, Fragment } from "react";
 import { useHistory } from "react-router-dom";
 
 import AlgorithmContext from "../store/algorithm-context";
-import LoadingSpinner from "../components/UI/LoadingSpinner";
 import AlgorithmList from "../components/Algorithm/AlgorithmList";
+import LoadingSpinner from "../components/UI/LoadingSpinner";
 import NotFound from "./NotFound";
 
 const AllAlgorithms = () => {
-  const algorithmCtx = useContext(AlgorithmContext);
-  const { status, algorithms, error } = algorithmCtx;
-
+  const { status, algorithms, error } = useContext(AlgorithmContext);
   const history = useHistory();
 
-  const addAlgorithmHandler = () => {
-    history.push("/new-algorithm");
+  const goToAddAlgorithmPageHandler = () => {
+    history.push("/add-algorithm");
   };
 
   let content = <AlgorithmList />;
@@ -39,7 +37,7 @@ const AllAlgorithms = () => {
   return (
     <Fragment>
       {content}
-      <button className="centered btn" onClick={addAlgorithmHandler}>
+      <button className="centered btn" onClick={goToAddAlgorithmPageHandler}>
         Add an Algorithm
       </button>
     </Fragment>

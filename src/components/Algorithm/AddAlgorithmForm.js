@@ -4,13 +4,13 @@ import { Prompt, useHistory } from "react-router-dom";
 import classes from "./AlgorithmForm.module.css";
 import Card from "../UI/Card";
 
-const AlgorithmForm = (props) => {
-  const { algorithmId } = props;
+const AddAlgorithmForm = (props) => {
+  const { action, algorithmId } = props;
   const history = useHistory();
 
   const [isEntering, setIsEntering] = useState(false);
-  const [enteredBuyAlgorithm, setEnteredBuyAlgorithm] = useState();
-  const [enteredSellAlgorithm, setEnteredSellAlgorithm] = useState();
+  const [buyAlgorithm, setBuyAlgorithm] = useState("RSI");
+  const [sellAlgorithm, setSellAlgorithm] = useState("RSI");
 
   const titleInputRef = useRef();
   const buyTargetInutRef = useRef();
@@ -20,30 +20,30 @@ const AlgorithmForm = (props) => {
   function submitFormHandler(event) {
     event.preventDefault();
 
-    const enteredTitle = titleInputRef.current.value;
-    const enteredBuyTarget = buyTargetInutRef.current.value;
-    const enteredSellTarget = sellTargetInputRef.current.value;
-    const enteredDescription = descriptionInputRef.current.value;
+    const title = titleInputRef.current.value;
+    const buyTarget = buyTargetInutRef.current.value;
+    const sellTarget = sellTargetInputRef.current.value;
+    const description = descriptionInputRef.current.value;
 
-    if (props.action === "add") {
+    if (action === "add") {
       props.onAddAlgorithm({
-        title: enteredTitle,
-        buyAlgorithm: enteredBuyAlgorithm,
-        buyTarget: enteredBuyTarget,
-        sellAlgorithm: enteredSellAlgorithm,
-        sellTarget: enteredSellTarget,
-        description: enteredDescription,
+        title,
+        buyAlgorithm,
+        buyTarget,
+        sellAlgorithm,
+        sellTarget,
+        description,
       });
     }
 
-    if (props.action === "edit") {
+    if (action === "edit") {
       props.onEditAlgorithm({
-        title: enteredTitle,
-        buyAlgorithm: enteredBuyAlgorithm,
-        buyTarget: enteredBuyTarget,
-        sellAlgorithm: enteredSellAlgorithm,
-        sellTarget: enteredSellTarget,
-        description: enteredDescription,
+        title,
+        buyAlgorithm,
+        buyTarget,
+        sellAlgorithm,
+        sellTarget,
+        description,
         algorithmId,
       });
     }
@@ -54,15 +54,15 @@ const AlgorithmForm = (props) => {
   };
 
   const addBuyAlgorithmHandler = (event) => {
-    setEnteredBuyAlgorithm(event.target.value);
+    setBuyAlgorithm(event.target.value);
   };
 
   const addSellAlgorithmHandler = (event) => {
-    setEnteredSellAlgorithm(event.target.value);
+    setSellAlgorithm(event.target.value);
   };
 
   const cancelHandler = () => {
-    history.push("/algorithms");
+    history.goBack();
   };
 
   const finishEnteringHandler = () => {
@@ -85,7 +85,6 @@ const AlgorithmForm = (props) => {
             <label htmlFor="title">Title</label>
             <input type="text" id="title" ref={titleInputRef} />
           </div>
-
           <div className={classes.logicControl}>
             <div className={classes.signal}>
               <label htmlFor="buy">Buy</label>
@@ -130,4 +129,4 @@ const AlgorithmForm = (props) => {
   );
 };
 
-export default AlgorithmForm;
+export default AddAlgorithmForm;

@@ -39,6 +39,19 @@ const StockTradeResult = (props) => {
     }
   }
 
+  if (buyTargets.length > sellTargets.length) {
+    buyTargets.pop();
+  }
+
+  let profits = [];
+
+  for (let i = 0; i < buyTargets.length; i++) {
+    profits.push({
+      id: i,
+      profit: (+sellTargets[i].price - +buyTargets[i].price).toFixed(2),
+    });
+  }
+
   return (
     <div>
       <hr />
@@ -48,14 +61,27 @@ const StockTradeResult = (props) => {
           {isSubmitted && (
             <ul>
               {buyTargets.map((target) => (
-                <li key={target.day}>
+                <li className={classes.trade} key={target.day}>
                   <div>
                     {`${target.day.getFullYear()}.${
                       target.day.getMonth() + 1
                     }.${target.day.getDate()} `}
                   </div>
-                  <div>{`$${target.price}`}</div>
+                  <div className={classes.buyPrice}>{`$${target.price}`}</div>
                 </li>
+              ))}
+            </ul>
+          )}
+        </div>
+        <div className={classes.profit}>
+          <p>Net Profit</p>
+          {isSubmitted && (
+            <ul>
+              {profits.map((profit) => (
+                <div>
+                  <li key={profit.id}>{`$${profit.profit}`}</li>
+                  <br></br>
+                </div>
               ))}
             </ul>
           )}
@@ -65,13 +91,13 @@ const StockTradeResult = (props) => {
           {isSubmitted && (
             <ul>
               {sellTargets.map((target) => (
-                <li key={target.day}>
+                <li className={classes.trade} key={target.day}>
                   <div>
                     {`${target.day.getFullYear()}.${
                       target.day.getMonth() + 1
                     }.${target.day.getDate()} `}
                   </div>
-                  <div>{`$${target.price}`}</div>
+                  <div className={classes.sellPrice}>{`$${target.price}`}</div>
                 </li>
               ))}
             </ul>

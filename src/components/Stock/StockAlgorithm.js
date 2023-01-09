@@ -1,18 +1,17 @@
 import { useContext, useState } from "react";
 
+import classes from "./StockAlgorithm.module.css";
 import AlgorithmContext from "../../store/algorithm-context";
 import Card from "../UI/Card";
-import ErrorModal from "../UI/ErrorModal";
-import classes from "./StockAlgorithm.module.css";
 import StockTradeResult from "./StockTradeResult";
+import ErrorModal from "../UI/ErrorModal";
 
 const StockAlgoritm = (props) => {
-  const { days, closePrices } = props;
+  const { algorithms } = useContext(AlgorithmContext);
   const [selectedAlgorithm, setSelectedAlgorithm] = useState(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const algorithmCtx = useContext(AlgorithmContext);
-  const { algorithms } = algorithmCtx;
+  const { days, closePrices } = props;
 
   const errorHandler = () => {
     setIsSubmitted(false);
@@ -26,8 +25,10 @@ const StockAlgoritm = (props) => {
 
   const selectAlgorithmHandler = (event) => {
     if (event.target.value) {
-      const algorithm = JSON.parse(event.target.value);
-      const { buyAlgorithm, buyTarget, sellAlgorithm, sellTarget } = algorithm;
+      const { buyAlgorithm, buyTarget, sellAlgorithm, sellTarget } = JSON.parse(
+        event.target.value
+      );
+
       setSelectedAlgorithm({
         buyAlgorithm,
         buyTarget,
@@ -35,19 +36,15 @@ const StockAlgoritm = (props) => {
         sellTarget,
       });
     } else {
-      setIsSubmitted(false);
       setSelectedAlgorithm(null);
     }
+    setIsSubmitted(false);
   };
 
   return (
     <Card>
       <form onSubmit={startTradingHandler} className={classes.form}>
-        <select
-          onChange={selectAlgorithmHandler}
-          id="algorithm"
-          className={classes.select}
-        >
+        <select onChange={selectAlgorithmHandler} className={classes.select}>
           <option value="">Select Algorithm</option>
           {algorithms.map((algorithm) => (
             <option key={algorithm.id} value={JSON.stringify(algorithm)}>

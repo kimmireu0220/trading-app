@@ -1,15 +1,15 @@
 import { useEffect } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
-import AlgorithmForm from "../components/Algorithm/AlgorithmForm";
 import useHttp from "../hooks/use-http";
 import { editAlgorithm } from "../lib/api";
+import EditAlgorithmForm from "../components/Algorithm/EditAlgorithmForm";
 
 const EditAlgorithm = () => {
   const { algorithmId } = useParams();
+  const history = useHistory();
 
   const { sendRequest, status } = useHttp(editAlgorithm);
-  const history = useHistory();
 
   useEffect(() => {
     if (status === "completed") {
@@ -23,9 +23,8 @@ const EditAlgorithm = () => {
   };
 
   return (
-    <AlgorithmForm
+    <EditAlgorithmForm
       onEditAlgorithm={editAlgorithmHandler}
-      action="edit"
       algorithmId={algorithmId}
     />
   );

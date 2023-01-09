@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, NavLink, useHistory } from "react-router-dom";
+import { useHistory, Link, NavLink } from "react-router-dom";
 
 import classes from "./MainNavigation.module.css";
 

@@ -1,8 +1,8 @@
-import { Fragment, useContext } from "react";
+import { useContext, Fragment } from "react";
 
+import classes from "./AlgorithmItem.module.css";
 import AlgorithmContext from "../../store/algorithm-context";
 import AlgorithmItem from "./AlgorithmItem";
-import classes from "./AlgorithmItem.module.css";
 
 const AlgorithmList = () => {
   const { algorithms } = useContext(AlgorithmContext);

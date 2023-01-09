@@ -35,16 +35,6 @@ const Stock = () => {
     status: dailyDataStatus,
   } = useHttp(getDailyStockData);
 
-  let name, price, change, days, closePrices;
-
-  if (detailData && todayData && dailyData) {
-    name = detailData.name;
-    price = todayData.price;
-    change = todayData.change;
-    days = dailyData.days;
-    closePrices = dailyData.closePrices;
-  }
-
   useEffect(() => {
     getDetailData(ticker);
     getTodayData(ticker);
@@ -53,19 +43,11 @@ const Stock = () => {
 
   let content;
 
-  if (
-    detailDataStatus === "pending" ||
-    todayDataStatus === "pending" ||
-    dailyDataStatus === "pending"
-  ) {
-    content = (
-      <div className="centered">
-        <LoadingSpinner />
-      </div>
-    );
-  }
-
   if (detailData && todayData && dailyData) {
+    const { name } = detailData;
+    const { price, change } = todayData;
+    const { days, closePrices } = dailyData;
+
     content = (
       <Fragment>
         <StockInfo
@@ -77,6 +59,20 @@ const Stock = () => {
         <StockChart xValues={days} yValues={closePrices} />
         <StockAlgoritm days={days} closePrices={closePrices} />
       </Fragment>
+    );
+  }
+
+  // Error or Loading status
+
+  if (
+    detailDataStatus === "pending" ||
+    todayDataStatus === "pending" ||
+    dailyDataStatus === "pending"
+  ) {
+    content = (
+      <div className="centered">
+        <LoadingSpinner />
+      </div>
     );
   }
 

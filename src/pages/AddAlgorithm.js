@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
-import AlgorithmForm from "../components/Algorithm/AlgorithmForm";
+import AddAlgorithmForm from "../components/Algorithm/AddAlgorithmForm";
 import useHttp from "../hooks/use-http";
 import { addAlgorithm } from "../lib/api";
 
-const NewAlgorithm = () => {
-  const { sendRequest, status } = useHttp(addAlgorithm);
+const AddAlgorithm = () => {
   const history = useHistory();
+  const { sendRequest, status } = useHttp(addAlgorithm);
 
   useEffect(() => {
     if (status === "completed") {
@@ -20,7 +20,7 @@ const NewAlgorithm = () => {
     sendRequest(algorithmData);
   };
 
-  return <AlgorithmForm onAddAlgorithm={addAlgorithmHandler} action="add" />;
+  return <AddAlgorithmForm onAddAlgorithm={addAlgorithmHandler} />;
 };
 
-export default NewAlgorithm;
+export default AddAlgorithm;

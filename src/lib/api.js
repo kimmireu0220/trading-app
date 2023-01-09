@@ -1,8 +1,9 @@
 const API_KEY = process.env.REACT_APP_API_KEY;
 const FIREBASE_DOMAIN = process.env.REACT_APP_FIREBASE_DOMAIN;
+const ALPHA_ADVANTAGE_DOMAIN = process.env.REACT_APP_ALPHA_ADVANTAGE_DOMAIN;
 
 export const getStockDetailData = async (ticker) => {
-  const OVERVIEW_API = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${ticker}&apikey=${API_KEY}`;
+  const OVERVIEW_API = `${ALPHA_ADVANTAGE_DOMAIN}/query?function=OVERVIEW&symbol=${ticker}&apikey=${API_KEY}`;
 
   const response = await fetch(OVERVIEW_API);
   const data = await response.json();
@@ -19,7 +20,7 @@ export const getStockDetailData = async (ticker) => {
 };
 
 export const getTodayStockData = async (ticker) => {
-  const GLOBAL_QUOTE_API = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${ticker}&apikey=${API_KEY}`;
+  const GLOBAL_QUOTE_API = `${ALPHA_ADVANTAGE_DOMAIN}/query?function=GLOBAL_QUOTE&symbol=${ticker}&apikey=${API_KEY}`;
 
   const response = await fetch(GLOBAL_QUOTE_API);
   const data = await response.json();
@@ -37,7 +38,7 @@ export const getTodayStockData = async (ticker) => {
 };
 
 export const getDailyStockData = async (ticker) => {
-  const TIME_SERIES_DAILY_ADJUSTED_API = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${ticker}&outputsize=compact&apikey=${API_KEY}`;
+  const TIME_SERIES_DAILY_ADJUSTED_API = `${ALPHA_ADVANTAGE_DOMAIN}/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${ticker}&outputsize=compact&apikey=${API_KEY}`;
 
   const response = await fetch(TIME_SERIES_DAILY_ADJUSTED_API);
   const data = await response.json();

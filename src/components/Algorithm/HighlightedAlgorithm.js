@@ -1,21 +1,28 @@
-import Card from "../UI/Card";
 import classes from "./HighlightedAlgorithm.module.css";
+import Card from "../UI/Card";
 
 const HighlightedAlgorithm = (props) => {
+  const {
+    title,
+    buyAlgorithm,
+    buyTarget,
+    sellAlgorithm,
+    sellTarget,
+    description,
+  } = props;
+
   return (
     <Card>
-      <h1>{props.title}</h1>
+      <h1>{title}</h1>
       <hr />
       <h2>
-        <p
-          className={classes.buy}
-        >{`Buy : $${props.buyTarget} (${props.buyAlgorithm})`}</p>
+        <p className={classes.buy}>{`Buy : $${buyTarget} (${buyAlgorithm})`}</p>
         <p
           className={classes.sell}
-        >{`Sell : $${props.sellTarget} (${props.sellAlgorithm})`}</p>
+        >{`Sell : $${sellTarget} (${sellAlgorithm})`}</p>
       </h2>
       <hr />
-      <h3>{props.description}</h3>
+      <h3>{description}</h3>
     </Card>
   );
 };
