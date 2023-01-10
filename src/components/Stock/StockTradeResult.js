@@ -53,10 +53,10 @@ const StockTradeResult = (props) => {
     });
   }
 
-  let targets = [];
+  let results = [];
 
   for (let i = 0; i < buyTargets.length; i++) {
-    targets.push({
+    results.push({
       id: i,
       buy: buyTargets[i],
       profit: profits[i],
@@ -74,9 +74,8 @@ const StockTradeResult = (props) => {
       </div>
       {isSubmitted && (
         <div>
-          {" "}
-          {targets.map((target) => (
-            <StockTradeInfo key={target.id} target={target} />
+          {results.map((result) => (
+            <StockTradeInfo key={result.id} result={result} />
           ))}
         </div>
       )}

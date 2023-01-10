@@ -54,7 +54,7 @@ const StockAlgoritm = (props) => {
         </select>
         <button className="btn">Trade</button>
       </form>
-      {selectedAlgorithm && (
+      {selectedAlgorithm && selectedAlgorithm.buyAlgorithm === "price" && (
         <StockTradeResult
           days={days}
           closePrices={closePrices}
