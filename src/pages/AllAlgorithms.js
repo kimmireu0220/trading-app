@@ -7,7 +7,7 @@ import LoadingSpinner from "../components/UI/LoadingSpinner";
 import NotFound from "./NotFound";
 
 const AllAlgorithms = () => {
-  const { status, algorithms, error } = useContext(AlgorithmContext);
+  const { algorithms, status, error } = useContext(AlgorithmContext);
   const history = useHistory();
 
   const goToAddAlgorithmPageHandler = () => {

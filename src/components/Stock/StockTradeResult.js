@@ -1,3 +1,5 @@
+import { Fragment } from "react";
+import StockTradeInfo from "./StockTradeInfo";
 import classes from "./StockTradeResult.module.css";
 
 const StockTradeResult = (props) => {
@@ -47,64 +49,38 @@ const StockTradeResult = (props) => {
 
   for (let i = 0; i < buyTargets.length; i++) {
     profits.push({
-      id: i,
       profit: (+sellTargets[i].price - +buyTargets[i].price).toFixed(2),
     });
   }
 
+  let targets = [];
+
+  for (let i = 0; i < buyTargets.length; i++) {
+    targets.push({
+      id: i,
+      buy: buyTargets[i],
+      profit: profits[i],
+      sell: sellTargets[i],
+    });
+  }
+
   return (
-    <div>
+    <Fragment>
       <hr />
-      <div className={classes.result}>
-        <div>
-          <p>{`Buy : $${buyTarget} (${buyAlgorithm}) `}</p>
-          {isSubmitted && (
-            <ul>
-              {buyTargets.map((target) => (
-                <li className={classes.trade} key={target.day}>
-                  <div>
-                    {`${target.day.getFullYear()}.${
-                      target.day.getMonth() + 1
-                    }.${target.day.getDate()} `}
-                  </div>
-                  <div className={classes.buyPrice}>{`$${target.price}`}</div>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-        <div className={classes.profit}>
-          <p>Net Profit</p>
-          {isSubmitted && (
-            <ul>
-              {profits.map((profit) => (
-                <div>
-                  <li key={profit.id}>{`$${profit.profit}`}</li>
-                  <br></br>
-                </div>
-              ))}
-            </ul>
-          )}
-        </div>
-        <div>
-          <p>{`Sell : $${sellTarget} (${sellAlgorithm})`}</p>
-          {isSubmitted && (
-            <ul>
-              {sellTargets.map((target) => (
-                <li className={classes.trade} key={target.day}>
-                  <div>
-                    {`${target.day.getFullYear()}.${
-                      target.day.getMonth() + 1
-                    }.${target.day.getDate()} `}
-                  </div>
-                  <div className={classes.sellPrice}>{`$${target.price}`}</div>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
+      <div className={classes.title}>
+        <p>{`Buy : $${buyTarget} (${buyAlgorithm})`}</p>
+        <p>Net Profit</p>
+        <p>{`Sell : $${sellTarget} (${sellAlgorithm})`}</p>
       </div>
-    </div>
+      {isSubmitted && (
+        <div>
+          {" "}
+          {targets.map((target) => (
+            <StockTradeInfo key={target.id} target={target} />
+          ))}
+        </div>
+      )}
+    </Fragment>
   );
 };
 

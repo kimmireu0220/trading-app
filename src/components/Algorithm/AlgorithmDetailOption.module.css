@@ -1,0 +1,26 @@
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.buttons button {
+  margin-top: 1rem;
+  margin-right: 1.25rem;
+  width: 7.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  color: white;
+  height: 3rem;
+}
+
+.delete {
+  background-color: rgb(205, 31, 31);
+}
+
+.edit {
+  background-color: rgb(39, 39, 194);
+}
+
+.link {
+  margin-top: 10rem;
+}

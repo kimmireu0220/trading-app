@@ -6,6 +6,7 @@ import Stock from "./pages/Stock";
 import AllAlgorithms from "./pages/AllAlgorithms";
 import AlgorithmDetail from "./pages/AlgorithmDetail";
 import EditAlgorithm from "./pages/EditAlgorithm";
+import DeleteAlgorithm from "./components/Algorithm/DeleteAlgorithm";
 import AddAlgorithm from "./pages/AddAlgorithm";
 import NotFound from "./pages/NotFound";
 
@@ -30,6 +31,9 @@ function App() {
         </Route>
         <Route path="/algorithms/:algorithmId/edit">
           <EditAlgorithm />
+        </Route>
+        <Route path="/algorithms/:algorithmId/delete">
+          <DeleteAlgorithm />
         </Route>
         <Route path="/add-algorithm">
           <AddAlgorithm />

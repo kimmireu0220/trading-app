@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import classes from "./Modal.module.css";
 
 const Backdrop = (props) => {
-  return <div className={classes.backdrop} onClick={props.onConfirm} />;
+  return <div className={classes.backdrop} onClick={props.onClose} />;
 };
 
 const ModalOverlay = (props) => {
@@ -17,6 +17,9 @@ const ModalOverlay = (props) => {
         <p>{props.message}</p>
       </div>
       <footer className={classes.actions}>
+        <button className={`btn ${classes.no}`} onClick={props.onClose}>
+          No
+        </button>
         <button className="btn" onClick={props.onConfirm}>
           Okay
         </button>
@@ -25,17 +28,18 @@ const ModalOverlay = (props) => {
   );
 };
 
-const ErrorModal = (props) => {
+const ConfirmModal = (props) => {
   return (
     <Fragment>
       {ReactDOM.createPortal(
-        <Backdrop onConfirm={props.onConfirm} />,
+        <Backdrop onClose={props.onClose} />,
         document.getElementById("backdrop-root")
       )}
       {ReactDOM.createPortal(
         <ModalOverlay
           title={props.title}
           message={props.message}
+          onClose={props.onClose}
           onConfirm={props.onConfirm}
         />,
         document.getElementById("overlay-root")
@@ -44,4 +48,4 @@ const ErrorModal = (props) => {
   );
 };
 
-export default ErrorModal;
+export default ConfirmModal;

@@ -1,14 +1,18 @@
-import { Fragment, useEffect } from "react";
-import { useParams, useLocation, Link } from "react-router-dom";
+import { Fragment, useEffect, useState } from "react";
+import { useParams, useLocation, useHistory } from "react-router-dom";
 
 import useHttp from "../hooks/use-http";
 import { getSingleAlgorithm } from "../lib/api";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
 import HighlightedAlgorithm from "../components/Algorithm/HighlightedAlgorithm";
+import ConfirmModal from "../components/UI/ConfirmModal";
+import AlgorithmDetailOption from "../components/Algorithm/AlgorithmDetailOption";
 
 const AlgorithmDetail = () => {
+  const [showConfirm, setShowConfirm] = useState(false);
   const { algorithmId } = useParams();
   const { pathname } = useLocation();
+  const history = useHistory();
 
   const {
     sendRequest,
@@ -16,6 +20,22 @@ const AlgorithmDetail = () => {
     data: loadedAlgorithm,
     error,
   } = useHttp(getSingleAlgorithm, true);
+
+  const goToEditAlgorithmHandler = () => {
+    history.push(`${pathname}/edit`);
+  };
+
+  const toggleConfirmHandler = () => {
+    setShowConfirm((currentState) => !currentState);
+  };
+
+  const deleteAlgorithmHandler = () => {
+    history.push(`${pathname}/delete`);
+  };
+
+  const backToAlgorithmHandler = () => {
+    history.goBack();
+  };
 
   useEffect(() => {
     sendRequest(algorithmId);
@@ -41,26 +61,19 @@ const AlgorithmDetail = () => {
           sellTarget={sellTarget}
           description={description}
         />
-        <ul>
-          <li>
-            <Link
-              className="float--right"
-              style={{ textDecoration: "none" }}
-              to="/algorithms"
-            >
-              Back to list
-            </Link>
-          </li>
-          <li>
-            <Link
-              className="float--right"
-              style={{ textDecoration: "none" }}
-              to={`${pathname}/edit`}
-            >
-              Edit
-            </Link>
-          </li>
-        </ul>
+        <AlgorithmDetailOption
+          onGoToEdit={goToEditAlgorithmHandler}
+          onToggle={toggleConfirmHandler}
+          onGoBack={backToAlgorithmHandler}
+        />
+        {showConfirm && (
+          <ConfirmModal
+            title="Do you want to delete this algorithm?"
+            message="If you really want to delete, click 'Okay' button"
+            onClose={toggleConfirmHandler}
+            onConfirm={deleteAlgorithmHandler}
+          />
+        )}
       </Fragment>
     );
   }

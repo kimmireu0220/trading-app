@@ -37,7 +37,7 @@ const MainNavigation = () => {
       </form>
       <nav className={classes.nav}>
         <ul>
-          <li>
+          <li className={classes.navList}>
             <NavLink to="/algorithms" activeClassName={classes.active}>
               Algorithm
             </NavLink>

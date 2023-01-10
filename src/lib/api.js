@@ -119,6 +119,26 @@ export const editAlgorithm = async (algorithmData) => {
   return null;
 };
 
+export const deleteAlgorithm = async (algorithmId) => {
+  const response = await fetch(
+    `${FIREBASE_DOMAIN}/algorithms/${algorithmId}.json`,
+    {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+
+  const data = response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || "Could not fetch quote.");
+  }
+
+  return null;
+};
+
 export const getAllAlgorithms = async () => {
   const response = await fetch(`${FIREBASE_DOMAIN}/algorithms.json`);
   const data = await response.json();

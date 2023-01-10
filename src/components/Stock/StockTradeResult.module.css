@@ -7,27 +7,14 @@ li {
   margin-bottom: 0.75rem;
 }
 
-.result {
+.title {
   display: flex;
   justify-content: space-around;
   margin-top: 1rem;
 }
 
-.result p {
+.title p {
   border: 1px solid black;
   padding: 0.5rem 1rem;
   margin: 0.25rem 1rem;
-}
-
-.buyPrice {
-  color: red;
-}
-
-.sellPrice {
-  color: blue;
-}
-
-.profit {
-  display: flex;
-  flex-direction: column;
 }

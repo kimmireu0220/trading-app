@@ -39,6 +39,26 @@
   justify-content: flex-end;
 }
 
+.actions button {
+  margin: 0.75rem;
+}
+
+.no {
+  text-decoration: none;
+  background-color: rgb(164, 10, 10);
+  color: white;
+  border-radius: 4px;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid teal;
+  cursor: pointer;
+}
+
+.no:hover,
+.no:active {
+  background-color: rgb(203, 76, 53);
+  border-color: rgb(203, 76, 53);
+}
+
 @media (min-width: 768px) {
   .modal {
     left: calc(50% - 20rem);
