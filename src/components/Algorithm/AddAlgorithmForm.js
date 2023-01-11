@@ -9,10 +9,11 @@ const AddAlgorithmForm = (props) => {
   const history = useHistory();
 
   const [isEntering, setIsEntering] = useState(false);
-  const [buyAlgorithm, setBuyAlgorithm] = useState("RSI");
-  const [sellAlgorithm, setSellAlgorithm] = useState("RSI");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [formIsValid, setFormIsVallid] = useState(false);
+
+  const [buyAlgorithm, setBuyAlgorithm] = useState("RSI");
+  const [sellAlgorithm, setSellAlgorithm] = useState("RSI");
 
   const titleInputRef = useRef();
   const buyTargetInutRef = useRef();
@@ -21,6 +22,8 @@ const AddAlgorithmForm = (props) => {
 
   function submitFormHandler(event) {
     event.preventDefault();
+
+    setIsSubmitted(true);
 
     const title = titleInputRef.current.value;
     const buyTarget = buyTargetInutRef.current.value;
@@ -36,10 +39,8 @@ const AddAlgorithmForm = (props) => {
       description
     ) {
       setFormIsVallid(true);
-      setIsSubmitted(true);
     } else {
       setFormIsVallid(false);
-      setIsSubmitted(true);
     }
 
     if (formIsValid && isSubmitted) {
@@ -58,11 +59,11 @@ const AddAlgorithmForm = (props) => {
     setIsEntering(true);
   };
 
-  const addBuyAlgorithmHandler = (event) => {
+  const BuyAlgorithmChangeHandler = (event) => {
     setBuyAlgorithm(event.target.value);
   };
 
-  const addSellAlgorithmHandler = (event) => {
+  const sellAlgorithmChangeHandler = (event) => {
     setSellAlgorithm(event.target.value);
   };
 
@@ -97,7 +98,7 @@ const AddAlgorithmForm = (props) => {
           <div className={classes.logicControl}>
             <div className={classes.signal}>
               <label htmlFor="buy">Buy</label>
-              <select onChange={addBuyAlgorithmHandler}>
+              <select onChange={BuyAlgorithmChangeHandler}>
                 <option value="rsi">RSI</option>
                 <option value="price">Price</option>
               </select>
@@ -105,7 +106,7 @@ const AddAlgorithmForm = (props) => {
             </div>
             <div className={classes.signal}>
               <label htmlFor="sell">Sell</label>
-              <select onChange={addSellAlgorithmHandler}>
+              <select onChange={sellAlgorithmChangeHandler}>
                 <option value="rsi">RSI</option>
                 <option value="price">Price</option>
               </select>

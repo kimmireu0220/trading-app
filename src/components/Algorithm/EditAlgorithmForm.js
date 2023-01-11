@@ -7,19 +7,20 @@ import ErrorModal from "../UI/ErrorModal";
 import Card from "../UI/Card";
 
 const EditAlgorithmForm = (props) => {
-  const { algorithmId } = props;
-  const history = useHistory();
-
   const { algorithms } = useContext(AlgorithmContext);
+  const { algorithmId } = props;
   const algorithm = algorithms.find(
     (algorithm) => algorithm.id === algorithmId
   );
 
+  const history = useHistory();
+
   const [isEntering, setIsEntering] = useState(false);
-  const [buyAlgorithm, setBuyAlgorithm] = useState(algorithm.buyAlgorithm);
-  const [sellAlgorithm, setSellAlgorithm] = useState(algorithm.sellAlgorithm);
   const [formIsValid, setFormIsVallid] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const [buyAlgorithm, setBuyAlgorithm] = useState(algorithm.buyAlgorithm);
+  const [sellAlgorithm, setSellAlgorithm] = useState(algorithm.sellAlgorithm);
 
   const titleInputRef = useRef();
   const buyTargetInutRef = useRef();
@@ -28,6 +29,8 @@ const EditAlgorithmForm = (props) => {
 
   function submitFormHandler(event) {
     event.preventDefault();
+
+    setIsSubmitted(true);
 
     const title = titleInputRef.current.value;
     const buyTarget = buyTargetInutRef.current.value;
@@ -43,10 +46,8 @@ const EditAlgorithmForm = (props) => {
       description
     ) {
       setFormIsVallid(true);
-      setIsSubmitted(true);
     } else {
       setFormIsVallid(false);
-      setIsSubmitted(true);
     }
 
     if (formIsValid && isSubmitted) {
@@ -66,11 +67,11 @@ const EditAlgorithmForm = (props) => {
     setIsEntering(true);
   };
 
-  const editBuyAlgorithmHandler = (event) => {
+  const BuyAlgorithmChangeHandler = (event) => {
     setBuyAlgorithm(event.target.value);
   };
 
-  const editSellAlgorithmHandler = (event) => {
+  const sellAlgorithmChangeHandler = (event) => {
     setSellAlgorithm(event.target.value);
   };
 
@@ -111,7 +112,7 @@ const EditAlgorithmForm = (props) => {
             <div className={classes.signal}>
               <label htmlFor="buy">Buy</label>
               <select
-                onChange={editBuyAlgorithmHandler}
+                onChange={BuyAlgorithmChangeHandler}
                 defaultValue={algorithm.buyAlgorithm}
               >
                 <option value="rsi">RSI</option>
@@ -126,7 +127,7 @@ const EditAlgorithmForm = (props) => {
             <div className={classes.signal}>
               <label htmlFor="sell">Sell</label>
               <select
-                onChange={editSellAlgorithmHandler}
+                onChange={sellAlgorithmChangeHandler}
                 defaultValue={algorithm.sellAlgorithm}
               >
                 <option value="rsi">RSI</option>
