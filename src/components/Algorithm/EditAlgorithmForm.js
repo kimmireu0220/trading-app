@@ -3,6 +3,7 @@ import { Prompt, useHistory } from "react-router-dom";
 
 import classes from "./AlgorithmForm.module.css";
 import AlgorithmContext from "../../store/algorithm-context";
+import ErrorModal from "../UI/ErrorModal";
 import Card from "../UI/Card";
 
 const EditAlgorithmForm = (props) => {
@@ -17,6 +18,8 @@ const EditAlgorithmForm = (props) => {
   const [isEntering, setIsEntering] = useState(false);
   const [buyAlgorithm, setBuyAlgorithm] = useState(algorithm.buyAlgorithm);
   const [sellAlgorithm, setSellAlgorithm] = useState(algorithm.sellAlgorithm);
+  const [formIsValid, setFormIsVallid] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const titleInputRef = useRef();
   const buyTargetInutRef = useRef();
@@ -31,15 +34,32 @@ const EditAlgorithmForm = (props) => {
     const sellTarget = sellTargetInputRef.current.value;
     const description = descriptionInputRef.current.value;
 
-    props.onEditAlgorithm({
-      title,
-      buyAlgorithm,
-      buyTarget,
-      sellAlgorithm,
-      sellTarget,
-      description,
-      algorithmId,
-    });
+    if (
+      title &&
+      buyAlgorithm &&
+      buyTarget &&
+      sellAlgorithm &&
+      sellTarget &&
+      description
+    ) {
+      setFormIsVallid(true);
+      setIsSubmitted(true);
+    } else {
+      setFormIsVallid(false);
+      setIsSubmitted(true);
+    }
+
+    if (formIsValid && isSubmitted) {
+      props.onEditAlgorithm({
+        title,
+        buyAlgorithm,
+        buyTarget,
+        sellAlgorithm,
+        sellTarget,
+        description,
+        algorithmId,
+      });
+    }
   }
 
   const formFocusedHandler = () => {
@@ -60,6 +80,10 @@ const EditAlgorithmForm = (props) => {
 
   const finishEnteringHandler = () => {
     setIsEntering(false);
+  };
+
+  const closeModalHandler = () => {
+    setIsSubmitted(false);
   };
 
   return (
@@ -137,6 +161,13 @@ const EditAlgorithmForm = (props) => {
             </button>
           </div>
         </form>
+        {!formIsValid && isSubmitted && (
+          <ErrorModal
+            title="Form validity error"
+            message="Please fill in the blanks"
+            onConfirm={closeModalHandler}
+          />
+        )}
       </Card>
     </Fragment>
   );

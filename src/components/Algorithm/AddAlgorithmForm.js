@@ -2,6 +2,7 @@ import { Fragment, useRef, useState } from "react";
 import { Prompt, useHistory } from "react-router-dom";
 
 import classes from "./AlgorithmForm.module.css";
+import ErrorModal from "../UI/ErrorModal";
 import Card from "../UI/Card";
 
 const AddAlgorithmForm = (props) => {
@@ -10,6 +11,8 @@ const AddAlgorithmForm = (props) => {
   const [isEntering, setIsEntering] = useState(false);
   const [buyAlgorithm, setBuyAlgorithm] = useState("RSI");
   const [sellAlgorithm, setSellAlgorithm] = useState("RSI");
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [formIsValid, setFormIsVallid] = useState(false);
 
   const titleInputRef = useRef();
   const buyTargetInutRef = useRef();
@@ -24,14 +27,31 @@ const AddAlgorithmForm = (props) => {
     const sellTarget = sellTargetInputRef.current.value;
     const description = descriptionInputRef.current.value;
 
-    props.onAddAlgorithm({
-      title,
-      buyAlgorithm,
-      buyTarget,
-      sellAlgorithm,
-      sellTarget,
-      description,
-    });
+    if (
+      title &&
+      buyAlgorithm &&
+      buyTarget &&
+      sellAlgorithm &&
+      sellTarget &&
+      description
+    ) {
+      setFormIsVallid(true);
+      setIsSubmitted(true);
+    } else {
+      setFormIsVallid(false);
+      setIsSubmitted(true);
+    }
+
+    if (formIsValid && isSubmitted) {
+      props.onAddAlgorithm({
+        title,
+        buyAlgorithm,
+        buyTarget,
+        sellAlgorithm,
+        sellTarget,
+        description,
+      });
+    }
   }
 
   const formFocusedHandler = () => {
@@ -46,12 +66,16 @@ const AddAlgorithmForm = (props) => {
     setSellAlgorithm(event.target.value);
   };
 
-  const cancelHandler = () => {
+  const closeFormHandler = () => {
     history.goBack();
   };
 
   const finishEnteringHandler = () => {
     setIsEntering(false);
+  };
+
+  const closeModalHandler = () => {
+    setIsSubmitted(false);
   };
 
   return (
@@ -100,7 +124,7 @@ const AddAlgorithmForm = (props) => {
             <button
               className={classes.cancel}
               type="button"
-              onClick={cancelHandler}
+              onClick={closeFormHandler}
             >
               Cancel
             </button>
@@ -109,6 +133,13 @@ const AddAlgorithmForm = (props) => {
             </button>
           </div>
         </form>
+        {!formIsValid && isSubmitted && (
+          <ErrorModal
+            title="Form validity error"
+            message="Please fill in the blanks"
+            onConfirm={closeModalHandler}
+          />
+        )}
       </Card>
     </Fragment>
   );
