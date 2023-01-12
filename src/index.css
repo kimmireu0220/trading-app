@@ -40,6 +40,10 @@ label {
   align-items: center;
 }
 
+.float--right {
+  float: right;
+}
+
 .row {
   display: flex;
   justify-content: space-around;
