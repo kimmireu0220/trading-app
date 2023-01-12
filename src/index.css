@@ -33,7 +33,7 @@ label {
 }
 
 .centered {
-  margin: 3rem auto;
+  margin: 0 auto;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -49,13 +49,8 @@ label {
 .column {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  margin: 0.25rem 0;
-}
-
-.float--right {
-  float: right;
-  margin: 1rem;
 }
 
 .no--wrap {

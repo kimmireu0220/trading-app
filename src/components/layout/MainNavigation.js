@@ -36,13 +36,13 @@ const MainNavigation = () => {
         <button>Search</button>
       </form>
       <nav className={classes.nav}>
-        <ul>
-          <li className={classes.navList}>
-            <NavLink to="/algorithms" activeClassName={classes.active}>
-              Algorithm
-            </NavLink>
-          </li>
-        </ul>
+        <NavLink
+          to="/algorithms"
+          className={classes.navLink}
+          activeClassName={classes.active}
+        >
+          Algorithm
+        </NavLink>
       </nav>
     </header>
   );

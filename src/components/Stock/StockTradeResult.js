@@ -48,9 +48,7 @@ const StockTradeResult = (props) => {
   let profits = [];
 
   for (let i = 0; i < buyTargets.length; i++) {
-    profits.push({
-      profit: (+sellTargets[i].price - +buyTargets[i].price).toFixed(2),
-    });
+    profits.push((+sellTargets[i].price - +buyTargets[i].price).toFixed(2));
   }
 
   let results = [];
