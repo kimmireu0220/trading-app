@@ -88,10 +88,7 @@ const Stock = () => {
       dailyData.closePrices.length === 0)
   ) {
     content = (
-      <Fragment>
-        <NotFound text="Can't find stock data. Please check your ticker or just retry it" />
-        <StockAlgoritm />
-      </Fragment>
+      <NotFound text="Can't find stock data. Please check your ticker or just retry it" />
     );
   }
 

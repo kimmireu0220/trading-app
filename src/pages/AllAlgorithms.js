@@ -36,7 +36,7 @@ const AllAlgorithms = () => {
 
   return (
     <Fragment>
-      {content}
+      <div className="mb-3">{content}</div>
       <button className="centered btn" onClick={goToAddAlgorithmPageHandler}>
         Add an Algorithm
       </button>
