@@ -4,6 +4,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import Layout from "./components/layout/Layout";
 import LoadingSpinner from "./components/UI/LoadingSpinner";
 
+const Auth = React.lazy(() => import("./pages/Auth"));
 const Main = React.lazy(() => import("./pages/Main"));
 const Stock = React.lazy(() => import("./pages/Stock"));
 const AllAlgorithms = React.lazy(() => import("./pages/AllAlgorithms"));
@@ -26,6 +27,12 @@ function App() {
         }
       >
         <Switch>
+          <Route path="/auth" exact>
+            <Auth />
+          </Route>
+          <Route path="/logout" exact>
+            <Redirect to="/trading" />
+          </Route>
           <Route path="/" exact>
             <Redirect to="/trading" />
           </Route>

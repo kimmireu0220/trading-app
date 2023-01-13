@@ -1,11 +1,12 @@
-const API_KEY = process.env.REACT_APP_API_KEY;
+const ALPHA_VANTAGE_DOMAIN = process.env.REACT_APP_ALPHA_VANTAGE_DOMAIN;
+const ALPHA_VANTAGE_API_KEY = process.env.REACT_APP_ALPHA_VANTAGE_API_KEY;
 const FIREBASE_DOMAIN = process.env.REACT_APP_FIREBASE_DOMAIN;
-const ALPHA_ADVANTAGE_DOMAIN = process.env.REACT_APP_ALPHA_ADVANTAGE_DOMAIN;
+const FIREBASE_API_KEY = process.env.REACT_APP_FIREBASE_API_KEY;
 
 export const getStockDetailData = async (ticker) => {
-  const OVERVIEW_API = `${ALPHA_ADVANTAGE_DOMAIN}/query?function=OVERVIEW&symbol=${ticker}&apikey=${API_KEY}`;
+  const ALPHA_VANTAGE_OVERVIEW_API = `${ALPHA_VANTAGE_DOMAIN}/query?function=OVERVIEW&symbol=${ticker}&apikey=${ALPHA_VANTAGE_API_KEY}`;
 
-  const response = await fetch(OVERVIEW_API);
+  const response = await fetch(ALPHA_VANTAGE_OVERVIEW_API);
   const data = await response.json();
 
   if (!response.ok) {
@@ -20,9 +21,9 @@ export const getStockDetailData = async (ticker) => {
 };
 
 export const getTodayStockData = async (ticker) => {
-  const GLOBAL_QUOTE_API = `${ALPHA_ADVANTAGE_DOMAIN}/query?function=GLOBAL_QUOTE&symbol=${ticker}&apikey=${API_KEY}`;
+  const ALPHA_VANTAGE_GLOBAL_QUOTE_API = `${ALPHA_VANTAGE_DOMAIN}/query?function=GLOBAL_QUOTE&symbol=${ticker}&apikey=${ALPHA_VANTAGE_API_KEY}`;
 
-  const response = await fetch(GLOBAL_QUOTE_API);
+  const response = await fetch(ALPHA_VANTAGE_GLOBAL_QUOTE_API);
   const data = await response.json();
 
   if (!response.ok) {
@@ -38,9 +39,9 @@ export const getTodayStockData = async (ticker) => {
 };
 
 export const getDailyStockData = async (ticker) => {
-  const TIME_SERIES_DAILY_ADJUSTED_API = `${ALPHA_ADVANTAGE_DOMAIN}/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${ticker}&outputsize=compact&apikey=${API_KEY}`;
+  const ALPHA_VANTAGE_TIME_SERIES_DAILY_ADJUSTED_API = `${ALPHA_VANTAGE_DOMAIN}/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${ticker}&outputsize=compact&apikey=${ALPHA_VANTAGE_API_KEY}`;
 
-  const response = await fetch(TIME_SERIES_DAILY_ADJUSTED_API);
+  const response = await fetch(ALPHA_VANTAGE_TIME_SERIES_DAILY_ADJUSTED_API);
   const data = await response.json();
 
   if (!response.ok) {
@@ -177,4 +178,28 @@ export const getSingleAlgorithm = async (algorithmId) => {
   };
 
   return loaedAlgorithm;
+};
+
+export const signUp = async (authData) => {
+  const response = await fetch(
+    `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${FIREBASE_API_KEY}`,
+    {
+      method: "POST",
+      body: JSON.stringify({
+        email: authData.email,
+        password: authData.password,
+        returnSecureToken: true,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || "Could not create auth data.");
+  }
+
+  return null;
 };

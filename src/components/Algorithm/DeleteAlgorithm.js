@@ -5,7 +5,6 @@ import { deleteAlgorithm } from "../../lib/api";
 import LoadingSpinner from "../UI/LoadingSpinner";
 
 const DeleteAlgorithm = () => {
-  console.log("delete");
   const { algorithmId } = useParams();
   const history = useHistory();
 

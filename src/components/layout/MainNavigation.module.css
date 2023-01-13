@@ -28,6 +28,14 @@ input {
   width: 25rem;
 }
 
+.nav ul div {
+  display: flex;
+}
+
+.nav ul li {
+  margin: 0.5rem;
+}
+
 .nav a {
   text-decoration: none;
   color: #88dfdf;
