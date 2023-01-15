@@ -1,10 +1,10 @@
 import { useRef } from "react";
-import { useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+
 import classes from "./ProfileForm.module.css";
 
 const ProfileForm = (props) => {
-  const history = useHistory();
+  const dispatch = useDispatch();
   const newPasswordInputRef = useRef();
   const token = useSelector((state) => state.token);
 
@@ -14,7 +14,8 @@ const ProfileForm = (props) => {
     const password = newPasswordInputRef.current.value;
     const authData = { token, password };
     props.onUpdatePassword(authData);
-    history.replace("/");
+
+    dispatch({ type: "logout" });
   };
 
   return (

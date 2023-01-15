@@ -59,9 +59,6 @@ function App() {
             {isLoggedIn && <Profile />}
             {!isLoggedIn && <Auth />}
           </Route>
-          <Route path="/logout">
-            <Redirect to="/trading" />
-          </Route>
           <Route path="/" exact>
             <Redirect to="/trading" />
           </Route>
