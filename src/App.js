@@ -1,4 +1,5 @@
 import React, { Suspense } from "react";
+import { useSelector } from "react-redux";
 import { Route, Switch, Redirect } from "react-router-dom";
 
 import Layout from "./components/layout/Layout";
@@ -18,6 +19,8 @@ const AddAlgorithm = React.lazy(() => import("./pages/AddAlgorithm"));
 const NotFound = React.lazy(() => import("./pages/NotFound"));
 
 function App() {
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+
   return (
     <Layout>
       <Suspense
@@ -28,13 +31,35 @@ function App() {
         }
       >
         <Switch>
-          <Route path="/auth" exact>
-            <Auth />
+          <Route path="/algorithms" exact>
+            {isLoggedIn && <AllAlgorithms />}
+            {!isLoggedIn && <Auth />}
           </Route>
-          <Route path="/profile" exact>
-            <Profile />
+          <Route path="/algorithms/:algorithmId" exact>
+            {isLoggedIn && <AlgorithmDetail />}
+            {!isLoggedIn && <Auth />}
           </Route>
-          <Route path="/logout" exact>
+          <Route path="/algorithms/:algorithmId/edit">
+            {isLoggedIn && <EditAlgorithm />}
+            {!isLoggedIn && <Auth />}
+          </Route>
+          <Route path="/algorithms/:algorithmId/delete">
+            {isLoggedIn && <DeleteAlgorithm />}
+            {!isLoggedIn && <Auth />}
+          </Route>
+          <Route path="/add-algorithm">
+            {isLoggedIn && <AddAlgorithm />}
+            {!isLoggedIn && <Auth />}
+          </Route>
+          <Route path="/auth">
+            {isLoggedIn && <Main />}
+            {!isLoggedIn && <Auth />}
+          </Route>
+          <Route path="/profile">
+            {isLoggedIn && <Profile />}
+            {!isLoggedIn && <Auth />}
+          </Route>
+          <Route path="/logout">
             <Redirect to="/trading" />
           </Route>
           <Route path="/" exact>
@@ -45,21 +70,6 @@ function App() {
           </Route>
           <Route path="/trading/:ticker">
             <Stock />
-          </Route>
-          <Route path="/algorithms" exact>
-            <AllAlgorithms />
-          </Route>
-          <Route path="/algorithms/:algorithmId" exact>
-            <AlgorithmDetail />
-          </Route>
-          <Route path="/algorithms/:algorithmId/edit">
-            <EditAlgorithm />
-          </Route>
-          <Route path="/algorithms/:algorithmId/delete">
-            <DeleteAlgorithm />
-          </Route>
-          <Route path="/add-algorithm">
-            <AddAlgorithm />
           </Route>
           <Route path="*">
             <NotFound text="Page not found!" />

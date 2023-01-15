@@ -9,7 +9,7 @@ const MainNavigation = () => {
   const dispatch = useDispatch();
 
   const [searchedTicker, setSearchedTicker] = useState("");
-  const isLoggedin = useSelector((state) => state.isLoggedin);
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
 
   const tickerChangeHandler = (event) => {
     setSearchedTicker(event.target.value);
@@ -45,7 +45,7 @@ const MainNavigation = () => {
       </form>
       <nav className={classes.nav}>
         <ul>
-          {isLoggedin && (
+          {isLoggedIn && (
             <div>
               <li>
                 <NavLink
@@ -77,7 +77,7 @@ const MainNavigation = () => {
               </li>
             </div>
           )}
-          {!isLoggedin && (
+          {!isLoggedIn && (
             <div>
               <li>
                 <NavLink

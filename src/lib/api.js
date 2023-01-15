@@ -222,7 +222,7 @@ export const updatePassword = async (authData) => {
   const data = await response.json();
 
   if (!response.ok) {
-    throw new Error(data.message || "Could not create auth data.");
+    throw new Error(data.message || "Could not update password");
   }
 
   return null;

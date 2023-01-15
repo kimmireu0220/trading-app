@@ -1,10 +1,12 @@
 import { useRef } from "react";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import classes from "./ProfileForm.module.css";
 
 const ProfileForm = (props) => {
-  const token = useSelector((state) => state.token);
+  const history = useHistory();
   const newPasswordInputRef = useRef();
+  const token = useSelector((state) => state.token);
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -12,8 +14,7 @@ const ProfileForm = (props) => {
     const password = newPasswordInputRef.current.value;
     const authData = { token, password };
     props.onUpdatePassword(authData);
-
-    newPasswordInputRef.current.value = "";
+    history.replace("/");
   };
 
   return (
@@ -23,7 +24,7 @@ const ProfileForm = (props) => {
         <input
           type="password"
           id="new-password"
-          minLength="7"
+          minLength="6"
           ref={newPasswordInputRef}
         />
       </div>

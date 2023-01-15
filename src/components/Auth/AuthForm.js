@@ -27,7 +27,7 @@ const AuthForm = (props) => {
     if (isLoginMode) {
       const token = await props.onSignIn(authData);
       dispatch({ type: "login", token });
-      history.push("/");
+      history.replace("/");
     } else {
       props.onSignUp(authData);
       switchAuthModeHandler();
