@@ -5,11 +5,11 @@ import { useSelector, useDispatch } from "react-redux";
 import classes from "./MainNavigation.module.css";
 
 const MainNavigation = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
-  const isLogin = useSelector((state) => state.isLogin);
 
   const [searchedTicker, setSearchedTicker] = useState("");
-  const history = useHistory();
+  const isLoggedin = useSelector((state) => state.isLoggedin);
 
   const tickerChangeHandler = (event) => {
     setSearchedTicker(event.target.value);
@@ -45,7 +45,7 @@ const MainNavigation = () => {
       </form>
       <nav className={classes.nav}>
         <ul>
-          {isLogin && (
+          {isLoggedin && (
             <div>
               <li>
                 <NavLink
@@ -77,7 +77,7 @@ const MainNavigation = () => {
               </li>
             </div>
           )}
-          {!isLogin && (
+          {!isLoggedin && (
             <div>
               <li>
                 <NavLink

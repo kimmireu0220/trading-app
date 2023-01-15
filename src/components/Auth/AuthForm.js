@@ -1,32 +1,35 @@
 import { useRef, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import classes from "./AuthForm.module.css";
 
 const AuthForm = (props) => {
-  const [isLogin, setIsLogin] = useState(true);
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const [isLoginMode, setIsLoginMode] = useState(true);
 
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
 
   const switchAuthModeHandler = () => {
-    setIsLogin((prevState) => !prevState);
+    setIsLoginMode((prevState) => !prevState);
   };
 
-  const submitHandler = (event) => {
+  const submitHandler = async (event) => {
     event.preventDefault();
 
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
-
     const authData = { email: enteredEmail, password: enteredPassword };
 
-    if (isLogin) {
+    if (isLoginMode) {
+      const token = await props.onSignIn(authData);
+      dispatch({ type: "login", token });
+      history.push("/");
     } else {
       props.onSignUp(authData);
-
-      emailInputRef.current.value = "";
-      passwordInputRef.current.value = "";
-
       switchAuthModeHandler();
     }
   };
@@ -34,7 +37,7 @@ const AuthForm = (props) => {
   return (
     <div className="centered">
       <section className={classes.auth}>
-        <h1>{isLogin ? "Login" : "Sign Up"}</h1>
+        <h1>{isLoginMode ? "Login" : "Sign Up"}</h1>
         <form onSubmit={submitHandler}>
           <div className={classes.control}>
             <label htmlFor="email">Your Email</label>
@@ -50,13 +53,15 @@ const AuthForm = (props) => {
             />
           </div>
           <div className={classes.actions}>
-            <button>{isLogin ? "Login" : "Create Account"}</button>
+            <button>{isLoginMode ? "Login" : "Create Account"}</button>
             <button
               type="button"
               className={classes.toggle}
               onClick={switchAuthModeHandler}
             >
-              {isLogin ? "Create new account" : "Login with existing account"}
+              {isLoginMode
+                ? "Create new account"
+                : "Login with existing account"}
             </button>
           </div>
         </form>
