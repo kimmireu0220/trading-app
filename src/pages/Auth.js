@@ -38,14 +38,18 @@ const AuthPage = () => {
       }
     );
     const data = await response.json();
+    console.log(data);
 
     if (!response.ok) {
       throw new Error(data.message || "Could not login.");
     }
 
-    const { idToken } = data;
+    const result = {
+      token: data.token,
+      expirationTime: +data.expiresIn * 1000,
+    };
 
-    return idToken;
+    return result;
   };
 
   const goToAuthPage = () => {

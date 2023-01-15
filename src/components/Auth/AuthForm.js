@@ -1,12 +1,13 @@
 import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 import classes from "./AuthForm.module.css";
 
 const AuthForm = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
 
   const [isLoginMode, setIsLoginMode] = useState(true);
 
@@ -20,14 +21,19 @@ const AuthForm = (props) => {
   const submitHandler = async (event) => {
     event.preventDefault();
 
-    const enteredEmail = emailInputRef.current.value;
-    const enteredPassword = passwordInputRef.current.value;
-    const authData = { email: enteredEmail, password: enteredPassword };
+    const email = emailInputRef.current.value;
+    const password = passwordInputRef.current.value;
+    const authData = { email, password };
 
     if (isLoginMode) {
-      const token = await props.onSignIn(authData);
+      const { token, expirationTime } = await props.onSignIn(authData);
+
       dispatch({ type: "login", token });
-      history.replace("/");
+      pathname === "/auth" ? history.push("/") : history.push(pathname);
+
+      setTimeout(() => {
+        dispatch({ type: "logout" });
+      }, expirationTime);
     } else {
       props.onSignUp(authData);
       switchAuthModeHandler();
