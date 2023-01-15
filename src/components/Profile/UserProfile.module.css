@@ -1,0 +1,11 @@
+.profile {
+  padding: 2rem;
+  margin: 3rem auto;
+  text-align: center;
+  border: 2px solid rgba(17, 132, 90, 0.868);
+  border-radius: 2rem;
+}
+
+.profile h1 {
+  font-size: 3rem;
+}

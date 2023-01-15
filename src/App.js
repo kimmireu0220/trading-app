@@ -5,6 +5,7 @@ import Layout from "./components/layout/Layout";
 import LoadingSpinner from "./components/UI/LoadingSpinner";
 
 const Auth = React.lazy(() => import("./pages/Auth"));
+const Profile = React.lazy(() => import("./pages/Profile"));
 const Main = React.lazy(() => import("./pages/Main"));
 const Stock = React.lazy(() => import("./pages/Stock"));
 const AllAlgorithms = React.lazy(() => import("./pages/AllAlgorithms"));
@@ -29,6 +30,9 @@ function App() {
         <Switch>
           <Route path="/auth" exact>
             <Auth />
+          </Route>
+          <Route path="/profile" exact>
+            <Profile />
           </Route>
           <Route path="/logout" exact>
             <Redirect to="/trading" />

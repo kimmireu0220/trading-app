@@ -69,7 +69,7 @@ const MainNavigation = () => {
                 <NavLink
                   to="/logout"
                   onClick={logoutHandler}
-                  className={classes.navLink}
+                  className={`${classes.navLink} ${classes.logout}`}
                   activeClassName={classes.active}
                 >
                   Log out

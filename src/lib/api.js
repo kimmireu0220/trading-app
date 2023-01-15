@@ -203,3 +203,27 @@ export const signUp = async (authData) => {
 
   return null;
 };
+
+export const updatePassword = async (authData) => {
+  const response = await fetch(
+    `https://identitytoolkit.googleapis.com/v1/accounts:update?key=${FIREBASE_API_KEY}`,
+    {
+      method: "POST",
+      body: JSON.stringify({
+        idToken: authData.token,
+        password: authData.password,
+        returnSecureToken: true,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || "Could not create auth data.");
+  }
+
+  return null;
+};
