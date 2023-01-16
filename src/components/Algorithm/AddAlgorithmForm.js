@@ -12,8 +12,8 @@ const AddAlgorithmForm = (props) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [formIsValid, setFormIsVallid] = useState(false);
 
-  const [buyAlgorithm, setBuyAlgorithm] = useState("RSI");
-  const [sellAlgorithm, setSellAlgorithm] = useState("RSI");
+  const [buyAlgorithm, setBuyAlgorithm] = useState("Price");
+  const [sellAlgorithm, setSellAlgorithm] = useState("Price");
 
   const titleInputRef = useRef();
   const buyTargetInutRef = useRef();
@@ -30,18 +30,14 @@ const AddAlgorithmForm = (props) => {
     const sellTarget = sellTargetInputRef.current.value;
     const description = descriptionInputRef.current.value;
 
-    if (
-      title &&
-      buyAlgorithm &&
-      buyTarget &&
-      sellAlgorithm &&
-      sellTarget &&
-      description
-    ) {
-      setFormIsVallid(true);
-    } else {
-      setFormIsVallid(false);
-    }
+    title &&
+    buyAlgorithm &&
+    buyTarget &&
+    sellAlgorithm &&
+    sellTarget &&
+    description
+      ? setFormIsVallid(true)
+      : setFormIsVallid(false);
 
     if (formIsValid && isSubmitted) {
       props.onAddAlgorithm({
@@ -99,7 +95,6 @@ const AddAlgorithmForm = (props) => {
             <div className={classes.signal}>
               <label htmlFor="buy">Buy</label>
               <select onChange={BuyAlgorithmChangeHandler}>
-                <option value="rsi">RSI</option>
                 <option value="price">Price</option>
               </select>
               <input type="number" ref={buyTargetInutRef} />
@@ -107,7 +102,6 @@ const AddAlgorithmForm = (props) => {
             <div className={classes.signal}>
               <label htmlFor="sell">Sell</label>
               <select onChange={sellAlgorithmChangeHandler}>
-                <option value="rsi">RSI</option>
                 <option value="price">Price</option>
               </select>
               <input type="number" ref={sellTargetInputRef} />

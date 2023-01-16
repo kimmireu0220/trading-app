@@ -9,10 +9,10 @@ import HighlightedAlgorithm from "../components/Algorithm/HighlightedAlgorithm";
 import AlgorithmDetailOption from "../components/Algorithm/AlgorithmDetailOption";
 
 const AlgorithmDetail = () => {
-  const [showConfirm, setShowConfirm] = useState(false);
-  const { algorithmId } = useParams();
-  const { pathname } = useLocation();
   const history = useHistory();
+  const { pathname } = useLocation();
+  const { algorithmId } = useParams();
+  const [showConfirm, setShowConfirm] = useState(false);
 
   const {
     sendRequest,
@@ -25,10 +25,6 @@ const AlgorithmDetail = () => {
     history.push(`${pathname}/edit`);
   };
 
-  const toggleConfirmHandler = () => {
-    setShowConfirm((currentState) => !currentState);
-  };
-
   const deleteAlgorithmHandler = () => {
     history.push(`${pathname}/delete`);
   };
@@ -37,11 +33,15 @@ const AlgorithmDetail = () => {
     history.goBack();
   };
 
+  const toggleConfirmHandler = () => {
+    setShowConfirm((prevState) => !prevState);
+  };
+
   useEffect(() => {
     sendRequest(algorithmId);
   }, [sendRequest, algorithmId]);
 
-  if (loadedAlgorithm && loadedAlgorithm.title) {
+  if (loadedAlgorithm) {
     const {
       title,
       buyAlgorithm,
