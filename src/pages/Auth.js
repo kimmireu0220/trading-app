@@ -1,17 +1,18 @@
-import { useHistory } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useHistory, useLocation } from "react-router-dom";
 
-import { signUp } from "../lib/api";
 import useHttp from "../hooks/use-http";
+import { authActions } from "../store/auth";
+import { signUp, signIn } from "../lib/api";
 import AuthForm from "../components/Auth/AuthForm";
 import ErrorModal from "../components/UI/ErrorModal";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
 
 const AuthPage = () => {
   const history = useHistory();
-
-  const FIREBASE_API_KEY = process.env.REACT_APP_FIREBASE_API_KEY;
-  const FIREBASE_AUTHENTIFICATION_DOMAIN =
-    process.env.REACT_APP_FIREBASE_AUTHENTIFICATION_DOMAIN;
+  const dispatch = useDispatch();
+  const { pathname } = useLocation();
 
   const {
     sendRequest: userSignUp,
@@ -19,37 +20,19 @@ const AuthPage = () => {
     error: signUpError,
   } = useHttp(signUp);
 
+  const {
+    sendRequest: userSignIn,
+    status: signInStatus,
+    error: signInError,
+    data: userData,
+  } = useHttp(signIn);
+
   const signUpHandler = (authData) => {
     userSignUp(authData);
   };
 
-  const signInHandler = async (authData) => {
-    const { email, password } = authData;
-
-    const FIREBASE_SIGNIN_API = `${FIREBASE_AUTHENTIFICATION_DOMAIN}signInWithPassword?key=${FIREBASE_API_KEY}`;
-    const response = await fetch(FIREBASE_SIGNIN_API, {
-      method: "POST",
-      body: JSON.stringify({
-        email,
-        password,
-        returnSecureToken: true,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const data = await response.json();
-
-    if (!response.ok) {
-      throw new Error(data.message || "Could not login.");
-    }
-
-    const result = {
-      token: data.idToken,
-      expirationTime: +data.expiresIn * 1000,
-    };
-
-    return result;
+  const signInHandler = (authData) => {
+    userSignIn(authData);
   };
 
   const goToAuthPage = () => {
@@ -57,17 +40,31 @@ const AuthPage = () => {
     window.location.reload();
   };
 
-  if (signUpError) {
+  useEffect(() => {
+    if (userData) {
+      const { token, expirationTime } = userData;
+      dispatch(authActions.login(token));
+      pathname === "/auth" ? history.push("/") : history.push(pathname);
+
+      setTimeout(() => {
+        dispatch(authActions.logout());
+      }, expirationTime);
+    }
+  }, [userData, history, pathname, dispatch]);
+
+  // Error or Loading status
+
+  if (signUpError || signInError) {
     return (
       <ErrorModal
         title={"Authentification Error"}
-        message={signUpError}
+        message={signUpError ? signUpError : signInError}
         onConfirm={goToAuthPage}
       />
     );
   }
 
-  if (signUpStatus === "pending") {
+  if (signUpStatus === "pending" || signInStatus === "pending") {
     return (
       <div className="centered">
         <LoadingSpinner />
@@ -75,7 +72,13 @@ const AuthPage = () => {
     );
   }
 
-  return <AuthForm onSignUp={signUpHandler} onSignIn={signInHandler} />;
+  return (
+    <AuthForm
+      onSignUp={signUpHandler}
+      onSignIn={signInHandler}
+      userData={userData}
+    />
+  );
 };
 
 export default AuthPage;

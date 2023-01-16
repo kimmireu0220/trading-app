@@ -1,44 +1,25 @@
 import { useRef, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
 
-import { authActions } from "../../store/auth";
 import classes from "./AuthForm.module.css";
 
 const AuthForm = (props) => {
-  const history = useHistory();
-  const dispatch = useDispatch();
-  const { pathname } = useLocation();
-
-  const [isLoginMode, setIsLoginMode] = useState(true);
-
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
+
+  const [isLoginMode, setIsLoginMode] = useState(true);
 
   const switchAuthModeHandler = () => {
     setIsLoginMode((prevState) => !prevState);
   };
 
-  const submitHandler = async (event) => {
+  const submitHandler = (event) => {
     event.preventDefault();
 
     const email = emailInputRef.current.value;
     const password = passwordInputRef.current.value;
     const authData = { email, password };
 
-    if (isLoginMode) {
-      const { token, expirationTime } = await props.onSignIn(authData);
-
-      dispatch(authActions.login(token));
-      pathname === "/auth" ? history.push("/") : history.push(pathname);
-
-      setTimeout(() => {
-        dispatch({ type: "logout" });
-      }, expirationTime);
-    } else {
-      props.onSignUp(authData);
-      switchAuthModeHandler();
-    }
+    isLoginMode ? props.onSignIn(authData) : props.onSignUp(authData);
   };
 
   return (

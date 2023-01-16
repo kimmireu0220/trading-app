@@ -198,6 +198,35 @@ export const signUp = async (authData) => {
   return null;
 };
 
+export const signIn = async (authData) => {
+  const { email, password } = authData;
+
+  const FIREBASE_SIGNIN_API = `${FIREBASE_AUTHENTIFICATION_DOMAIN}signInWithPassword?key=${FIREBASE_API_KEY}`;
+  const response = await fetch(FIREBASE_SIGNIN_API, {
+    method: "POST",
+    body: JSON.stringify({
+      email,
+      password,
+      returnSecureToken: true,
+    }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || "Could not login.");
+  }
+
+  const result = {
+    token: data.idToken,
+    expirationTime: +data.expiresIn * 1000,
+  };
+
+  return result;
+};
+
 export const updatePassword = async (authData) => {
   const FIREBASE_UPDATE_PASSWORD_API = `${FIREBASE_AUTHENTIFICATION_DOMAIN}update?key=${FIREBASE_API_KEY}`;
   const response = await fetch(FIREBASE_UPDATE_PASSWORD_API, {
