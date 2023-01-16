@@ -1,14 +1,17 @@
 import { useHistory } from "react-router-dom";
 
-import useHttp from "../hooks/use-http";
 import { signUp } from "../lib/api";
+import useHttp from "../hooks/use-http";
+import AuthForm from "../components/Auth/AuthForm";
 import ErrorModal from "../components/UI/ErrorModal";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
-import AuthForm from "../components/Auth/AuthForm";
 
 const AuthPage = () => {
-  const FIREBASE_API_KEY = process.env.REACT_APP_FIREBASE_API_KEY;
   const history = useHistory();
+
+  const FIREBASE_API_KEY = process.env.REACT_APP_FIREBASE_API_KEY;
+  const FIREBASE_AUTHENTIFICATION_DOMAIN =
+    process.env.REACT_APP_FIREBASE_AUTHENTIFICATION_DOMAIN;
 
   const {
     sendRequest: userSignUp,
@@ -23,20 +26,18 @@ const AuthPage = () => {
   const signInHandler = async (authData) => {
     const { email, password } = authData;
 
-    const response = await fetch(
-      `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${FIREBASE_API_KEY}`,
-      {
-        method: "POST",
-        body: JSON.stringify({
-          email,
-          password,
-          returnSecureToken: true,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const FIREBASE_SIGNIN_API = `${FIREBASE_AUTHENTIFICATION_DOMAIN}signInWithPassword?key=${FIREBASE_API_KEY}`;
+    const response = await fetch(FIREBASE_SIGNIN_API, {
+      method: "POST",
+      body: JSON.stringify({
+        email,
+        password,
+        returnSecureToken: true,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     const data = await response.json();
 
     if (!response.ok) {

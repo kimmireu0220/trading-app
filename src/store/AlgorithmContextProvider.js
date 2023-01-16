@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 
-import AlgorithmContext from "./algorithm-context";
 import useHttp from "../hooks/use-http";
 import { getAllAlgorithms } from "../lib/api";
+import AlgorithmContext from "./algorithm-context";
 
 const AlgorithmContextProvider = (props) => {
   const {

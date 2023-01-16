@@ -6,17 +6,17 @@ import Layout from "./components/layout/Layout";
 import LoadingSpinner from "./components/UI/LoadingSpinner";
 
 const Auth = React.lazy(() => import("./pages/Auth"));
-const Profile = React.lazy(() => import("./pages/Profile"));
 const Main = React.lazy(() => import("./pages/Main"));
 const Stock = React.lazy(() => import("./pages/Stock"));
+const Profile = React.lazy(() => import("./pages/Profile"));
+const NotFound = React.lazy(() => import("./pages/NotFound"));
+const AddAlgorithm = React.lazy(() => import("./pages/AddAlgorithm"));
+const EditAlgorithm = React.lazy(() => import("./pages/EditAlgorithm"));
 const AllAlgorithms = React.lazy(() => import("./pages/AllAlgorithms"));
 const AlgorithmDetail = React.lazy(() => import("./pages/AlgorithmDetail"));
-const EditAlgorithm = React.lazy(() => import("./pages/EditAlgorithm"));
 const DeleteAlgorithm = React.lazy(() =>
   import("./components/Algorithm/DeleteAlgorithm")
 );
-const AddAlgorithm = React.lazy(() => import("./pages/AddAlgorithm"));
-const NotFound = React.lazy(() => import("./pages/NotFound"));
 
 function App() {
   const isLoggedIn = useSelector((state) => state.isLoggedIn);

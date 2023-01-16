@@ -1,11 +1,12 @@
 const ALPHA_VANTAGE_DOMAIN = process.env.REACT_APP_ALPHA_VANTAGE_DOMAIN;
 const ALPHA_VANTAGE_API_KEY = process.env.REACT_APP_ALPHA_VANTAGE_API_KEY;
-const FIREBASE_DOMAIN = process.env.REACT_APP_FIREBASE_DOMAIN;
+const FIREBASE_DB_DOMAIN = process.env.REACT_APP_FIREBASE_DB_DOMAIN;
+const FIREBASE_AUTHENTIFICATION_DOMAIN =
+  process.env.REACT_APP_FIREBASE_AUTHENTIFICATION_DOMAIN;
 const FIREBASE_API_KEY = process.env.REACT_APP_FIREBASE_API_KEY;
 
 export const getStockDetailData = async (ticker) => {
   const ALPHA_VANTAGE_OVERVIEW_API = `${ALPHA_VANTAGE_DOMAIN}/query?function=OVERVIEW&symbol=${ticker}&apikey=${ALPHA_VANTAGE_API_KEY}`;
-
   const response = await fetch(ALPHA_VANTAGE_OVERVIEW_API);
   const data = await response.json();
 
@@ -22,7 +23,6 @@ export const getStockDetailData = async (ticker) => {
 
 export const getTodayStockData = async (ticker) => {
   const ALPHA_VANTAGE_GLOBAL_QUOTE_API = `${ALPHA_VANTAGE_DOMAIN}/query?function=GLOBAL_QUOTE&symbol=${ticker}&apikey=${ALPHA_VANTAGE_API_KEY}`;
-
   const response = await fetch(ALPHA_VANTAGE_GLOBAL_QUOTE_API);
   const data = await response.json();
 
@@ -40,7 +40,6 @@ export const getTodayStockData = async (ticker) => {
 
 export const getDailyStockData = async (ticker) => {
   const ALPHA_VANTAGE_TIME_SERIES_DAILY_ADJUSTED_API = `${ALPHA_VANTAGE_DOMAIN}/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${ticker}&outputsize=compact&apikey=${ALPHA_VANTAGE_API_KEY}`;
-
   const response = await fetch(ALPHA_VANTAGE_TIME_SERIES_DAILY_ADJUSTED_API);
   const data = await response.json();
 
@@ -65,7 +64,8 @@ export const getDailyStockData = async (ticker) => {
 };
 
 export const addAlgorithm = async (algorithmData) => {
-  const response = await fetch(`${FIREBASE_DOMAIN}/algorithms.json`, {
+  const FIREBASE_ADD_API_ALGORITHM = `${FIREBASE_DB_DOMAIN}/algorithms.json`;
+  const response = await fetch(FIREBASE_ADD_API_ALGORITHM, {
     method: "POST",
     body: JSON.stringify(algorithmData),
     headers: {
@@ -101,16 +101,14 @@ export const editAlgorithm = async (algorithmData) => {
     description,
   };
 
-  const response = await fetch(
-    `${FIREBASE_DOMAIN}/algorithms/${algorithmId}.json`,
-    {
-      method: "PUT",
-      body: JSON.stringify(body),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  );
+  const FIREBASE_EDIT_ALGORITHM_API = `${FIREBASE_DB_DOMAIN}/algorithms/${algorithmId}.json`;
+  const response = await fetch(FIREBASE_EDIT_ALGORITHM_API, {
+    method: "PUT",
+    body: JSON.stringify(body),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
   const data = await response.json();
 
   if (!response.ok) {
@@ -121,15 +119,13 @@ export const editAlgorithm = async (algorithmData) => {
 };
 
 export const deleteAlgorithm = async (algorithmId) => {
-  const response = await fetch(
-    `${FIREBASE_DOMAIN}/algorithms/${algorithmId}.json`,
-    {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  );
+  const FIREBASE_DELETE_ALGORITHM_API = `${FIREBASE_DB_DOMAIN}/algorithms/${algorithmId}.json`;
+  const response = await fetch(FIREBASE_DELETE_ALGORITHM_API, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 
   const data = response.json();
 
@@ -141,7 +137,8 @@ export const deleteAlgorithm = async (algorithmId) => {
 };
 
 export const getAllAlgorithms = async () => {
-  const response = await fetch(`${FIREBASE_DOMAIN}/algorithms.json`);
+  const FIREBASE_ALL_ALGORITHMS_API = `${FIREBASE_DB_DOMAIN}/algorithms.json`;
+  const response = await fetch(FIREBASE_ALL_ALGORITHMS_API);
   const data = await response.json();
 
   if (!response.ok) {
@@ -163,9 +160,8 @@ export const getAllAlgorithms = async () => {
 };
 
 export const getSingleAlgorithm = async (algorithmId) => {
-  const response = await fetch(
-    `${FIREBASE_DOMAIN}/algorithms/${algorithmId}.json`
-  );
+  const FIREBASE_SINGLE_ALGORITHM_API = `${FIREBASE_DB_DOMAIN}/algorithms/${algorithmId}.json`;
+  const response = await fetch(FIREBASE_SINGLE_ALGORITHM_API);
   const data = await response.json();
 
   if (!response.ok) {
@@ -181,20 +177,18 @@ export const getSingleAlgorithm = async (algorithmId) => {
 };
 
 export const signUp = async (authData) => {
-  const response = await fetch(
-    `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${FIREBASE_API_KEY}`,
-    {
-      method: "POST",
-      body: JSON.stringify({
-        email: authData.email,
-        password: authData.password,
-        returnSecureToken: true,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  );
+  const FIREBASE_SIGNUP_API = `${FIREBASE_AUTHENTIFICATION_DOMAIN}signUp?key=${FIREBASE_API_KEY}`;
+  const response = await fetch(FIREBASE_SIGNUP_API, {
+    method: "POST",
+    body: JSON.stringify({
+      email: authData.email,
+      password: authData.password,
+      returnSecureToken: true,
+    }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
   const data = await response.json();
 
   if (!response.ok) {
@@ -205,20 +199,18 @@ export const signUp = async (authData) => {
 };
 
 export const updatePassword = async (authData) => {
-  const response = await fetch(
-    `https://identitytoolkit.googleapis.com/v1/accounts:update?key=${FIREBASE_API_KEY}`,
-    {
-      method: "POST",
-      body: JSON.stringify({
-        idToken: authData.token,
-        password: authData.password,
-        returnSecureToken: true,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  );
+  const FIREBASE_UPDATE_PASSWORD_API = `${FIREBASE_AUTHENTIFICATION_DOMAIN}update?key=${FIREBASE_API_KEY}`;
+  const response = await fetch(FIREBASE_UPDATE_PASSWORD_API, {
+    method: "POST",
+    body: JSON.stringify({
+      idToken: authData.token,
+      password: authData.password,
+      returnSecureToken: true,
+    }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
   const data = await response.json();
 
   if (!response.ok) {

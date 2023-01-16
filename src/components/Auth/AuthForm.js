@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 
+import { authActions } from "../../store/auth";
 import classes from "./AuthForm.module.css";
 
 const AuthForm = (props) => {
@@ -28,7 +29,7 @@ const AuthForm = (props) => {
     if (isLoginMode) {
       const { token, expirationTime } = await props.onSignIn(authData);
 
-      dispatch({ type: "login", token });
+      dispatch(authActions.login(token));
       pathname === "/auth" ? history.push("/") : history.push(pathname);
 
       setTimeout(() => {

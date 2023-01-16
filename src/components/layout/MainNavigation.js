@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useHistory, Link, NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
+import { authActions } from "../../store/auth";
 import classes from "./MainNavigation.module.css";
 
 const MainNavigation = () => {
@@ -9,7 +10,7 @@ const MainNavigation = () => {
   const dispatch = useDispatch();
 
   const [searchedTicker, setSearchedTicker] = useState("");
-  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   const tickerChangeHandler = (event) => {
     setSearchedTicker(event.target.value);
@@ -23,7 +24,7 @@ const MainNavigation = () => {
   };
 
   const logoutHandler = () => {
-    dispatch({ type: "logout" });
+    dispatch(authActions.logout());
   };
 
   return (

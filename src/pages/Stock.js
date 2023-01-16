@@ -1,17 +1,17 @@
-import React, { Fragment, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import React, { Fragment, useEffect } from "react";
 
 import useHttp from "../hooks/use-http";
+import NotFound from "../pages/NotFound";
+import StockInfo from "../components/Stock/StockInfo";
+import StockChart from "../components/Stock/StockChart";
+import LoadingSpinner from "../components/UI/LoadingSpinner";
+import StockAlgoritm from "../components/Stock/StockAlgorithm";
 import {
   getStockDetailData,
   getTodayStockData,
   getDailyStockData,
 } from "../lib/api";
-import LoadingSpinner from "../components/UI/LoadingSpinner";
-import StockChart from "../components/Stock/StockChart";
-import NotFound from "../pages/NotFound";
-import StockInfo from "../components/Stock/StockInfo";
-import StockAlgoritm from "../components/Stock/StockAlgorithm";
 
 const Stock = () => {
   const params = useParams();

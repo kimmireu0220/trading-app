@@ -1,10 +1,10 @@
 import { useContext, Fragment } from "react";
 import { useHistory } from "react-router-dom";
 
-import AlgorithmContext from "../store/algorithm-context";
-import AlgorithmList from "../components/Algorithm/AlgorithmList";
-import LoadingSpinner from "../components/UI/LoadingSpinner";
 import NotFound from "./NotFound";
+import AlgorithmContext from "../store/algorithm-context";
+import LoadingSpinner from "../components/UI/LoadingSpinner";
+import AlgorithmList from "../components/Algorithm/AlgorithmList";
 
 const AllAlgorithms = () => {
   const { algorithms, status, error } = useContext(AlgorithmContext);

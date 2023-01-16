@@ -3,9 +3,9 @@ import { useParams, useLocation, useHistory } from "react-router-dom";
 
 import useHttp from "../hooks/use-http";
 import { getSingleAlgorithm } from "../lib/api";
+import ConfirmModal from "../components/UI/ConfirmModal";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
 import HighlightedAlgorithm from "../components/Algorithm/HighlightedAlgorithm";
-import ConfirmModal from "../components/UI/ConfirmModal";
 import AlgorithmDetailOption from "../components/Algorithm/AlgorithmDetailOption";
 
 const AlgorithmDetail = () => {
