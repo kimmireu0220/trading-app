@@ -16,14 +16,8 @@ const AllAlgorithms = () => {
 
   let content = <AlgorithmList />;
 
-  // Error or Loading status
-
   if (status === "pending") {
-    content = (
-      <div className="centered">
-        <LoadingSpinner />
-      </div>
-    );
+    content = <LoadingSpinner />;
   }
 
   if (error) {

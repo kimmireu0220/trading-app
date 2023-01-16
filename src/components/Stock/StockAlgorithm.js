@@ -1,17 +1,16 @@
 import { useContext, useState } from "react";
 
+import Card from "../UI/Card";
+import ErrorModal from "../UI/ErrorModal";
+import StockTradeResult from "./StockTradeResult";
 import classes from "./StockAlgorithm.module.css";
 import AlgorithmContext from "../../store/algorithm-context";
-import Card from "../UI/Card";
-import StockTradeResult from "./StockTradeResult";
-import ErrorModal from "../UI/ErrorModal";
 
 const StockAlgoritm = (props) => {
-  const { algorithms } = useContext(AlgorithmContext);
-  const [selectedAlgorithm, setSelectedAlgorithm] = useState(null);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
   const { days, closePrices } = props;
+  const { algorithms } = useContext(AlgorithmContext);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [selectedAlgorithm, setSelectedAlgorithm] = useState(null);
 
   const errorHandler = () => {
     setIsSubmitted(false);
@@ -54,7 +53,7 @@ const StockAlgoritm = (props) => {
         </select>
         <button className="btn">Trade</button>
       </form>
-      {selectedAlgorithm && selectedAlgorithm.buyAlgorithm === "price" && (
+      {selectedAlgorithm && (
         <StockTradeResult
           days={days}
           closePrices={closePrices}

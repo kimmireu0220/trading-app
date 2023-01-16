@@ -1,8 +1,8 @@
 import ProfileForm from "./ProfileForm";
 import useHttp from "../../hooks/use-http";
 import { updatePassword } from "../../lib/api";
-import LoadingSpinner from "../UI/LoadingSpinner";
 import classes from "./UserProfile.module.css";
+import LoadingSpinner from "../UI/LoadingSpinner";
 
 const UserProfile = () => {
   const { sendRequest, status } = useHttp(updatePassword);
@@ -12,11 +12,7 @@ const UserProfile = () => {
   };
 
   if (status === "pending") {
-    return (
-      <div className="centered">
-        <LoadingSpinner />
-      </div>
-    );
+    return <LoadingSpinner />;
   }
 
   return (

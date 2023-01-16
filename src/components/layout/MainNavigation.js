@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useHistory, Link, NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory, Link, NavLink } from "react-router-dom";
 
 import { authActions } from "../../store/auth";
 import classes from "./MainNavigation.module.css";
@@ -16,11 +16,10 @@ const MainNavigation = () => {
     setSearchedTicker(event.target.value);
   };
 
-  const searchTickerHandler = (event) => {
+  const searchStockHandler = (event) => {
     event.preventDefault();
 
     history.push(`/trading/${searchedTicker}`);
-    setSearchedTicker("");
   };
 
   const logoutHandler = () => {
@@ -32,7 +31,7 @@ const MainNavigation = () => {
       <Link className={classes.link} to="/trading">
         <div className={classes.logo}>Trading App</div>
       </Link>
-      <form className={classes.search} onSubmit={searchTickerHandler}>
+      <form className={classes.search} onSubmit={searchStockHandler}>
         <label htmlFor="ticker" />
         <input
           className={classes.input}
@@ -45,53 +44,51 @@ const MainNavigation = () => {
         <button>Search</button>
       </form>
       <nav className={classes.nav}>
-        <ul>
-          {isLoggedIn && (
-            <div>
-              <li>
-                <NavLink
-                  to="/algorithms"
-                  className={classes.navLink}
-                  activeClassName={classes.active}
-                >
-                  Algorithm
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/profile"
-                  className={classes.navLink}
-                  activeClassName={classes.active}
-                >
-                  Profile
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/"
-                  onClick={logoutHandler}
-                  className={`${classes.navLink} ${classes.logout}`}
-                  activeClassName={classes.active}
-                >
-                  Log out
-                </NavLink>
-              </li>
-            </div>
-          )}
-          {!isLoggedIn && (
-            <div>
-              <li>
-                <NavLink
-                  to="/auth"
-                  className={classes.navLink}
-                  activeClassName={classes.active}
-                >
-                  Login
-                </NavLink>
-              </li>
-            </div>
-          )}
-        </ul>
+        {isLoggedIn && (
+          <ul>
+            <li>
+              <NavLink
+                to="/algorithms"
+                className={classes.navLink}
+                activeClassName={classes.active}
+              >
+                Algorithm
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/profile"
+                className={classes.navLink}
+                activeClassName={classes.active}
+              >
+                Profile
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/"
+                onClick={logoutHandler}
+                className={`${classes.navLink} ${classes.logout}`}
+                activeClassName={classes.active}
+              >
+                Log out
+              </NavLink>
+            </li>
+          </ul>
+        )}
+        {!isLoggedIn && (
+          <ul>
+            <li>
+              <NavLink
+                to="/auth"
+                className={classes.navLink}
+                activeClassName={classes.active}
+              >
+                Login
+              </NavLink>
+            </li>
+          </ul>
+        )}
       </nav>
     </header>
   );

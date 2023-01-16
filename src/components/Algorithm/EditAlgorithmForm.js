@@ -7,17 +7,17 @@ import ErrorModal from "../UI/ErrorModal";
 import Card from "../UI/Card";
 
 const EditAlgorithmForm = (props) => {
-  const { algorithms } = useContext(AlgorithmContext);
+  const history = useHistory();
+
   const { algorithmId } = props;
+  const { algorithms } = useContext(AlgorithmContext);
   const algorithm = algorithms.find(
     (algorithm) => algorithm.id === algorithmId
   );
 
-  const history = useHistory();
-
   const [isEntering, setIsEntering] = useState(false);
-  const [formIsValid, setFormIsVallid] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [formIsValid, setFormIsVallid] = useState(false);
 
   const [buyAlgorithm, setBuyAlgorithm] = useState(algorithm.buyAlgorithm);
   const [sellAlgorithm, setSellAlgorithm] = useState(algorithm.sellAlgorithm);
@@ -37,18 +37,14 @@ const EditAlgorithmForm = (props) => {
     const sellTarget = sellTargetInputRef.current.value;
     const description = descriptionInputRef.current.value;
 
-    if (
-      title &&
-      buyAlgorithm &&
-      buyTarget &&
-      sellAlgorithm &&
-      sellTarget &&
-      description
-    ) {
-      setFormIsVallid(true);
-    } else {
-      setFormIsVallid(false);
-    }
+    title &&
+    buyAlgorithm &&
+    buyTarget &&
+    sellAlgorithm &&
+    sellTarget &&
+    description
+      ? setFormIsVallid(true)
+      : setFormIsVallid(false);
 
     if (formIsValid && isSubmitted) {
       props.onEditAlgorithm({
@@ -115,7 +111,6 @@ const EditAlgorithmForm = (props) => {
                 onChange={BuyAlgorithmChangeHandler}
                 defaultValue={algorithm.buyAlgorithm}
               >
-                <option value="rsi">RSI</option>
                 <option value="price">Price</option>
               </select>
               <input
@@ -130,7 +125,6 @@ const EditAlgorithmForm = (props) => {
                 onChange={sellAlgorithmChangeHandler}
                 defaultValue={algorithm.sellAlgorithm}
               >
-                <option value="rsi">RSI</option>
                 <option value="price">Price</option>
               </select>
               <input

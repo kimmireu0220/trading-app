@@ -7,19 +7,18 @@ const StockTradeResult = (props) => {
   const { buyAlgorithm, buyTarget, sellAlgorithm, sellTarget } =
     props.algorithm;
 
-  let firstBuyTarget = [];
+  let results = [];
+  let buyTargets = [];
+  let sellTargets = [];
+  let checkSellTarget = true;
 
   for (let i = days.length; i > 0; i--) {
     if (+closePrices[i] < buyTarget) {
       const filteredBuyDay = new Date(days[i]);
-      firstBuyTarget.push({ day: filteredBuyDay, price: closePrices[i] });
+      buyTargets.push({ day: filteredBuyDay, price: closePrices[i] });
       break;
     }
   }
-
-  let buyTargets = [...firstBuyTarget];
-  let sellTargets = [];
-  let checkSellTarget = true;
 
   for (let i = days.length; i > 0; i--) {
     if (checkSellTarget) {
@@ -45,19 +44,11 @@ const StockTradeResult = (props) => {
     buyTargets.pop();
   }
 
-  let profits = [];
-
-  for (let i = 0; i < buyTargets.length; i++) {
-    profits.push((+sellTargets[i].price - +buyTargets[i].price).toFixed(2));
-  }
-
-  let results = [];
-
   for (let i = 0; i < buyTargets.length; i++) {
     results.push({
       id: i,
       buy: buyTargets[i],
-      profit: profits[i],
+      profit: (+sellTargets[i].price - +buyTargets[i].price).toFixed(2),
       sell: sellTargets[i],
     });
   }

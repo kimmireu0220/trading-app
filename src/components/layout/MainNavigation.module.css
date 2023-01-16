@@ -28,7 +28,7 @@ input {
   width: 25rem;
 }
 
-.nav ul div {
+.nav ul {
   display: flex;
 }
 

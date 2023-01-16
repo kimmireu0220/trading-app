@@ -1,11 +1,7 @@
 import UserProfile from "../components/Profile/UserProfile";
 
 const Profile = () => {
-  return (
-    <div className="centered">
-      <UserProfile />
-    </div>
-  );
+  return <UserProfile />;
 };
 
 export default Profile;

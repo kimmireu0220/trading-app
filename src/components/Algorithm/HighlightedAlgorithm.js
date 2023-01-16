@@ -1,7 +1,7 @@
 import classes from "./HighlightedAlgorithm.module.css";
 import Card from "../UI/Card";
 
-const HighlightedAlgorithm = (props) => {
+const HighlightedAlgorithm = ({ algorithmConfig }) => {
   const {
     title,
     buyAlgorithm,
@@ -9,7 +9,7 @@ const HighlightedAlgorithm = (props) => {
     sellAlgorithm,
     sellTarget,
     description,
-  } = props;
+  } = algorithmConfig;
 
   return (
     <Card>

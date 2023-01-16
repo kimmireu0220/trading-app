@@ -6,13 +6,9 @@ const StockChart = (props) => {
   const [marker, setMarker] = useState();
 
   useEffect(() => {
-    if (+yValues[0] > +yValues[yValues.length - 1]) {
-      setMarker({ color: "green" });
-    } else if (+yValues[0] < +yValues[yValues.length - 1]) {
-      setMarker({ color: "red" });
-    } else {
-      setMarker({ color: "black" });
-    }
+    +yValues[0] > +yValues[yValues.length - 1]
+      ? setMarker({ color: "green" })
+      : setMarker({ color: "red" });
   }, [yValues]);
 
   return (

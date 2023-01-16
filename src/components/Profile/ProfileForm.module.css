@@ -8,8 +8,7 @@
 }
 
 .control label {
-  font-weight: bold;
-  margin-bottom: 2rem;
+  margin: 2rem auto;
   color: #353336;
   display: block;
 }
@@ -20,25 +19,25 @@
   width: 100%;
   border-radius: 0.5rem;
   border: 1px solid #08914f;
-  padding: 0.25rem;
+  padding: 0.5rem;
   background-color: #f7f0fa;
 }
 
 .action {
-  margin-top: 1.5rem;
+  margin-top: 3rem;
 }
 
 .action button {
   font: inherit;
   cursor: pointer;
   padding: 0.5rem 1.5rem;
-  border-radius: 4px;
+  font-size: 1.25rem;
+  border-radius: 0.5rem;
   background-color: #49eb82;
-  color: black;
+  color: rgb(60, 52, 52);
 }
 
 .action button:hover {
   background-color: #19a134;
-  border-color: #19a134;
-  color: white;
+  color: rgb(255, 255, 255);
 }

@@ -36,6 +36,7 @@ const AuthForm = (props) => {
             <input
               type="password"
               id="password"
+              minLength="6"
               required
               ref={passwordInputRef}
             />

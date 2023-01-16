@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
+import { authActions } from "../../store/auth";
 import classes from "./ProfileForm.module.css";
 
 const ProfileForm = (props) => {
@@ -15,7 +16,7 @@ const ProfileForm = (props) => {
     const authData = { token, password };
     props.onUpdatePassword(authData);
 
-    dispatch({ type: "logout" });
+    dispatch(authActions.logout());
   };
 
   return (

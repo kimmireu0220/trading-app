@@ -52,8 +52,6 @@ const AuthPage = () => {
     }
   }, [userData, history, pathname, dispatch]);
 
-  // Error or Loading status
-
   if (signUpError || signInError) {
     return (
       <ErrorModal
@@ -65,11 +63,7 @@ const AuthPage = () => {
   }
 
   if (signUpStatus === "pending" || signInStatus === "pending") {
-    return (
-      <div className="centered">
-        <LoadingSpinner />
-      </div>
-    );
+    return <LoadingSpinner />;
   }
 
   return (

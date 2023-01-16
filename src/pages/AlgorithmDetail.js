@@ -21,7 +21,7 @@ const AlgorithmDetail = () => {
     error,
   } = useHttp(getSingleAlgorithm, true);
 
-  const goToEditAlgorithmHandler = () => {
+  const goToEditPageHandler = () => {
     history.push(`${pathname}/edit`);
   };
 
@@ -29,7 +29,7 @@ const AlgorithmDetail = () => {
     history.push(`${pathname}/delete`);
   };
 
-  const backToAlgorithmHandler = () => {
+  const backToPrevPageHandler = () => {
     history.goBack();
   };
 
@@ -54,17 +54,19 @@ const AlgorithmDetail = () => {
     return (
       <Fragment>
         <HighlightedAlgorithm
-          title={title}
-          buyAlgorithm={buyAlgorithm}
-          buyTarget={buyTarget}
-          sellAlgorithm={sellAlgorithm}
-          sellTarget={sellTarget}
-          description={description}
+          algorithmConfig={{
+            title,
+            buyAlgorithm,
+            buyTarget,
+            sellAlgorithm,
+            sellTarget,
+            description,
+          }}
         />
         <AlgorithmDetailOption
-          onGoToEdit={goToEditAlgorithmHandler}
+          onGoToEdit={goToEditPageHandler}
           onToggle={toggleConfirmHandler}
-          onGoBack={backToAlgorithmHandler}
+          onGoBack={backToPrevPageHandler}
         />
         {showConfirm && (
           <ConfirmModal
@@ -78,14 +80,8 @@ const AlgorithmDetail = () => {
     );
   }
 
-  // Error or Loading status
-
   if (status === "pending") {
-    return (
-      <div className="centered">
-        <LoadingSpinner />
-      </div>
-    );
+    return <LoadingSpinner />;
   }
 
   if (error) {

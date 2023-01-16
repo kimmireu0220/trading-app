@@ -14,21 +14,36 @@
   padding: 0;
 }
 
-.item blockquote {
+.item figure blockquote {
   margin: 0;
   text-align: left;
   font-size: 1.5rem;
   color: #212929;
 }
 
-.item p {
-  margin: 0;
-  margin-bottom: 0.25rem;
+.title {
+  font-size: 1.5rem;
+  margin: 0.5rem 0;
+  font-weight: bold;
 }
 
 .item figcaption {
+  margin-top: 0.5rem;
   font-style: italic;
   color: #566d6d;
+}
+
+.item figcaption p {
+  font-size: 1.25rem;
+  margin: 0.75rem 0;
+}
+
+.buy {
+  color: red;
+}
+
+.sell {
+  color: blue;
 }
 
 .link {

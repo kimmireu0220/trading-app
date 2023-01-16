@@ -1,10 +1,15 @@
-.info {
-  margin: 0.25rem 0;
-  text-align: center;
+.result {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 }
 
-.info div {
-  text-align: center;
+.info {
+  margin: 0.5rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .buyPrice {
