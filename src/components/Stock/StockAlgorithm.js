@@ -1,16 +1,28 @@
-import { useContext, useState } from "react";
+import { useEffect, useState } from "react";
 
 import Card from "../UI/Card";
 import ErrorModal from "../UI/ErrorModal";
 import StockTradeResult from "./StockTradeResult";
 import classes from "./StockAlgorithm.module.css";
-import AlgorithmContext from "../../store/algorithm-context";
+import useHttp from "../../hooks/use-http";
+import { getAllAlgorithms } from "../../lib/api";
+import LoadingSpinner from "../UI/LoadingSpinner";
 
 const StockAlgoritm = (props) => {
   const { days, closePrices } = props;
-  const { algorithms } = useContext(AlgorithmContext);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [selectedAlgorithm, setSelectedAlgorithm] = useState(null);
+
+  const {
+    sendRequest,
+    status,
+    data: algorithms,
+    error,
+  } = useHttp(getAllAlgorithms, true);
+
+  useEffect(() => {
+    sendRequest();
+  }, [sendRequest]);
 
   const errorHandler = () => {
     setIsSubmitted(false);
@@ -39,6 +51,14 @@ const StockAlgoritm = (props) => {
     }
     setIsSubmitted(false);
   };
+
+  if (status === "pending") {
+    return <LoadingSpinner />;
+  }
+
+  if (error) {
+    return <p className="centered focused">{error}</p>;
+  }
 
   return (
     <Card>

@@ -12,7 +12,6 @@ const AddAlgorithm = () => {
   useEffect(() => {
     if (status === "completed") {
       history.push("/algorithms");
-      window.location.reload();
     }
   }, [status, history]);
 

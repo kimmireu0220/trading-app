@@ -1,10 +1,29 @@
-import { useContext, Fragment } from "react";
+import { useEffect, Fragment } from "react";
 
-import AlgorithmContext from "../../store/algorithm-context";
+import useHttp from "../../hooks/use-http";
 import AlgorithmItem from "./AlgorithmItem";
+import { getAllAlgorithms } from "../../lib/api";
+import LoadingSpinner from "../UI/LoadingSpinner";
 
 const AlgorithmList = () => {
-  const { algorithms } = useContext(AlgorithmContext);
+  const {
+    sendRequest,
+    status,
+    data: algorithms,
+    error,
+  } = useHttp(getAllAlgorithms, true);
+
+  useEffect(() => {
+    sendRequest();
+  }, [sendRequest]);
+
+  if (status === "pending") {
+    return <LoadingSpinner />;
+  }
+
+  if (error) {
+    return <p className="centered focused">{error}</p>;
+  }
 
   return (
     <Fragment>

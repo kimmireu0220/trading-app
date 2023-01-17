@@ -1,24 +1,31 @@
 .form {
   max-width: 25rem;
-  margin: 2rem auto;
+  margin: 0 auto;
 }
 
 .control {
-  margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .control label {
-  margin: 2rem auto;
+  margin: 1rem;
+  white-space: nowrap;
   color: #353336;
   display: block;
 }
 
+.invalid {
+  border: 2px solid red;
+}
+
 .control input {
+  margin-bottom: 1rem;
   display: block;
   font: inherit;
   width: 100%;
   border-radius: 0.5rem;
-  border: 1px solid #08914f;
   padding: 0.5rem;
   background-color: #f7f0fa;
 }

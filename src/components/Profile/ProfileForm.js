@@ -1,22 +1,27 @@
-import { useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useRef, useState } from "react";
+import { useSelector } from "react-redux";
 
-import { authActions } from "../../store/auth";
 import classes from "./ProfileForm.module.css";
 
 const ProfileForm = (props) => {
-  const dispatch = useDispatch();
   const newPasswordInputRef = useRef();
-  const token = useSelector((state) => state.token);
+  const confirmPasswordInputRef = useRef();
+  const [formIsInValid, setFormIsInValid] = useState(false);
+  const token = useSelector((state) => state.auth.token);
 
   const submitHandler = (event) => {
     event.preventDefault();
 
     const password = newPasswordInputRef.current.value;
+    const confirmPassword = confirmPasswordInputRef.current.value;
     const authData = { token, password };
-    props.onUpdatePassword(authData);
 
-    dispatch(authActions.logout());
+    if (password === confirmPassword) {
+      setFormIsInValid(false);
+      props.onUpdatePassword(authData);
+    } else {
+      setFormIsInValid(true);
+    }
   };
 
   return (
@@ -24,10 +29,20 @@ const ProfileForm = (props) => {
       <div className={classes.control}>
         <label htmlFor="new-password">New Password</label>
         <input
+          required
           type="password"
           id="new-password"
           minLength="6"
           ref={newPasswordInputRef}
+        />
+        <label htmlFor="confirm-password">Confirm Password</label>
+        <input
+          className={formIsInValid ? classes.invalid : ""}
+          required
+          type="password"
+          id="confirm-password"
+          minLength="6"
+          ref={confirmPasswordInputRef}
         />
       </div>
       <div className={classes.action}>

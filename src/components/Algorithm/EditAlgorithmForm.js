@@ -1,8 +1,10 @@
-import { Fragment, useContext, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { Prompt, useHistory } from "react-router-dom";
 
 import classes from "./AlgorithmForm.module.css";
-import AlgorithmContext from "../../store/algorithm-context";
+import useHttp from "../../hooks/use-http";
+import { getAllAlgorithms } from "../../lib/api";
+import LoadingSpinner from "../UI/LoadingSpinner";
 import ErrorModal from "../UI/ErrorModal";
 import Card from "../UI/Card";
 
@@ -10,7 +12,17 @@ const EditAlgorithmForm = (props) => {
   const history = useHistory();
 
   const { algorithmId } = props;
-  const { algorithms } = useContext(AlgorithmContext);
+  const {
+    sendRequest,
+    status,
+    data: algorithms,
+    error,
+  } = useHttp(getAllAlgorithms, true);
+
+  useEffect(() => {
+    sendRequest();
+  }, [sendRequest]);
+
   const algorithm = algorithms.find(
     (algorithm) => algorithm.id === algorithmId
   );
@@ -82,6 +94,14 @@ const EditAlgorithmForm = (props) => {
   const closeModalHandler = () => {
     setIsSubmitted(false);
   };
+
+  if (status === "pending") {
+    return <LoadingSpinner />;
+  }
+
+  if (error) {
+    return <p className="centered focused">{error}</p>;
+  }
 
   return (
     <Fragment>
