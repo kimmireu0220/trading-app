@@ -65,14 +65,14 @@ const MainNavigation = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink
+              <Link
                 to="/"
                 onClick={logoutHandler}
                 className={`${classes.navLink} ${classes.logout}`}
                 activeClassName={classes.active}
               >
                 Log out
-              </NavLink>
+              </Link>
             </li>
           </ul>
         )}
