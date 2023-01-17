@@ -68,14 +68,13 @@ const AlgorithmDetail = () => {
           onToggle={toggleConfirmHandler}
           onGoBack={backToPrevPageHandler}
         />
-        {showConfirm && (
-          <ConfirmModal
-            title="Do you want to delete this algorithm?"
-            message="If you really want to delete, click 'Okay' button"
-            onClose={toggleConfirmHandler}
-            onConfirm={deleteAlgorithmHandler}
-          />
-        )}
+        <ConfirmModal
+          show={showConfirm}
+          title="Do you want to delete this algorithm?"
+          message="If you really want to delete, click 'Okay' button"
+          onClose={toggleConfirmHandler}
+          onConfirm={deleteAlgorithmHandler}
+        />
       </Fragment>
     );
   }

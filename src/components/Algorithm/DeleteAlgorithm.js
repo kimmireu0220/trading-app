@@ -24,7 +24,6 @@ const DeleteAlgorithm = () => {
   }
 
   history.push("/algorithms");
-  window.location.reload();
 
   return null;
 };

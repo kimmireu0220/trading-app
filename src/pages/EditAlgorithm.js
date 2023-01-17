@@ -6,15 +6,14 @@ import { editAlgorithm } from "../lib/api";
 import EditAlgorithmForm from "../components/Algorithm/EditAlgorithmForm";
 
 const EditAlgorithm = () => {
-  const { algorithmId } = useParams();
   const history = useHistory();
+  const { algorithmId } = useParams();
 
   const { sendRequest, status } = useHttp(editAlgorithm);
 
   useEffect(() => {
     if (status === "completed") {
       history.push("/algorithms");
-      window.location.reload();
     }
   }, [status, history]);
 

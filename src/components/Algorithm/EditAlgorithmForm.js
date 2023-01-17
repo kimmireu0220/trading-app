@@ -1,17 +1,31 @@
+import { useHistory } from "react-router-dom";
 import { Fragment, useEffect, useRef, useState } from "react";
-import { Prompt, useHistory } from "react-router-dom";
 
-import classes from "./AlgorithmForm.module.css";
+import Card from "../UI/Card";
 import useHttp from "../../hooks/use-http";
+import ErrorModal from "../UI/ErrorModal";
+import ConfirmModal from "../UI/ConfirmModal";
+import classes from "./AlgorithmForm.module.css";
 import { getAllAlgorithms } from "../../lib/api";
 import LoadingSpinner from "../UI/LoadingSpinner";
-import ErrorModal from "../UI/ErrorModal";
-import Card from "../UI/Card";
 
 const EditAlgorithmForm = (props) => {
   const history = useHistory();
 
+  let algorithm;
   const { algorithmId } = props;
+
+  const titleInputRef = useRef();
+  const buyTargetInutRef = useRef();
+  const sellTargetInputRef = useRef();
+  const descriptionInputRef = useRef();
+
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [formIsValid, setFormIsVallid] = useState(false);
+  const [buyAlgorithm, setBuyAlgorithm] = useState("Price");
+  const [sellAlgorithm, setSellAlgorithm] = useState("Price");
+
   const {
     sendRequest,
     status,
@@ -23,25 +37,12 @@ const EditAlgorithmForm = (props) => {
     sendRequest();
   }, [sendRequest]);
 
-  const algorithm = algorithms.find(
-    (algorithm) => algorithm.id === algorithmId
-  );
+  if (algorithms) {
+    algorithm = algorithms.find((algorithm) => algorithm.id === algorithmId);
+  }
 
-  const [isEntering, setIsEntering] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [formIsValid, setFormIsVallid] = useState(false);
-
-  const [buyAlgorithm, setBuyAlgorithm] = useState(algorithm.buyAlgorithm);
-  const [sellAlgorithm, setSellAlgorithm] = useState(algorithm.sellAlgorithm);
-
-  const titleInputRef = useRef();
-  const buyTargetInutRef = useRef();
-  const sellTargetInputRef = useRef();
-  const descriptionInputRef = useRef();
-
-  function submitFormHandler(event) {
+  const submitFormHandler = (event) => {
     event.preventDefault();
-
     setIsSubmitted(true);
 
     const title = titleInputRef.current.value;
@@ -69,10 +70,18 @@ const EditAlgorithmForm = (props) => {
         algorithmId,
       });
     }
-  }
+  };
 
-  const formFocusedHandler = () => {
-    setIsEntering(true);
+  const cancelHandler = () => {
+    history.goBack();
+  };
+
+  const closeErrorModalHandler = () => {
+    setIsSubmitted(false);
+  };
+
+  const toggleShowConfirmHandler = () => {
+    setShowConfirm((prevState) => !prevState);
   };
 
   const BuyAlgorithmChangeHandler = (event) => {
@@ -81,18 +90,6 @@ const EditAlgorithmForm = (props) => {
 
   const sellAlgorithmChangeHandler = (event) => {
     setSellAlgorithm(event.target.value);
-  };
-
-  const cancelHandler = () => {
-    history.goBack();
-  };
-
-  const finishEnteringHandler = () => {
-    setIsEntering(false);
-  };
-
-  const closeModalHandler = () => {
-    setIsSubmitted(false);
   };
 
   if (status === "pending") {
@@ -105,16 +102,8 @@ const EditAlgorithmForm = (props) => {
 
   return (
     <Fragment>
-      <Prompt
-        when={isEntering}
-        message={(location) => "Are you sure you want to leave?"}
-      />
       <Card>
-        <form
-          onFocus={formFocusedHandler}
-          className={classes.form}
-          onSubmit={submitFormHandler}
-        >
+        <form className={classes.form} onSubmit={submitFormHandler}>
           <div className={classes.control}>
             <label htmlFor="title">Title</label>
             <input
@@ -167,20 +156,25 @@ const EditAlgorithmForm = (props) => {
             <button
               className={classes.cancel}
               type="button"
-              onClick={cancelHandler}
+              onClick={toggleShowConfirmHandler}
             >
               Cancel
             </button>
-            <button className={classes.add} onClick={finishEnteringHandler}>
-              Edit
-            </button>
+            <button className={classes.add}>Edit</button>
           </div>
         </form>
+        <ConfirmModal
+          show={showConfirm}
+          title="Do you want to stop editting this algorithm?"
+          message="If you really want to stop editting , click 'Okay' button"
+          onClose={toggleShowConfirmHandler}
+          onConfirm={cancelHandler}
+        />
         {!formIsValid && isSubmitted && (
           <ErrorModal
             title="Form validity error"
             message="Please fill in the blanks"
-            onConfirm={closeModalHandler}
+            onConfirm={closeErrorModalHandler}
           />
         )}
       </Card>

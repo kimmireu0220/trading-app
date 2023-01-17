@@ -1,28 +1,27 @@
 import { Fragment, useRef, useState } from "react";
-import { Prompt, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import classes from "./AlgorithmForm.module.css";
 import ErrorModal from "../UI/ErrorModal";
+import ConfirmModal from "../UI/ConfirmModal";
 import Card from "../UI/Card";
 
 const AddAlgorithmForm = (props) => {
   const history = useHistory();
-
-  const [isEntering, setIsEntering] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [formIsValid, setFormIsVallid] = useState(false);
-
-  const [buyAlgorithm, setBuyAlgorithm] = useState("Price");
-  const [sellAlgorithm, setSellAlgorithm] = useState("Price");
 
   const titleInputRef = useRef();
   const buyTargetInutRef = useRef();
   const sellTargetInputRef = useRef();
   const descriptionInputRef = useRef();
 
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [formIsValid, setFormIsVallid] = useState(false);
+  const [buyAlgorithm, setBuyAlgorithm] = useState("Price");
+  const [sellAlgorithm, setSellAlgorithm] = useState("Price");
+
   function submitFormHandler(event) {
     event.preventDefault();
-
     setIsSubmitted(true);
 
     const title = titleInputRef.current.value;
@@ -51,8 +50,16 @@ const AddAlgorithmForm = (props) => {
     }
   }
 
-  const formFocusedHandler = () => {
-    setIsEntering(true);
+  const cancelHandler = () => {
+    history.goBack();
+  };
+
+  const closeErrorModalHandler = () => {
+    setIsSubmitted(false);
+  };
+
+  const toggleShowConfirmHandler = () => {
+    setShowConfirm((prevState) => !prevState);
   };
 
   const BuyAlgorithmChangeHandler = (event) => {
@@ -63,30 +70,10 @@ const AddAlgorithmForm = (props) => {
     setSellAlgorithm(event.target.value);
   };
 
-  const closeFormHandler = () => {
-    history.goBack();
-  };
-
-  const finishEnteringHandler = () => {
-    setIsEntering(false);
-  };
-
-  const closeModalHandler = () => {
-    setIsSubmitted(false);
-  };
-
   return (
     <Fragment>
-      <Prompt
-        when={isEntering}
-        message={(location) => "Are you sure you want to leave?"}
-      />
       <Card>
-        <form
-          onFocus={formFocusedHandler}
-          className={classes.form}
-          onSubmit={submitFormHandler}
-        >
+        <form className={classes.form} onSubmit={submitFormHandler}>
           <div className={classes.control}>
             <label htmlFor="title">Title</label>
             <input type="text" id="title" ref={titleInputRef} />
@@ -119,20 +106,26 @@ const AddAlgorithmForm = (props) => {
             <button
               className={classes.cancel}
               type="button"
-              onClick={closeFormHandler}
+              onClick={toggleShowConfirmHandler}
             >
               Cancel
             </button>
-            <button className={classes.add} onClick={finishEnteringHandler}>
-              Add
-            </button>
+            <button className={classes.add}>Add</button>
           </div>
         </form>
+        {showConfirm && (
+          <ConfirmModal
+            title="Do you want to stop adding this algorithm?"
+            message="If you really want to stop adding , click 'Okay' button"
+            onClose={toggleShowConfirmHandler}
+            onConfirm={cancelHandler}
+          />
+        )}
         {!formIsValid && isSubmitted && (
           <ErrorModal
             title="Form validity error"
             message="Please fill in the blanks"
-            onConfirm={closeModalHandler}
+            onConfirm={closeErrorModalHandler}
           />
         )}
       </Card>

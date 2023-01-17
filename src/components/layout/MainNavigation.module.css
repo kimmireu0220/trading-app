@@ -42,7 +42,6 @@ input {
 }
 
 .nav a:hover,
-.nav a:active,
 .nav a.active {
   color: #e6fcfc;
 }

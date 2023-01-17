@@ -12,7 +12,7 @@ const AllAlgorithms = () => {
 
   return (
     <Fragment>
-      <AlgorithmList />;
+      <AlgorithmList />
       <button className="centered btn" onClick={goToAddAlgorithmPageHandler}>
         Add an Algorithm
       </button>

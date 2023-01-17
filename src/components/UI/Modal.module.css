@@ -14,8 +14,12 @@
   left: 10%;
   width: 80%;
   z-index: 100;
-
   background: rgba(235, 230, 230, 0.9);
+  animation: openModal 0.4s ease-out;
+}
+
+.ModalClosed {
+  animation: closeModal 0.4s ease-out;
 }
 
 .header {
@@ -63,5 +67,35 @@
   .modal {
     left: calc(50% - 20rem);
     width: 40rem;
+  }
+}
+
+@keyframes openModal {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(20%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes closeModal {
+  0% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateY(60%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100%);
   }
 }

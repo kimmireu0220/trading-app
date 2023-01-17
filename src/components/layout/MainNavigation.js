@@ -43,14 +43,15 @@ const MainNavigation = () => {
         />
         <button>Search</button>
       </form>
+
       <nav className={classes.nav}>
         {isLoggedIn && (
           <ul>
             <li>
               <NavLink
                 to="/algorithms"
-                className={classes.navLink}
                 activeClassName={classes.active}
+                className={classes.navLink}
               >
                 Algorithm
               </NavLink>
@@ -58,8 +59,8 @@ const MainNavigation = () => {
             <li>
               <NavLink
                 to="/profile"
-                className={classes.navLink}
                 activeClassName={classes.active}
+                className={classes.navLink}
               >
                 Profile
               </NavLink>
@@ -69,7 +70,6 @@ const MainNavigation = () => {
                 to="/"
                 onClick={logoutHandler}
                 className={`${classes.navLink} ${classes.logout}`}
-                activeClassName={classes.active}
               >
                 Log out
               </Link>
@@ -81,8 +81,8 @@ const MainNavigation = () => {
             <li>
               <NavLink
                 to="/auth"
-                className={classes.navLink}
                 activeClassName={classes.active}
+                className={classes.navLink}
               >
                 Login
               </NavLink>
