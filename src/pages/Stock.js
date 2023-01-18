@@ -41,7 +41,9 @@ const Stock = () => {
     getDailyData(ticker);
   }, [getDetailData, getTodayData, getDailyData, ticker]);
 
-  let content;
+  let content = (
+    <NotFound text="Can't find stock data. Please check your ticker or just retry it" />
+  );
 
   if (detailData && todayData && dailyData) {
     const { name } = detailData;
@@ -52,9 +54,9 @@ const Stock = () => {
       <Fragment>
         <StockInfo
           name={name}
-          ticker={ticker.toUpperCase()}
           price={price.toFixed(2)}
           change={change.toFixed(2)}
+          ticker={ticker.toUpperCase()}
         />
         <StockChart xValues={days} yValues={closePrices} />
         <StockAlgoritm days={days} closePrices={closePrices} />
@@ -62,37 +64,15 @@ const Stock = () => {
     );
   }
 
-  // Error or Loading status
-
   if (
     detailDataStatus === "pending" ||
     todayDataStatus === "pending" ||
     dailyDataStatus === "pending"
   ) {
-    content = (
-      <div className="centered">
-        <LoadingSpinner />
-      </div>
-    );
+    content = <LoadingSpinner />;
   }
 
-  if (
-    detailDataStatus === "completed" &&
-    todayDataStatus === "completed" &&
-    dailyDataStatus === "completed" &&
-    (!detailData ||
-      !todayData ||
-      !dailyData ||
-      detailData.name === undefined ||
-      dailyData.days.length === 0 ||
-      dailyData.closePrices.length === 0)
-  ) {
-    content = (
-      <NotFound text="Can't find stock data. Please check your ticker or just retry it" />
-    );
-  }
-
-  return <Fragment>{content}</Fragment>;
+  return content;
 };
 
 export default Stock;

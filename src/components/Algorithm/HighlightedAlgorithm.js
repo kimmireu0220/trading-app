@@ -1,5 +1,6 @@
+import { Fragment } from "react";
+
 import classes from "./HighlightedAlgorithm.module.css";
-import Card from "../UI/Card";
 
 const HighlightedAlgorithm = ({ algorithmConfig }) => {
   const {
@@ -12,7 +13,7 @@ const HighlightedAlgorithm = ({ algorithmConfig }) => {
   } = algorithmConfig;
 
   return (
-    <Card>
+    <Fragment>
       <h1>{title}</h1>
       <hr />
       <h2>
@@ -23,7 +24,8 @@ const HighlightedAlgorithm = ({ algorithmConfig }) => {
       </h2>
       <hr />
       <h3>{description}</h3>
-    </Card>
+      <hr />
+    </Fragment>
   );
 };
 

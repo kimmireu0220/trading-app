@@ -2,6 +2,7 @@ import { Fragment, useEffect, useState } from "react";
 import { useParams, useLocation, useHistory } from "react-router-dom";
 
 import useHttp from "../hooks/use-http";
+import Card from "../components/UI/Card";
 import { getSingleAlgorithm } from "../lib/api";
 import ConfirmModal from "../components/UI/ConfirmModal";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
@@ -53,21 +54,23 @@ const AlgorithmDetail = () => {
 
     return (
       <Fragment>
-        <HighlightedAlgorithm
-          algorithmConfig={{
-            title,
-            buyAlgorithm,
-            buyTarget,
-            sellAlgorithm,
-            sellTarget,
-            description,
-          }}
-        />
-        <AlgorithmDetailOption
-          onGoToEdit={goToEditPageHandler}
-          onToggle={toggleConfirmHandler}
-          onGoBack={backToPrevPageHandler}
-        />
+        <Card>
+          <HighlightedAlgorithm
+            algorithmConfig={{
+              title,
+              buyAlgorithm,
+              buyTarget,
+              sellAlgorithm,
+              sellTarget,
+              description,
+            }}
+          />
+          <AlgorithmDetailOption
+            onGoToEdit={goToEditPageHandler}
+            onToggle={toggleConfirmHandler}
+            onGoBack={backToPrevPageHandler}
+          />
+        </Card>
         <ConfirmModal
           show={showConfirm}
           title="Do you want to delete this algorithm?"

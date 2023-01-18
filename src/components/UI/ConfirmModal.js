@@ -4,6 +4,11 @@ import { Transition } from "react-transition-group";
 
 import classes from "./Modal.module.css";
 
+const animationTiming = {
+  enter: 750,
+  exit: 500,
+};
+
 const Backdrop = (props) => {
   if (props.show) {
     return <div className={classes.backdrop} onClick={props.onClose} />;
@@ -12,7 +17,12 @@ const Backdrop = (props) => {
 
 const ModalOverlay = (props) => {
   return (
-    <Transition in={props.show} timeout={300} unmountOnExit mountOnEnter>
+    <Transition
+      in={props.show}
+      timeout={animationTiming}
+      unmountOnExit
+      mountOnEnter
+    >
       {(state) => {
         const animationClass = state === "exiting" ? classes.ModalClosed : null;
 
@@ -24,14 +34,18 @@ const ModalOverlay = (props) => {
             <div className={classes.content}>
               <p>{props.message}</p>
             </div>
-            <footer className={classes.actions}>
-              <button className={`btn ${classes.no}`} onClick={props.onClose}>
-                No
-              </button>
-              <button className="btn" onClick={props.onConfirm}>
-                Okay
-              </button>
-            </footer>
+            <ul className={classes.actions}>
+              <li>
+                <button className={`btn ${classes.no}`} onClick={props.onClose}>
+                  No
+                </button>
+              </li>
+              <li>
+                <button className="btn" onClick={props.onConfirm}>
+                  Okay
+                </button>
+              </li>
+            </ul>
           </div>
         );
       }}

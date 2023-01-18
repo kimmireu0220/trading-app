@@ -12,3 +12,8 @@ h3 {
 .sell {
   color: rgb(11, 11, 227);
 }
+
+hr {
+  margin: 1.5rem;
+  border: 1px dashed black;
+}

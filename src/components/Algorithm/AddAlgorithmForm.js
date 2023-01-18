@@ -1,10 +1,10 @@
-import { Fragment, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 
-import classes from "./AlgorithmForm.module.css";
+import Card from "../UI/Card";
 import ErrorModal from "../UI/ErrorModal";
 import ConfirmModal from "../UI/ConfirmModal";
-import Card from "../UI/Card";
+import classes from "./AlgorithmForm.module.css";
 
 const AddAlgorithmForm = (props) => {
   const history = useHistory();
@@ -71,65 +71,62 @@ const AddAlgorithmForm = (props) => {
   };
 
   return (
-    <Fragment>
-      <Card>
-        <form className={classes.form} onSubmit={submitFormHandler}>
-          <div className={classes.control}>
-            <label htmlFor="title">Title</label>
-            <input type="text" id="title" ref={titleInputRef} />
+    <Card>
+      <form className={classes.form} onSubmit={submitFormHandler}>
+        <div className={classes.control}>
+          <label htmlFor="title">Title</label>
+          <input type="text" id="title" ref={titleInputRef} />
+        </div>
+        <div className={classes.logicControl}>
+          <div className={classes.signal}>
+            <label htmlFor="buy">Buy</label>
+            <select onChange={BuyAlgorithmChangeHandler}>
+              <option value="price">Price</option>
+            </select>
+            <input type="number" ref={buyTargetInutRef} />
           </div>
-          <div className={classes.logicControl}>
-            <div className={classes.signal}>
-              <label htmlFor="buy">Buy</label>
-              <select onChange={BuyAlgorithmChangeHandler}>
-                <option value="price">Price</option>
-              </select>
-              <input type="number" ref={buyTargetInutRef} />
-            </div>
-            <div className={classes.signal}>
-              <label htmlFor="sell">Sell</label>
-              <select onChange={sellAlgorithmChangeHandler}>
-                <option value="price">Price</option>
-              </select>
-              <input type="number" ref={sellTargetInputRef} />
-            </div>
+          <div className={classes.signal}>
+            <label htmlFor="sell">Sell</label>
+            <select onChange={sellAlgorithmChangeHandler}>
+              <option value="price">Price</option>
+            </select>
+            <input type="number" ref={sellTargetInputRef} />
           </div>
-          <div className={classes.control}>
-            <label htmlFor="description">Description</label>
-            <textarea
-              id="description"
-              rows="5"
-              ref={descriptionInputRef}
-            ></textarea>
-          </div>
-          <div className={classes.actions}>
-            <button
-              className={classes.cancel}
-              type="button"
-              onClick={toggleShowConfirmHandler}
-            >
-              Cancel
-            </button>
-            <button className={classes.add}>Add</button>
-          </div>
-        </form>
-        {showConfirm && (
-          <ConfirmModal
-            title="Do you want to stop adding this algorithm?"
-            message="If you really want to stop adding , click 'Okay' button"
-            onClose={toggleShowConfirmHandler}
-            onConfirm={cancelHandler}
-          />
-        )}
-        {!formIsValid && isSubmitted && (
-          <ErrorModal
-            title="Form validity error"
-            message="Please fill in the blanks"
-            onConfirm={closeErrorModalHandler}
-          />
-        )}
-      </Card>
-    </Fragment>
+        </div>
+        <div className={classes.control}>
+          <label htmlFor="description">Description</label>
+          <textarea
+            id="description"
+            rows="5"
+            ref={descriptionInputRef}
+          ></textarea>
+        </div>
+        <div className={classes.actions}>
+          <button
+            className={classes.cancel}
+            type="button"
+            onClick={toggleShowConfirmHandler}
+          >
+            Cancel
+          </button>
+          <button className={classes.add}>Add</button>
+        </div>
+      </form>
+      <ConfirmModal
+        show={showConfirm}
+        title="Do you want to stop adding this algorithm?"
+        message="If you really want to stop adding , click 'Okay' button"
+        onClose={toggleShowConfirmHandler}
+        onConfirm={cancelHandler}
+      />
+      {!formIsValid && isSubmitted && (
+        <ErrorModal
+          title="Form validity error"
+          message="Please fill in the blanks"
+          onConfirm={closeErrorModalHandler}
+        />
+      )}
+    </Card>
   );
 };
 
