@@ -1,21 +1,16 @@
 import { Fragment } from "react";
-import { useHistory } from "react-router-dom";
+
+import { Link } from "react-router-dom";
 
 import AlgorithmList from "../components/Algorithm/AlgorithmList";
 
 const AllAlgorithms = () => {
-  const history = useHistory();
-
-  const goToAddAlgorithmPageHandler = () => {
-    history.push("/add-algorithm");
-  };
-
   return (
     <Fragment>
       <AlgorithmList />
-      <button className="centered btn" onClick={goToAddAlgorithmPageHandler}>
+      <Link className="centered linkButton" to="/add-algorithm">
         Add an Algorithm
-      </button>
+      </Link>
     </Fragment>
   );
 };

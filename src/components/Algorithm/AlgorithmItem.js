@@ -1,15 +1,10 @@
-import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import classes from "./AlgorithmItem.module.css";
 
 const AlgorithmItem = ({ algorithmConfig }) => {
-  const history = useHistory();
   const { title, buyAlgorithm, buyTarget, sellAlgorithm, sellTarget, id } =
     algorithmConfig;
-
-  const goToDetailPageHandler = () => {
-    history.push(`algorithms/${id}`);
-  };
 
   return (
     <li className={classes.item}>
@@ -26,9 +21,9 @@ const AlgorithmItem = ({ algorithmConfig }) => {
           >{`Sell : ${sellAlgorithm} $${sellTarget} `}</p>
         </figcaption>
       </figure>
-      <button className={classes.link} onClick={goToDetailPageHandler}>
+      <Link className={classes.link} to={`/algorithms/${id}`}>
         View Detail
-      </button>
+      </Link>
     </li>
   );
 };

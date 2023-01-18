@@ -1,12 +1,19 @@
 import "@testing-library/jest-dom";
+
+import { BrowserRouter } from "react-router-dom";
 import { render, screen } from "@testing-library/react";
 
 import AllAlgorithms from "./AllAlgorithms";
 
 describe("AllAlgorithms page", () => {
-  test('renders button contains correct value, "Add an Algorithm"', () => {
-    render(<AllAlgorithms />);
+  test('renders link "Add an Algorithm"', () => {
+    render(
+      <BrowserRouter>
+        <AllAlgorithms />
+      </BrowserRouter>
+    );
 
-    screen.getByRole("button", { name: "Add an Algorithm" });
+    const link = screen.getByRole("link", { name: "Add an Algorithm" });
+    expect(link.href).toBe("http://localhost/add-algorithm");
   });
 });
