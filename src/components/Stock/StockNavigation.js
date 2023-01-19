@@ -5,27 +5,47 @@ const StockNavigation = (props) => {
     <nav>
       <ul className={classes.ul}>
         <li>
-          <button onClick={props.onSelect} value="chart">
+          <button
+            className={props.menu.toString() === "chart" ? "bold" : ""}
+            onClick={props.onSelect}
+            value="chart"
+          >
             Chart
           </button>
         </li>
         <li>
-          <button onClick={props.onSelect} value="conversations">
+          <button
+            className={props.menu.toString() === "conversations" ? "bold" : ""}
+            onClick={props.onSelect}
+            value="conversations"
+          >
             Conversations
           </button>
         </li>
         <li>
-          <button onClick={props.onSelect} value="statistics">
+          <button
+            className={props.menu.toString() === "statistics" ? "bold" : ""}
+            onClick={props.onSelect}
+            value="statistics"
+          >
             Statistics
           </button>
         </li>
         <li>
-          <button onClick={props.onSelect} value="history">
+          <button
+            className={props.menu.toString() === "history" ? "bold" : ""}
+            onClick={props.onSelect}
+            value="history"
+          >
             History
           </button>
         </li>
         <li>
-          <button onClick={props.onSelect} value="financials">
+          <button
+            className={props.menu.toString() === "financials" ? "bold" : ""}
+            onClick={props.onSelect}
+            value="financials"
+          >
             Financials
           </button>
         </li>

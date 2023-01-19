@@ -79,3 +79,11 @@ label {
   cursor: pointer;
   width: 30%;
 }
+
+.bold {
+  font-weight: bold;
+}
+
+.font-24 {
+  font-size: 24px;
+}

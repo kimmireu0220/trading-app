@@ -69,7 +69,7 @@ const Stock = () => {
           change={change.toFixed(2)}
           ticker={ticker.toUpperCase()}
         />
-        <StockNavigation onSelect={infoSelectHandler} />
+        <StockNavigation onSelect={infoSelectHandler} menu={selectedMenu} />
         {selectedMenu === "chart" && (
           <Fragment>
             <StockChart xValues={days} yValues={closePrices} />

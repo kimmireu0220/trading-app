@@ -1,3 +1,8 @@
+.ul {
+  overflow: overlay;
+  height: 10rem;
+}
+
 .textarea {
   width: 100%;
   margin: 1rem;
