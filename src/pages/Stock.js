@@ -5,9 +5,13 @@ import useHttp from "../hooks/use-http";
 import NotFound from "../pages/NotFound";
 import StockInfo from "../components/Stock/StockInfo";
 import StockChart from "../components/Stock/StockChart";
+import StockHistory from "../components/Stock/StockHistory";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
 import StockAlgoritm from "../components/Stock/StockAlgorithm";
+import StockStatistics from "../components/Stock/StockStatistics";
+import StockFinancials from "../components/Stock/StockFinancials";
 import StockNavigation from "../components/Stock/StockNavigation";
+import StockConversations from "../components/Stock/StockConversations";
 import {
   getStockDetailData,
   getTodayStockData,
@@ -17,13 +21,12 @@ import {
 const Stock = () => {
   const params = useParams();
   const { ticker } = params;
-  const [selectedInfo, setSelectedInfo] = useState("chart");
+
+  const [selectedMenu, setSelectedMenu] = useState("chart");
 
   const infoSelectHandler = (event) => {
-    setSelectedInfo(event.target.value);
+    setSelectedMenu(event.target.value);
   };
-
-  console.log(selectedInfo);
 
   const {
     sendRequest: getDetailData,
@@ -67,10 +70,18 @@ const Stock = () => {
           ticker={ticker.toUpperCase()}
         />
         <StockNavigation onSelect={infoSelectHandler} />
-        {selectedInfo === "chart" && (
-          <StockChart xValues={days} yValues={closePrices} />
+        {selectedMenu === "chart" && (
+          <Fragment>
+            <StockChart xValues={days} yValues={closePrices} />
+            <StockAlgoritm days={days} closePrices={closePrices} />
+          </Fragment>
         )}
-        <StockAlgoritm days={days} closePrices={closePrices} />
+        {selectedMenu === "conversations" && (
+          <StockConversations ticker={ticker} />
+        )}
+        {selectedMenu === "statistics" && <StockStatistics />}
+        {selectedMenu === "history" && <StockHistory />}
+        {selectedMenu === "financials" && <StockFinancials />}
       </Fragment>
     );
   }

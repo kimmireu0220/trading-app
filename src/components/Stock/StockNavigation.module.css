@@ -1,17 +1,21 @@
 .ul {
   display: flex;
   justify-content: space-around;
+  margin-right: 2rem;
 }
 
 .ul button {
   white-space: nowrap;
   border: none;
   background-color: #e7f8f8;
-  padding: 1rem 1.5rem;
+  padding: 1.5rem;
   border-radius: 0.5rem;
 }
 
 .ul button:hover {
   background-color: rgba(192, 236, 236, 0.623);
+}
+
+.ul button:focus {
   font-weight: bold;
 }

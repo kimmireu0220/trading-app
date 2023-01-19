@@ -10,7 +10,7 @@ const StockNavigation = (props) => {
           </button>
         </li>
         <li>
-          <button onClick={props.onSelect} value="conversation">
+          <button onClick={props.onSelect} value="conversations">
             Conversations
           </button>
         </li>
@@ -20,8 +20,8 @@ const StockNavigation = (props) => {
           </button>
         </li>
         <li>
-          <button onClick={props.onSelect} value="historical_data">
-            Historical Data
+          <button onClick={props.onSelect} value="history">
+            History
           </button>
         </li>
         <li>

@@ -64,8 +64,8 @@ export const getDailyStockData = async (ticker) => {
 };
 
 export const addAlgorithm = async (algorithmData) => {
-  const FIREBASE_ADD_API_ALGORITHM = `${FIREBASE_DB_DOMAIN}/algorithms.json`;
-  const response = await fetch(FIREBASE_ADD_API_ALGORITHM, {
+  const FIREBASE_ADD_ALGORITHM_API = `${FIREBASE_DB_DOMAIN}/algorithms.json`;
+  const response = await fetch(FIREBASE_ADD_ALGORITHM_API, {
     method: "POST",
     body: JSON.stringify(algorithmData),
     headers: {
@@ -220,6 +220,7 @@ export const signIn = async (authData) => {
   }
 
   const result = {
+    email,
     token: data.idToken,
     expirationTime: +data.expiresIn * 1000,
   };
@@ -247,4 +248,47 @@ export const updatePassword = async (authData) => {
   }
 
   return null;
+};
+
+export const addComment = async (commentData) => {
+  const { ticker, email, comment } = commentData;
+  console.log(commentData);
+  const FIREBASE_ADD_COMMENT_API = `${FIREBASE_DB_DOMAIN}/comments/${ticker}.json`;
+  const response = await fetch(FIREBASE_ADD_COMMENT_API, {
+    method: "POST",
+    body: JSON.stringify({ email, comment }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || "Could not send comment");
+  }
+
+  return null;
+};
+
+export const getAllComments = async (ticker) => {
+  const FIREBASE_ALL_COMMENTS_API = `${FIREBASE_DB_DOMAIN}/comments/${ticker}.json`;
+  const response = await fetch(FIREBASE_ALL_COMMENTS_API);
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || "Could not load comments");
+  }
+
+  const transformedComments = [];
+
+  for (const key in data) {
+    const commentObj = {
+      id: key,
+      ...data[key],
+    };
+
+    transformedComments.push(commentObj);
+  }
+
+  return transformedComments;
 };

@@ -42,8 +42,8 @@ const AuthPage = () => {
 
   useEffect(() => {
     if (userData) {
-      const { token, expirationTime } = userData;
-      dispatch(authActions.login(token));
+      const { token, expirationTime, email } = userData;
+      dispatch(authActions.login({ token, email }));
       pathname === "/auth" ? history.push("/") : history.push(pathname);
 
       setTimeout(() => {

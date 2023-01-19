@@ -1,0 +1,18 @@
+.textarea {
+  width: 100%;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 0.25rem;
+}
+
+.button {
+  padding: 3rem 2rem;
+  background-color: rgb(179, 208, 223);
+  border: rgb(179, 208, 223);
+  border-radius: 0.5rem;
+  margin-left: 1rem;
+}
+
+.button:hover {
+  background-color: rgb(99, 200, 200);
+}
