@@ -1,4 +1,3 @@
-import "@testing-library/jest-dom";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import userEvent from "@testing-library/user-event";
