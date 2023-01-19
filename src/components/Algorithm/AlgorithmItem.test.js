@@ -9,9 +9,9 @@ describe("AlgorithmItem component", () => {
       id: "test",
       title: "Test",
       buyAlgorithm: "Price",
-      buyTarget: 139,
+      buyTarget: Math.random() * 100,
       sellAlgorithm: "Price",
-      sellTarget: 141,
+      sellTarget: Math.random() * 100 + 100,
       description: "test",
     };
     render(

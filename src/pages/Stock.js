@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 
 import useHttp from "../hooks/use-http";
 import NotFound from "../pages/NotFound";
@@ -7,6 +7,7 @@ import StockInfo from "../components/Stock/StockInfo";
 import StockChart from "../components/Stock/StockChart";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
 import StockAlgoritm from "../components/Stock/StockAlgorithm";
+import StockNavigation from "../components/Stock/StockNavigation";
 import {
   getStockDetailData,
   getTodayStockData,
@@ -16,6 +17,13 @@ import {
 const Stock = () => {
   const params = useParams();
   const { ticker } = params;
+  const [selectedInfo, setSelectedInfo] = useState("chart");
+
+  const infoSelectHandler = (event) => {
+    setSelectedInfo(event.target.value);
+  };
+
+  console.log(selectedInfo);
 
   const {
     sendRequest: getDetailData,
@@ -58,7 +66,10 @@ const Stock = () => {
           change={change.toFixed(2)}
           ticker={ticker.toUpperCase()}
         />
-        <StockChart xValues={days} yValues={closePrices} />
+        <StockNavigation onSelect={infoSelectHandler} />
+        {selectedInfo === "chart" && (
+          <StockChart xValues={days} yValues={closePrices} />
+        )}
         <StockAlgoritm days={days} closePrices={closePrices} />
       </Fragment>
     );

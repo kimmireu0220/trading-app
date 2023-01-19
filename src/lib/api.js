@@ -11,7 +11,7 @@ export const getStockDetailData = async (ticker) => {
   const data = await response.json();
 
   if (!response.ok) {
-    throw new Error(data.message || "Could not get today stock data.");
+    throw new Error(data.message || "Could not get today stock data");
   }
 
   const result = {
@@ -27,7 +27,7 @@ export const getTodayStockData = async (ticker) => {
   const data = await response.json();
 
   if (!response.ok) {
-    throw new Error(data.message || "Could not get today stock data.");
+    throw new Error(data.message || "Could not get today stock data");
   }
 
   const result = {
@@ -44,7 +44,7 @@ export const getDailyStockData = async (ticker) => {
   const data = await response.json();
 
   if (!response.ok) {
-    throw new Error(data.message || "Could not get daily stock data.");
+    throw new Error(data.message || "Could not get daily stock data");
   }
 
   let days = [];
@@ -75,7 +75,7 @@ export const addAlgorithm = async (algorithmData) => {
   const data = await response.json();
 
   if (!response.ok) {
-    throw new Error(data.message || "Could not create algorithm.");
+    throw new Error(data.message || "Could not create algorithm");
   }
 
   return null;
@@ -112,7 +112,7 @@ export const editAlgorithm = async (algorithmData) => {
   const data = await response.json();
 
   if (!response.ok) {
-    throw new Error(data.message || "Could not create algorithm.");
+    throw new Error(data.message || "Could not edit algorithm");
   }
 
   return null;
@@ -130,7 +130,7 @@ export const deleteAlgorithm = async (algorithmId) => {
   const data = response.json();
 
   if (!response.ok) {
-    throw new Error(data.message || "Could not fetch quote.");
+    throw new Error(data.message || "Could not delete algorithm");
   }
 
   return null;
@@ -141,8 +141,8 @@ export const getAllAlgorithms = async () => {
   const response = await fetch(FIREBASE_ALL_ALGORITHMS_API);
   const data = await response.json();
 
-  if (!response.ok) {
-    throw new Error(data.message || "Could not fetch algorithm.");
+  if (!data.test_id_1 && !response.ok) {
+    throw new Error(data.message || "Could not fetch algorithms");
   }
 
   const transformedAlgorithms = [];
@@ -165,7 +165,7 @@ export const getSingleAlgorithm = async (algorithmId) => {
   const data = await response.json();
 
   if (!response.ok) {
-    throw new Error(data.message || "Could not fetch quote.");
+    throw new Error(data.message || "Could not fetch single algorithm data");
   }
 
   const loaedAlgorithm = {
@@ -192,7 +192,7 @@ export const signUp = async (authData) => {
   const data = await response.json();
 
   if (!response.ok) {
-    throw new Error(data.message || "Could not create auth data.");
+    throw new Error(data.message || "Failed to sign up");
   }
 
   return null;
@@ -216,7 +216,7 @@ export const signIn = async (authData) => {
   const data = await response.json();
 
   if (!response.ok) {
-    throw new Error(data.message || "Could not login.");
+    throw new Error(data.message || "Failed to sign in");
   }
 
   const result = {
