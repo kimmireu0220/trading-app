@@ -6,7 +6,7 @@ import { render, screen } from "@testing-library/react";
 import AllAlgorithms from "./AllAlgorithms";
 
 describe("AllAlgorithms page", () => {
-  test('renders link "Add an Algorithm"', () => {
+  test('renders "Add an Algorithm" link', () => {
     render(
       <BrowserRouter>
         <AllAlgorithms />

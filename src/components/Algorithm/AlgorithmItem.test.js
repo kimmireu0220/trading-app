@@ -5,7 +5,7 @@ import { render, screen } from "@testing-library/react";
 import AlgorithmItem from "./AlgorithmItem";
 
 describe("AlgorithmItem component", () => {
-  test('renders link "View Detail"', () => {
+  test('renders "View Detail" link', () => {
     const testConfig = {
       id: "test",
       title: "Test",
