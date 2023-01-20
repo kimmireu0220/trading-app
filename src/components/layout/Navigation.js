@@ -1,96 +1,41 @@
-import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useHistory, Link, NavLink } from "react-router-dom";
+import { Fragment, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { authActions } from "../../store/auth";
+import NavLinks from "./NavLinks";
+import SearchForm from "./SearchForm";
 import classes from "./Navigation.module.css";
 
 const MainNavigation = () => {
   const history = useHistory();
-  const dispatch = useDispatch();
+  const [showMenu, setShowMenu] = useState(false);
 
-  const [searchedTicker, setSearchedTicker] = useState("");
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-
-  const tickerChangeHandler = (event) => {
-    setSearchedTicker(event.target.value);
-  };
-
-  const searchStockHandler = (event) => {
-    event.preventDefault();
-
-    history.push(`/trading/${searchedTicker}`);
-  };
-
-  const logoutHandler = () => {
-    dispatch(authActions.logout());
+  const toggleMenuHandler = () => {
+    setShowMenu((prevState) => !prevState);
   };
 
   return (
-    <header className={classes.header}>
-      <Link className={classes.link} to="/trading">
-        <div className={classes.logo}>Trading App</div>
-      </Link>
-      <form className={classes.search} onSubmit={searchStockHandler}>
-        <label htmlFor="ticker" />
-        <input
-          className={classes.input}
-          id="ticker"
-          placeholder="Search a ticker"
-          onChange={tickerChangeHandler}
-          value={searchedTicker}
-          autoFocus
-        />
-        <button>Search</button>
-      </form>
-
-      <nav className={classes.nav}>
-        {isLoggedIn && (
-          <ul>
-            <li>
-              <NavLink
-                to="/algorithms"
-                activeClassName={classes.active}
-                className={classes.navLink}
-              >
-                Algorithm
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/profile"
-                activeClassName={classes.active}
-                className={classes.navLink}
-              >
-                Profile
-              </NavLink>
-            </li>
-            <li>
-              <Link
-                to="/"
-                onClick={logoutHandler}
-                className={`${classes.navLink} ${classes.logout}`}
-              >
-                Log out
-              </Link>
-            </li>
-          </ul>
+    <Fragment>
+      <header className={classes.header}>
+        <Link className={classes.link} to="/trading">
+          <div className={classes.logo}>Trading App</div>
+        </Link>
+        <SearchForm history={history} />
+        <NavLinks mode="normal" />
+        {showMenu && (
+          <div className={classes.burger} onClick={toggleMenuHandler}>
+            <FontAwesomeIcon icon={faXmark} />
+          </div>
         )}
-        {!isLoggedIn && (
-          <ul>
-            <li>
-              <NavLink
-                to="/auth"
-                activeClassName={classes.active}
-                className={classes.navLink}
-              >
-                Login
-              </NavLink>
-            </li>
-          </ul>
+        {!showMenu && (
+          <div className={classes.burger} onClick={toggleMenuHandler}>
+            <FontAwesomeIcon icon={faBars} />
+          </div>
         )}
-      </nav>
-    </header>
+      </header>
+      {showMenu && <NavLinks mode="small" />}
+    </Fragment>
   );
 };
 

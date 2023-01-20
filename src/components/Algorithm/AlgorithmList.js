@@ -22,7 +22,7 @@ const AlgorithmList = () => {
   }
 
   if (error) {
-    return <p className="centered focused">{error}</p>;
+    return <p className="centered focused mt-3">{error}</p>;
   }
 
   return (

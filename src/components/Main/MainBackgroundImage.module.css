@@ -11,3 +11,11 @@
   object-fit: cover;
   transform: rotateZ(-5deg) translateY(-4rem) translateX(-1rem);
 }
+
+@media screen and (max-width: 700px) {
+  .image img {
+    margin-left: 1rem;
+    width: 80%;
+    transform: rotateZ(0) translateY(0) translateX(0);
+  }
+}

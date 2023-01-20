@@ -15,16 +15,22 @@ const HighlightedAlgorithm = ({ algorithmConfig }) => {
   return (
     <Fragment>
       <h1>{title}</h1>
-      <hr />
+      <div className={classes.hr}>
+        <hr />
+      </div>
       <h2>
         <p className={classes.buy}>{`Buy : $${buyTarget} (${buyAlgorithm})`}</p>
         <p
           className={classes.sell}
         >{`Sell : $${sellTarget} (${sellAlgorithm})`}</p>
       </h2>
-      <hr />
+      <div className={classes.hr}>
+        <hr />
+      </div>
       <h3>{description}</h3>
-      <hr />
+      <div className={classes.hr}>
+        <hr />
+      </div>
     </Fragment>
   );
 };

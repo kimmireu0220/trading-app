@@ -1,8 +1,7 @@
 h1,
 h2,
 h3 {
-  padding-left: 1.5rem;
-  margin-top: 1.5rem;
+  padding: 0.25rem 0 0 2.5rem;
 }
 
 .buy {
@@ -13,7 +12,10 @@ h3 {
   color: rgb(11, 11, 227);
 }
 
-hr {
-  margin: 1.5rem;
-  border: 1px dashed black;
+.hr {
+  margin: 2rem 1.75rem 0 0;
+}
+
+.hr hr {
+  border: 1.25px dashed black;
 }

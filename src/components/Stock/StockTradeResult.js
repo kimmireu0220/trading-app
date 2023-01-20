@@ -12,45 +12,47 @@ const StockTradeResult = (props) => {
   let sellTargets = [];
   let checkSellTarget = true;
 
-  for (let i = days.length; i > 0; i--) {
-    if (+closes[i] < buyTarget) {
-      const filteredBuyDay = new Date(days[i]);
-      buyTargets.push({ day: filteredBuyDay, price: closes[i] });
+  for (let i = 0; i < days.length; i++) {
+    if (+closes[99 - i] < buyTarget) {
+      const filteredBuyDay = new Date(days[99 - i]);
+      buyTargets.push({ day: filteredBuyDay, price: closes[99 - i] });
       break;
     }
   }
 
-  for (let i = days.length; i > 0; i--) {
-    if (checkSellTarget) {
-      if (+closes[i] > sellTarget) {
-        const day = new Date(days[i]);
-        if (buyTargets[buyTargets.length - 1].day < day) {
-          sellTargets.push({ day, price: closes[i] });
-          checkSellTarget = false;
+  if (buyTargets.length !== 0) {
+    for (let i = 0; i < days.length; i++) {
+      if (checkSellTarget) {
+        if (+closes[99 - i] > sellTarget) {
+          const day = new Date(days[99 - i]);
+          if (buyTargets[buyTargets.length - 1].day < day) {
+            sellTargets.push({ day, price: closes[99 - i] });
+            checkSellTarget = false;
+          }
         }
-      }
-    } else {
-      if (+closes[i] < buyTarget) {
-        const day = new Date(days[i]);
-        if (sellTargets[sellTargets.length - 1].day < day) {
-          buyTargets.push({ day, price: closes[i] });
-          checkSellTarget = true;
+      } else {
+        if (+closes[99 - i] < buyTarget) {
+          const day = new Date(days[99 - i]);
+          if (sellTargets[sellTargets.length - 1].day < day) {
+            buyTargets.push({ day, price: closes[99 - i] });
+            checkSellTarget = true;
+          }
         }
       }
     }
-  }
 
-  if (buyTargets.length > sellTargets.length) {
-    buyTargets.pop();
-  }
+    if (buyTargets.length > sellTargets.length) {
+      buyTargets.pop();
+    }
 
-  for (let i = 0; i < buyTargets.length; i++) {
-    results.push({
-      id: i,
-      buy: buyTargets[i],
-      profit: (+sellTargets[i].price - +buyTargets[i].price).toFixed(2),
-      sell: sellTargets[i],
-    });
+    for (let i = 0; i < buyTargets.length; i++) {
+      results.push({
+        id: i,
+        buy: buyTargets[i],
+        profit: (+sellTargets[i].price - +buyTargets[i].price).toFixed(2),
+        sell: sellTargets[i],
+      });
+    }
   }
 
   return (

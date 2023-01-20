@@ -1,0 +1,65 @@
+.nav ul {
+  display: flex;
+}
+
+.nav ul li {
+  margin: 0.5rem;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #88dfdf;
+}
+
+.nav a:hover,
+.nav a.active {
+  color: #e6fcfc;
+}
+
+.navLink {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.logout {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 2px solid white;
+}
+
+.smallNav ul {
+  padding: 0;
+  margin: 0;
+}
+
+.smallNav ul li {
+  margin: 0;
+  background-color: rgba(0, 128, 128, 0.246);
+  display: flex;
+  justify-content: center;
+  border: 1px solid rgba(80, 97, 83, 0.609);
+  padding: 1.5rem;
+}
+
+.smallNav a {
+  color: rgb(18, 18, 18);
+  text-decoration: none;
+}
+
+@media screen and (min-width: 1100px) {
+  .smallNav {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .nav {
+    display: none;
+  }
+
+  .logout {
+    padding: 0;
+    border-radius: 0;
+    border: none;
+  }
+}

@@ -6,9 +6,7 @@ const Main = () => {
   return (
     <Fragment>
       <MainBackgroundImage />
-      <h1 className="centered no--wrap">
-        Trade stocks with your own Algorithms
-      </h1>
+      <h1 className="centered">Trade stocks with your own Algorithms</h1>
     </Fragment>
   );
 };
