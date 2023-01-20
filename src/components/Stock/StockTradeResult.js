@@ -3,7 +3,7 @@ import StockTradeInfo from "./StockTradeInfo";
 import classes from "./StockTradeResult.module.css";
 
 const StockTradeResult = (props) => {
-  const { days, close, isSubmitted } = props;
+  const { days, closes, isSubmitted } = props;
   const { buyAlgorithm, buyTarget, sellAlgorithm, sellTarget } =
     props.algorithm;
 
@@ -13,27 +13,27 @@ const StockTradeResult = (props) => {
   let checkSellTarget = true;
 
   for (let i = days.length; i > 0; i--) {
-    if (+close[i] < buyTarget) {
+    if (+closes[i] < buyTarget) {
       const filteredBuyDay = new Date(days[i]);
-      buyTargets.push({ day: filteredBuyDay, price: close[i] });
+      buyTargets.push({ day: filteredBuyDay, price: closes[i] });
       break;
     }
   }
 
   for (let i = days.length; i > 0; i--) {
     if (checkSellTarget) {
-      if (+close[i] > sellTarget) {
+      if (+closes[i] > sellTarget) {
         const day = new Date(days[i]);
         if (buyTargets[buyTargets.length - 1].day < day) {
-          sellTargets.push({ day, price: close[i] });
+          sellTargets.push({ day, price: closes[i] });
           checkSellTarget = false;
         }
       }
     } else {
-      if (+close[i] < buyTarget) {
+      if (+closes[i] < buyTarget) {
         const day = new Date(days[i]);
         if (sellTargets[sellTargets.length - 1].day < day) {
-          buyTargets.push({ day, price: close[i] });
+          buyTargets.push({ day, price: closes[i] });
           checkSellTarget = true;
         }
       }
