@@ -39,7 +39,7 @@ const StockStatistics = (props) => {
   } = detailData;
 
   const valuationMeasuresObj = {
-    "Market Cap": `$${(+MarketCapitalization / 10 ** 12).toFixed(2)}T`,
+    "Market Cap": `${(+MarketCapitalization / 10 ** 12).toFixed(2)}T`,
     "Trailing P/E": (+TrailingPE).toFixed(2),
     "Forward P/E": (+ForwardPE).toFixed(2),
     "PEG Ratio": (+PEGRatio).toFixed(2),
@@ -64,11 +64,11 @@ const StockStatistics = (props) => {
   };
 
   const incomeStatementObj = {
-    "Revenue (TTM)": `$${(Number(RevenueTTM) / 10 ** 9).toFixed(2)}B`,
+    "Revenue (TTM)": `${(Number(RevenueTTM) / 10 ** 9).toFixed(2)}B`,
     "Revenue/Share (TTM)": (+RevenuePerShareTTM).toFixed(2),
     "Revenue Growth (YoY)": `${(+QuarterlyRevenueGrowthYOY * 100).toFixed(2)}%`,
-    "Gross Profit (TTM)": `$${(Number(GrossProfitTTM) / 10 ** 9).toFixed(2)}B`,
-    EBITDA: `$${(Number(EBITDA) / 10 ** 9).toFixed(2)}B`,
+    "Gross Profit (TTM)": `${(Number(GrossProfitTTM) / 10 ** 9).toFixed(2)}B`,
+    EBITDA: `${(Number(EBITDA) / 10 ** 9).toFixed(2)}B`,
     "Diluted EPS (TTM)": (+DilutedEPSTTM).toFixed(2),
     "Earnings Growth (YoY)": `${(+QuarterlyEarningsGrowthYOY * 100).toFixed(
       2
@@ -81,10 +81,10 @@ const StockStatistics = (props) => {
 
   const stockPriceHistoryObj = {
     "Beta (5Y Monthly)": (+Beta).toFixed(2),
-    "52 Week High": `$${(+WeekHigh_52).toFixed(2)}`,
-    "52 Week Low": `$${(+WeekLow_52).toFixed(2)}`,
-    "50-Day Average": `$${(+DayMovingAverage_50).toFixed(2)}`,
-    "200-Day Average": `$${(+DayMovingAverage_200).toFixed(2)}`,
+    "52 Week High": `${(+WeekHigh_52).toFixed(2)}`,
+    "52 Week Low": `${(+WeekLow_52).toFixed(2)}`,
+    "50-Day Average": `${(+DayMovingAverage_50).toFixed(2)}`,
+    "200-Day Average": `${(+DayMovingAverage_200).toFixed(2)}`,
   };
 
   const shareStatisticsObj = {
@@ -111,6 +111,7 @@ const StockStatistics = (props) => {
 
   return (
     <Card class="width">
+      <p className={classes.current}>( Current : USD )</p>
       <div className={classes.wrapper}>
         <div>
           <p className={classes.title}>Valuation Measures</p>

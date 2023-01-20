@@ -1,23 +1,23 @@
 import { useEffect, useState } from "react";
 import Plot from "react-plotly.js";
 
-const StockChart = (props) => {
-  const { xValues, yValues } = props;
+const StockChart = ({ chartConfig }) => {
+  const { days, closes } = chartConfig;
   const [marker, setMarker] = useState();
 
   useEffect(() => {
-    +yValues[0] > +yValues[yValues.length - 1]
+    +closes[0] > +closes[closes.length - 1]
       ? setMarker({ color: "green" })
       : setMarker({ color: "red" });
-  }, [yValues]);
+  }, [closes]);
 
   return (
     <div className="centered">
       <Plot
         data={[
           {
-            x: xValues,
-            y: yValues,
+            x: days,
+            y: closes,
             type: "scatter",
             mode: "lines+markers",
             marker,

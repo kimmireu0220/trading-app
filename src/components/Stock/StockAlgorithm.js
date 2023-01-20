@@ -8,8 +8,8 @@ import useHttp from "../../hooks/use-http";
 import { getAllAlgorithms } from "../../lib/api";
 import LoadingSpinner from "../UI/LoadingSpinner";
 
-const StockAlgoritm = (props) => {
-  const { days, closePrices } = props;
+const StockAlgoritm = ({ algorithmConfig }) => {
+  const { days, closes } = algorithmConfig;
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [selectedAlgorithm, setSelectedAlgorithm] = useState(null);
 
@@ -77,7 +77,7 @@ const StockAlgoritm = (props) => {
         {selectedAlgorithm && (
           <StockTradeResult
             days={days}
-            closePrices={closePrices}
+            closes={closes}
             algorithm={selectedAlgorithm}
             isSubmitted={isSubmitted}
           />

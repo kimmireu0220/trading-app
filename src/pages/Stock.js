@@ -56,6 +56,8 @@ const Stock = () => {
   );
 
   if (detailData && todayData && dailyData) {
+    const { days, opens, highs, lows, closes, volumes } = dailyData;
+
     content = (
       <Fragment>
         <StockInfo
@@ -67,14 +69,8 @@ const Stock = () => {
         <StockNavigation onSelect={infoSelectHandler} menu={selectedMenu} />
         {selectedMenu === "chart" && (
           <Fragment>
-            <StockChart
-              xValues={dailyData.days}
-              yValues={dailyData.closePrices}
-            />
-            <StockAlgoritm
-              days={dailyData.days}
-              closePrices={dailyData.closePrices}
-            />
+            <StockChart chartConfig={{ days, closes }} />
+            <StockAlgoritm algorithmConfig={{ days, closes }} />
           </Fragment>
         )}
         {selectedMenu === "conversations" && (
@@ -83,7 +79,11 @@ const Stock = () => {
         {selectedMenu === "statistics" && (
           <StockStatistics ticker={ticker} detailData={detailData} />
         )}
-        {selectedMenu === "history" && <StockHistory />}
+        {selectedMenu === "history" && (
+          <StockHistory
+            historyConfig={{ days, opens, highs, lows, closes, volumes }}
+          />
+        )}
       </Fragment>
     );
   }

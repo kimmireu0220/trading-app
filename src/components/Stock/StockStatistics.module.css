@@ -1,3 +1,9 @@
+.current {
+  padding: 1rem 0.5rem 1rem 0;
+  text-align: right;
+  margin: 0;
+}
+
 .wrapper {
   display: flex;
 }
