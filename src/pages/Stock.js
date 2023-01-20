@@ -9,7 +9,6 @@ import StockHistory from "../components/Stock/StockHistory";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
 import StockAlgoritm from "../components/Stock/StockAlgorithm";
 import StockStatistics from "../components/Stock/StockStatistics";
-import StockFinancials from "../components/Stock/StockFinancials";
 import StockNavigation from "../components/Stock/StockNavigation";
 import StockConversations from "../components/Stock/StockConversations";
 import {
@@ -57,31 +56,34 @@ const Stock = () => {
   );
 
   if (detailData && todayData && dailyData) {
-    const { name } = detailData;
-    const { price, change } = todayData;
-    const { days, closePrices } = dailyData;
-
     content = (
       <Fragment>
         <StockInfo
-          name={name}
-          price={price.toFixed(2)}
-          change={change.toFixed(2)}
+          name={detailData["Name"]}
+          price={todayData.price.toFixed(2)}
+          change={todayData.change.toFixed(2)}
           ticker={ticker.toUpperCase()}
         />
         <StockNavigation onSelect={infoSelectHandler} menu={selectedMenu} />
         {selectedMenu === "chart" && (
           <Fragment>
-            <StockChart xValues={days} yValues={closePrices} />
-            <StockAlgoritm days={days} closePrices={closePrices} />
+            <StockChart
+              xValues={dailyData.days}
+              yValues={dailyData.closePrices}
+            />
+            <StockAlgoritm
+              days={dailyData.days}
+              closePrices={dailyData.closePrices}
+            />
           </Fragment>
         )}
         {selectedMenu === "conversations" && (
           <StockConversations ticker={ticker} />
         )}
-        {selectedMenu === "statistics" && <StockStatistics />}
+        {selectedMenu === "statistics" && (
+          <StockStatistics ticker={ticker} detailData={detailData} />
+        )}
         {selectedMenu === "history" && <StockHistory />}
-        {selectedMenu === "financials" && <StockFinancials />}
       </Fragment>
     );
   }

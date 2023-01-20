@@ -14,11 +14,7 @@ export const getStockDetailData = async (ticker) => {
     throw new Error(data.message || "Could not get today stock data");
   }
 
-  const result = {
-    name: data["Name"],
-  };
-
-  return result;
+  return data;
 };
 
 export const getTodayStockData = async (ticker) => {
@@ -252,7 +248,7 @@ export const updatePassword = async (authData) => {
 
 export const addComment = async (commentData) => {
   const { ticker, email, comment } = commentData;
-  console.log(commentData);
+
   const FIREBASE_ADD_COMMENT_API = `${FIREBASE_DB_DOMAIN}/comments/${ticker}.json`;
   const response = await fetch(FIREBASE_ADD_COMMENT_API, {
     method: "POST",

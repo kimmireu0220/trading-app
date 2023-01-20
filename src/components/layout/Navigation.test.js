@@ -3,14 +3,14 @@ import { BrowserRouter } from "react-router-dom";
 import { render, screen } from "@testing-library/react";
 
 import store from "../../store";
-import MainNavigation from "./MainNavigation";
+import Navigation from "./Navigation";
 
-describe("MainNavigation component", () => {
+describe("Navigation component", () => {
   test('renders "Login" link', () => {
     render(
       <BrowserRouter>
         <Provider store={store}>
-          <MainNavigation />
+          <Navigation />
         </Provider>
       </BrowserRouter>
     );

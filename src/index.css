@@ -37,6 +37,18 @@ label {
   border-color: #11acac;
 }
 
+.linkButton {
+  text-decoration: none;
+  background-color: teal;
+  color: white;
+  font-size: 1.25rem;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid teal;
+  cursor: pointer;
+  width: 30%;
+}
+
 .centered {
   margin: 0 auto;
   display: flex;
@@ -60,6 +72,14 @@ label {
   white-space: nowrap;
 }
 
+.bold {
+  font-weight: bold;
+}
+
+.mt-3 {
+  margin-top: 3rem;
+}
+
 .mt-5 {
   margin-top: 5rem;
 }
@@ -68,22 +88,15 @@ label {
   margin-bottom: 3rem;
 }
 
-.linkButton {
-  text-decoration: none;
-  background-color: teal;
-  color: white;
-  font-size: 1.25rem;
-  border-radius: 0.5rem;
-  padding: 0.75rem 1rem;
-  border: 1px solid teal;
-  cursor: pointer;
-  width: 30%;
+.pl-1 {
+  padding-left: 1rem;
 }
 
-.bold {
-  font-weight: bold;
+.font-20 {
+  font-size: 20px;
 }
 
-.font-24 {
-  font-size: 24px;
+hr {
+  margin-left: 2.4rem;
+  border: 1px solid rgb(148, 145, 145);
 }

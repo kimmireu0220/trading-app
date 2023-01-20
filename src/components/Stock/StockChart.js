@@ -26,7 +26,7 @@ const StockChart = (props) => {
         layout={{
           width: 720,
           height: 440,
-          title: "Chart",
+          title: "Daily Price Chart (100 Days)",
         }}
       />
     </div>

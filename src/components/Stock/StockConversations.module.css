@@ -1,17 +1,32 @@
+p {
+  margin-top: 3rem;
+}
+
 .ul {
-  overflow: overlay;
+  overflow: scroll;
   height: 10rem;
+}
+
+.li {
+  display: flex;
+}
+
+.email {
+  width: 120px;
+  text-align: left;
+  margin-right: 1rem;
 }
 
 .textarea {
   width: 100%;
   margin: 1rem;
   padding: 1rem;
+  font-size: 1rem;
   border-radius: 0.25rem;
 }
 
 .button {
-  padding: 3rem 2rem;
+  padding: 2rem;
   background-color: rgb(179, 208, 223);
   border: rgb(179, 208, 223);
   border-radius: 0.5rem;

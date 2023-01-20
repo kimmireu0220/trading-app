@@ -55,7 +55,9 @@ const StockTradeResult = (props) => {
 
   return (
     <Fragment>
-      <hr />
+      <div className={classes.hr}>
+        <hr />
+      </div>
       <div className={classes.title}>
         <p>{`Buy : $${buyTarget} (${buyAlgorithm})`}</p>
         <p>Net Profit</p>

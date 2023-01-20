@@ -1,0 +1,31 @@
+.wrapper {
+  display: flex;
+}
+
+.wrapper > div {
+  margin-right: 1.3rem;
+}
+
+.title {
+  margin: 1rem 0.5rem 0 2rem;
+  white-space: nowrap;
+  border: 1px solid black;
+  border-radius: 0.25rem;
+  font-weight: bold;
+  font-size: 1.5rem;
+  padding: 0.75rem;
+}
+
+.statistics {
+  margin-top: 1.25rem;
+}
+
+.statistics > li {
+  display: flex;
+  justify-content: space-between;
+}
+
+hr {
+  margin: 1.25rem 0 1.5rem 2.5rem;
+  border: 1px solid rgb(148, 145, 145);
+}

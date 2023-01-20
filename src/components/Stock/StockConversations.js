@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { Fragment, useRef } from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
@@ -45,28 +45,38 @@ const StockConversations = (props) => {
   }
 
   return (
-    <Card>
-      {loadedComments.length === 0 && (
-        <p className="centered mt-5 font-24">
+    <Fragment>
+      {loadedComments.length === 0 ? (
+        <p className="font-20 pl-1">
           There is no comment yet. Be the first comment writer!
         </p>
+      ) : loadedComments.length === 1 ? (
+        <p className="pl-1">1 Comment</p>
+      ) : (
+        <p className="pl-1">{`${loadedComments.length} Comments`}</p>
       )}
-      <ul className={classes.ul}>
-        {loadedComments.map((comment) => (
-          <li key={comment.id}>{`${comment.email} :  ${comment.comment}`}</li>
-        ))}
-      </ul>
-      <form onSubmit={addCommentHandler} className="centered">
-        <textarea
-          placeholder={`${email}: `}
-          s
-          ref={commentInputRef}
-          rows="5"
-          className={classes.textarea}
-        />
-        <button className={classes.button}>Enter</button>
-      </form>
-    </Card>
+      <Card>
+        <ul className={classes.ul}>
+          {loadedComments.map((comment) => (
+            <li className={classes.li} key={comment.id}>
+              <div className={classes.email}>
+                {comment.email ? `${comment.email} :` : "Anon :"}
+              </div>
+              <div className={classes.comment}>{comment.comment}</div>
+            </li>
+          ))}
+        </ul>
+        <form onSubmit={addCommentHandler} className="centered">
+          <textarea
+            placeholder={email ? `${email}: ` : "Anon:"}
+            ref={commentInputRef}
+            rows="3"
+            className={classes.textarea}
+          />
+          <button className={classes.button}>Enter</button>
+        </form>
+      </Card>
+    </Fragment>
   );
 };
 

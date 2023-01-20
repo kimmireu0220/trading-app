@@ -29,7 +29,13 @@ const AuthForm = (props) => {
         <form onSubmit={submitHandler}>
           <div className={classes.control}>
             <label htmlFor="email">Your Email</label>
-            <input type="email" id="email" required ref={emailInputRef} />
+            <input
+              type="email"
+              id="email"
+              maxLength="15"
+              required
+              ref={emailInputRef}
+            />
           </div>
           <div className={classes.control}>
             <label htmlFor="password">Your Password</label>

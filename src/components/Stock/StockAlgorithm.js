@@ -61,34 +61,36 @@ const StockAlgoritm = (props) => {
   }
 
   return (
-    <Card>
-      <form onSubmit={startTradingHandler} className={classes.form}>
-        <select onChange={selectAlgorithmHandler} className={classes.select}>
-          <option value="">Select Algorithm</option>
-          {algorithms.map((algorithm) => (
-            <option key={algorithm.id} value={JSON.stringify(algorithm)}>
-              {algorithm.title}
-            </option>
-          ))}
-        </select>
-        <button className="btn">Trade</button>
-      </form>
-      {selectedAlgorithm && (
-        <StockTradeResult
-          days={days}
-          closePrices={closePrices}
-          algorithm={selectedAlgorithm}
-          isSubmitted={isSubmitted}
-        />
-      )}
-      {isSubmitted && !selectedAlgorithm && (
-        <ErrorModal
-          title="Error"
-          message="Please select your algorithm"
-          onConfirm={errorHandler}
-        />
-      )}
-    </Card>
+    <div className="mt-3">
+      <Card>
+        <form onSubmit={startTradingHandler} className={classes.form}>
+          <select onChange={selectAlgorithmHandler} className={classes.select}>
+            <option value="">Select Algorithm</option>
+            {algorithms.map((algorithm) => (
+              <option key={algorithm.id} value={JSON.stringify(algorithm)}>
+                {algorithm.title}
+              </option>
+            ))}
+          </select>
+          <button className="btn">Trade</button>
+        </form>
+        {selectedAlgorithm && (
+          <StockTradeResult
+            days={days}
+            closePrices={closePrices}
+            algorithm={selectedAlgorithm}
+            isSubmitted={isSubmitted}
+          />
+        )}
+        {isSubmitted && !selectedAlgorithm && (
+          <ErrorModal
+            title="Error"
+            message="Please select your algorithm"
+            onConfirm={errorHandler}
+          />
+        )}
+      </Card>
+    </div>
   );
 };
 

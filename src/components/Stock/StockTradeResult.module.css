@@ -1,6 +1,5 @@
-hr {
-  margin: 2rem 1rem 0 1rem;
-  border: dashed;
+.hr {
+  margin: 1.75rem 2rem 0 0;
 }
 
 li {
@@ -10,7 +9,7 @@ li {
 .title {
   display: flex;
   justify-content: space-around;
-  margin-top: 1rem;
+  margin-top: 1.25rem;
 }
 
 .title p {

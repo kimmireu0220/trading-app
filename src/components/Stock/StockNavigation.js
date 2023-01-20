@@ -2,11 +2,11 @@ import classes from "./StockNavigation.module.css";
 
 const StockNavigation = (props) => {
   return (
-    <nav>
+    <nav className={classes.nav}>
       <ul className={classes.ul}>
         <li>
           <button
-            className={props.menu.toString() === "chart" ? "bold" : ""}
+            className={props.menu === "chart" ? "bold" : undefined}
             onClick={props.onSelect}
             value="chart"
           >
@@ -15,7 +15,7 @@ const StockNavigation = (props) => {
         </li>
         <li>
           <button
-            className={props.menu.toString() === "conversations" ? "bold" : ""}
+            className={props.menu === "conversations" ? "bold" : undefined}
             onClick={props.onSelect}
             value="conversations"
           >
@@ -24,7 +24,7 @@ const StockNavigation = (props) => {
         </li>
         <li>
           <button
-            className={props.menu.toString() === "statistics" ? "bold" : ""}
+            className={props.menu === "statistics" ? "bold" : undefined}
             onClick={props.onSelect}
             value="statistics"
           >
@@ -33,20 +33,11 @@ const StockNavigation = (props) => {
         </li>
         <li>
           <button
-            className={props.menu.toString() === "history" ? "bold" : ""}
+            className={props.menu === "history" ? "bold" : undefined}
             onClick={props.onSelect}
             value="history"
           >
             History
-          </button>
-        </li>
-        <li>
-          <button
-            className={props.menu.toString() === "financials" ? "bold" : ""}
-            onClick={props.onSelect}
-            value="financials"
-          >
-            Financials
           </button>
         </li>
       </ul>

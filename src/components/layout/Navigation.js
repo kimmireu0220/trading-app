@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory, Link, NavLink } from "react-router-dom";
 
 import { authActions } from "../../store/auth";
-import classes from "./MainNavigation.module.css";
+import classes from "./Navigation.module.css";
 
 const MainNavigation = () => {
   const history = useHistory();
