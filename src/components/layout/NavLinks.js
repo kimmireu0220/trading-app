@@ -14,7 +14,7 @@ const NavLinks = (props) => {
   };
 
   return (
-    <nav className={props.mode === "normal" ? classes.nav : classes.smallNav}>
+    <nav className={props.size === "normal" ? classes.nav : classes.smallNav}>
       {isLoggedIn && (
         <ul>
           <li>

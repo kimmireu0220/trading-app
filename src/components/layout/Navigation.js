@@ -22,19 +22,19 @@ const MainNavigation = () => {
           <div className={classes.logo}>Trading App</div>
         </Link>
         <SearchForm history={history} />
-        <NavLinks mode="normal" />
-        {showMenu && (
-          <div className={classes.burger} onClick={toggleMenuHandler}>
-            <FontAwesomeIcon icon={faXmark} />
-          </div>
-        )}
+        <NavLinks size="normal" />
         {!showMenu && (
           <div className={classes.burger} onClick={toggleMenuHandler}>
             <FontAwesomeIcon icon={faBars} />
           </div>
         )}
+        {showMenu && (
+          <div className={classes.burger} onClick={toggleMenuHandler}>
+            <FontAwesomeIcon icon={faXmark} />
+          </div>
+        )}
       </header>
-      {showMenu && <NavLinks mode="small" />}
+      {showMenu && <NavLinks size="small" />}
     </Fragment>
   );
 };
