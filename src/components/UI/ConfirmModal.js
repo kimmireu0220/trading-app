@@ -10,9 +10,8 @@ const animationTiming = {
 };
 
 const Backdrop = (props) => {
-  if (props.show) {
+  if (props.show)
     return <div className={classes.backdrop} onClick={props.onClose} />;
-  }
 };
 
 const ModalOverlay = (props) => {

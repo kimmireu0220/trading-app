@@ -3,6 +3,7 @@ import Plot from "react-plotly.js";
 
 const StockChart = ({ chartConfig }) => {
   const { days, closes } = chartConfig;
+
   const [marker, setMarker] = useState();
 
   useEffect(() => {

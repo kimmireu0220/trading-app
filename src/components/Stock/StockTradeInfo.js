@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import classes from "./StockTradeInfo.module.css";
 
 const StockTradeInfo = ({ result }) => {
@@ -16,19 +15,17 @@ const StockTradeInfo = ({ result }) => {
   };
 
   return (
-    <Fragment>
-      <div className={classes.result}>
-        <div className={classes.info}>
-          <div>{`${buyDay.year}-${buyDay.month}-${buyDay.date}`}</div>
-          <div className={classes.buyPrice}>{`$${buy.price}`}</div>
-        </div>
-        <div className={classes.info}>${profit}</div>
-        <div className={classes.info}>
-          <div>{`${sellDay.year}-${sellDay.month}-${sellDay.date}`}</div>
-          <div className={classes.sellPrice}>{`$${sell.price}`}</div>
-        </div>
+    <div className={classes.result}>
+      <div className={classes.info}>
+        <div>{`${buyDay.year}-${buyDay.month}-${buyDay.date}`}</div>
+        <div className={classes.buyPrice}>{`$${buy.price}`}</div>
       </div>
-    </Fragment>
+      <div className={classes.info}>${profit}</div>
+      <div className={classes.info}>
+        <div>{`${sellDay.year}-${sellDay.month}-${sellDay.date}`}</div>
+        <div className={classes.sellPrice}>{`$${sell.price}`}</div>
+      </div>
+    </div>
   );
 };
 

@@ -1,17 +1,16 @@
 import { NavLink, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
-import classes from "./NavLinks.module.css";
 import { authActions } from "../../store/auth";
+
+import classes from "./NavLinks.module.css";
 
 const NavLinks = (props) => {
   const dispatch = useDispatch();
 
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
-  const logoutHandler = () => {
-    dispatch(authActions.logout());
-  };
+  const logoutHandler = () => dispatch(authActions.logout());
 
   return (
     <nav className={props.size === "normal" ? classes.nav : classes.smallNav}>

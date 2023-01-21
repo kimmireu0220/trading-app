@@ -1,16 +1,19 @@
-import { Fragment, useRef } from "react";
-import { useEffect } from "react";
+import { Fragment, useRef, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import Card from "../UI/Card";
-import useHttp from "../../hooks/use-http";
 import LoadingSpinner from "../UI/LoadingSpinner";
-import classes from "./StockConversations.module.css";
+
+import useHttp from "../../hooks/use-http";
 import { addComment, getAllComments } from "../../lib/api";
+
+import classes from "./StockConversations.module.css";
 
 const StockConversations = (props) => {
   const { ticker } = props;
+
   const commentInputRef = useRef();
+
   const email = useSelector((state) => state.auth.email);
 
   const { sendRequest: sendComment } = useHttp(addComment);
@@ -36,13 +39,8 @@ const StockConversations = (props) => {
     await loadComments(ticker);
   };
 
-  if (status === "pending") {
-    return <LoadingSpinner />;
-  }
-
-  if (error) {
-    return <p className="centered focused">{error}</p>;
-  }
+  if (status === "pending") return <LoadingSpinner />;
+  if (error) return <p className="centered focused">{error}</p>;
 
   return (
     <Fragment>

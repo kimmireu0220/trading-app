@@ -1,5 +1,4 @@
 import { Fragment } from "react";
-
 import { Link } from "react-router-dom";
 
 import AlgorithmList from "../components/Algorithm/AlgorithmList";

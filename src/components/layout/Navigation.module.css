@@ -17,7 +17,7 @@
   color: white;
 }
 
-.burger {
+.icon {
   display: none;
 }
 
@@ -32,7 +32,7 @@
     margin: 1rem 0 0.5rem 0;
   }
 
-  .burger {
+  .icon {
     position: sticky;
     bottom: 1010px;
     left: 450px;
@@ -48,7 +48,7 @@
     margin-right: 5rem;
   }
 
-  .burger {
+  .icon {
     display: block;
     margin-left: calc(30% - 6rem);
     font-size: 1.5rem;

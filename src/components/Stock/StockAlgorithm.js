@@ -1,16 +1,20 @@
 import { useEffect, useState } from "react";
 
+import StockTradeResult from "./StockTradeResult";
 import Card from "../UI/Card";
 import ErrorModal from "../UI/ErrorModal";
-import StockTradeResult from "./StockTradeResult";
-import classes from "./StockAlgorithm.module.css";
+import LoadingSpinner from "../UI/LoadingSpinner";
+
 import useHttp from "../../hooks/use-http";
 import { getAllAlgorithms } from "../../lib/api";
-import LoadingSpinner from "../UI/LoadingSpinner";
+
+import classes from "./StockAlgorithm.module.css";
 
 const StockAlgoritm = ({ algorithmConfig }) => {
   const { days, closes } = algorithmConfig;
+
   const [isSubmitted, setIsSubmitted] = useState(false);
+
   const [selectedAlgorithm, setSelectedAlgorithm] = useState(null);
 
   const {
@@ -24,13 +28,10 @@ const StockAlgoritm = ({ algorithmConfig }) => {
     sendRequest();
   }, [sendRequest]);
 
-  const errorHandler = () => {
-    setIsSubmitted(false);
-  };
+  const errorHandler = () => setIsSubmitted(false);
 
   const startTradingHandler = (event) => {
     event.preventDefault();
-
     setIsSubmitted(true);
   };
 
@@ -46,19 +47,13 @@ const StockAlgoritm = ({ algorithmConfig }) => {
         sellAlgorithm,
         sellTarget,
       });
-    } else {
-      setSelectedAlgorithm(null);
-    }
+    } else setSelectedAlgorithm(null);
+
     setIsSubmitted(false);
   };
 
-  if (status === "pending") {
-    return <LoadingSpinner />;
-  }
-
-  if (error) {
-    return <p className="centered focused">{error}</p>;
-  }
+  if (status === "pending") return <LoadingSpinner />;
+  if (error) return <p className="centered focused">{error}</p>;
 
   return (
     <div className="mt-3">

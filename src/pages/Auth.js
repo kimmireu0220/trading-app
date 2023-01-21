@@ -2,16 +2,19 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 
-import useHttp from "../hooks/use-http";
-import { authActions } from "../store/auth";
-import { signUp, signIn } from "../lib/api";
 import AuthForm from "../components/Auth/AuthForm";
 import ErrorModal from "../components/UI/ErrorModal";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
 
+import useHttp from "../hooks/use-http";
+import { signUp, signIn } from "../lib/api";
+import { authActions } from "../store/auth";
+
 const AuthPage = () => {
   const history = useHistory();
+
   const dispatch = useDispatch();
+
   const { pathname } = useLocation();
 
   const {
@@ -27,13 +30,9 @@ const AuthPage = () => {
     data: userData,
   } = useHttp(signIn);
 
-  const signUpHandler = (authData) => {
-    userSignUp(authData);
-  };
+  const signUpHandler = (authData) => userSignUp(authData);
 
-  const signInHandler = (authData) => {
-    userSignIn(authData);
-  };
+  const signInHandler = (authData) => userSignIn(authData);
 
   const goToAuthPage = () => {
     history.push("/auth");
@@ -52,7 +51,7 @@ const AuthPage = () => {
     }
   }, [userData, history, pathname, dispatch]);
 
-  if (signUpError || signInError) {
+  if (signUpError || signInError)
     return (
       <ErrorModal
         title={"Authentification Error"}
@@ -60,11 +59,9 @@ const AuthPage = () => {
         onConfirm={goToAuthPage}
       />
     );
-  }
 
-  if (signUpStatus === "pending" || signInStatus === "pending") {
+  if (signUpStatus === "pending" || signInStatus === "pending")
     return <LoadingSpinner />;
-  }
 
   return (
     <AuthForm

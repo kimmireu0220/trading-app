@@ -5,9 +5,7 @@ import classes from "./SearchForm.module.css";
 const SearchForm = (props) => {
   const [searchedTicker, setSearchedTicker] = useState("");
 
-  const tickerChangeHandler = (event) => {
-    setSearchedTicker(event.target.value);
-  };
+  const tickerChangeHandler = (event) => setSearchedTicker(event.target.value);
 
   const searchStockHandler = (event) => {
     event.preventDefault();

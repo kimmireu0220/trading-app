@@ -1,18 +1,21 @@
-import { useHistory } from "react-router-dom";
 import { Fragment, useEffect, useRef, useState } from "react";
+import { useHistory } from "react-router-dom";
 
 import Card from "../UI/Card";
-import useHttp from "../../hooks/use-http";
 import ErrorModal from "../UI/ErrorModal";
 import ConfirmModal from "../UI/ConfirmModal";
-import classes from "./AlgorithmForm.module.css";
-import { getAllAlgorithms } from "../../lib/api";
 import LoadingSpinner from "../UI/LoadingSpinner";
 
+import useHttp from "../../hooks/use-http";
+import { getAllAlgorithms } from "../../lib/api";
+
+import classes from "./AlgorithmForm.module.css";
+
 const EditAlgorithmForm = (props) => {
+  let algorithm;
+
   const history = useHistory();
 
-  let algorithm;
   const { algorithmId } = props;
 
   const titleInputRef = useRef();
@@ -37,9 +40,8 @@ const EditAlgorithmForm = (props) => {
     sendRequest();
   }, [sendRequest]);
 
-  if (algorithms) {
+  if (algorithms)
     algorithm = algorithms.find((algorithm) => algorithm.id === algorithmId);
-  }
 
   const submitFormHandler = (event) => {
     event.preventDefault();
@@ -59,7 +61,7 @@ const EditAlgorithmForm = (props) => {
       ? setFormIsVallid(true)
       : setFormIsVallid(false);
 
-    if (formIsValid && isSubmitted) {
+    if (formIsValid && isSubmitted)
       props.onEditAlgorithm({
         title,
         buyAlgorithm,
@@ -69,36 +71,23 @@ const EditAlgorithmForm = (props) => {
         description,
         algorithmId,
       });
-    }
   };
 
-  const cancelHandler = () => {
-    history.goBack();
-  };
+  const cancelHandler = () => history.goBack();
 
-  const closeErrorModalHandler = () => {
-    setIsSubmitted(false);
-  };
+  const closeErrorModalHandler = () => setIsSubmitted(false);
 
-  const toggleShowConfirmHandler = () => {
+  const toggleShowConfirmHandler = () =>
     setShowConfirm((prevState) => !prevState);
-  };
 
-  const BuyAlgorithmChangeHandler = (event) => {
+  const BuyAlgorithmChangeHandler = (event) =>
     setBuyAlgorithm(event.target.value);
-  };
 
-  const sellAlgorithmChangeHandler = (event) => {
+  const sellAlgorithmChangeHandler = (event) =>
     setSellAlgorithm(event.target.value);
-  };
 
-  if (status === "pending") {
-    return <LoadingSpinner />;
-  }
-
-  if (error) {
-    return <p className="centered focused">{error}</p>;
-  }
+  if (status === "pending") return <LoadingSpinner />;
+  if (error) return <p className="centered focused">{error}</p>;
 
   return (
     <Fragment>

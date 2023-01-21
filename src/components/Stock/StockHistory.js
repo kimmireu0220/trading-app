@@ -1,4 +1,5 @@
 import Card from "../UI/Card";
+
 import classes from "./StockHistory.module.css";
 
 const StockHistory = ({ historyConfig }) => {

@@ -1,5 +1,7 @@
 import { Fragment } from "react";
+
 import StockTradeInfo from "./StockTradeInfo";
+
 import classes from "./StockTradeResult.module.css";
 
 const StockTradeResult = (props) => {
@@ -41,9 +43,7 @@ const StockTradeResult = (props) => {
       }
     }
 
-    if (buyTargets.length > sellTargets.length) {
-      buyTargets.pop();
-    }
+    if (buyTargets.length > sellTargets.length) buyTargets.pop();
 
     for (let i = 0; i < buyTargets.length; i++) {
       results.push({

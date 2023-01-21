@@ -1,4 +1,5 @@
 import Card from "../UI/Card";
+
 import classes from "./StockStatistics.module.css";
 
 const StockStatistics = (props) => {

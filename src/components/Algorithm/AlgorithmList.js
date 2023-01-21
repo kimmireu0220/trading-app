@@ -1,9 +1,10 @@
-import { useEffect, Fragment } from "react";
+import { useEffect } from "react";
+
+import AlgorithmItem from "./AlgorithmItem";
+import LoadingSpinner from "../UI/LoadingSpinner";
 
 import useHttp from "../../hooks/use-http";
-import AlgorithmItem from "./AlgorithmItem";
 import { getAllAlgorithms } from "../../lib/api";
-import LoadingSpinner from "../UI/LoadingSpinner";
 
 const AlgorithmList = () => {
   const {
@@ -26,24 +27,34 @@ const AlgorithmList = () => {
   }
 
   return (
-    <Fragment>
-      <ul>
-        {algorithms.map((algorithm) => (
+    <ul>
+      {algorithms.map((algorithm) => {
+        const {
+          id,
+          title,
+          buyAlgorithm,
+          buyTarget,
+          sellAlgorithm,
+          sellTarget,
+          description,
+        } = algorithm;
+
+        return (
           <AlgorithmItem
-            key={algorithm.id}
+            key={id}
             algorithmConfig={{
-              id: algorithm.id,
-              title: algorithm.title,
-              buyAlgorithm: algorithm.buyAlgorithm,
-              buyTarget: algorithm.buyTarget,
-              sellAlgorithm: algorithm.sellAlgorithm,
-              sellTarget: algorithm.sellTarget,
-              description: algorithm.description,
+              id,
+              title,
+              buyAlgorithm,
+              buyTarget,
+              sellAlgorithm,
+              sellTarget,
+              description,
             }}
           />
-        ))}
-      </ul>
-    </Fragment>
+        );
+      })}
+    </ul>
   );
 };
 

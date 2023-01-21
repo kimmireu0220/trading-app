@@ -1,7 +1,7 @@
-import classes from "./Footer.module.css";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
+
+import classes from "./Footer.module.css";
 
 const Footer = () => {
   const year = new Date().getFullYear();

@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
 import React, { Fragment, useEffect, useState } from "react";
 
-import useHttp from "../hooks/use-http";
 import NotFound from "../pages/NotFound";
 import StockInfo from "../components/Stock/StockInfo";
 import StockChart from "../components/Stock/StockChart";
@@ -11,6 +10,8 @@ import StockAlgoritm from "../components/Stock/StockAlgorithm";
 import StockStatistics from "../components/Stock/StockStatistics";
 import StockNavigation from "../components/Stock/StockNavigation";
 import StockConversations from "../components/Stock/StockConversations";
+
+import useHttp from "../hooks/use-http";
 import {
   getStockDetailData,
   getTodayStockData,
@@ -19,13 +20,12 @@ import {
 
 const Stock = () => {
   const params = useParams();
+
   const { ticker } = params;
 
   const [selectedMenu, setSelectedMenu] = useState("chart");
 
-  const infoSelectHandler = (event) => {
-    setSelectedMenu(event.target.value);
-  };
+  const infoSelectHandler = (event) => setSelectedMenu(event.target.value);
 
   const {
     sendRequest: getDetailData,
@@ -92,9 +92,8 @@ const Stock = () => {
     detailDataStatus === "pending" ||
     todayDataStatus === "pending" ||
     dailyDataStatus === "pending"
-  ) {
+  )
     content = <LoadingSpinner />;
-  }
 
   return content;
 };

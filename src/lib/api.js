@@ -134,7 +134,6 @@ export const deleteAlgorithm = async (algorithmId) => {
       "Content-Type": "application/json",
     },
   });
-
   const data = response.json();
 
   if (!response.ok) {

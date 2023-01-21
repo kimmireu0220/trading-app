@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import Card from "../UI/Card";
 import ErrorModal from "../UI/ErrorModal";
 import ConfirmModal from "../UI/ConfirmModal";
+
 import classes from "./AlgorithmForm.module.css";
 
 const AddAlgorithmForm = (props) => {
@@ -38,7 +39,7 @@ const AddAlgorithmForm = (props) => {
       ? setFormIsVallid(true)
       : setFormIsVallid(false);
 
-    if (formIsValid && isSubmitted) {
+    if (formIsValid && isSubmitted)
       props.onAddAlgorithm({
         title,
         buyAlgorithm,
@@ -47,28 +48,20 @@ const AddAlgorithmForm = (props) => {
         sellTarget,
         description,
       });
-    }
   }
 
-  const cancelHandler = () => {
-    history.goBack();
-  };
+  const cancelHandler = () => history.goBack();
 
-  const closeErrorModalHandler = () => {
-    setIsSubmitted(false);
-  };
+  const closeErrorModalHandler = () => setIsSubmitted(false);
 
-  const toggleShowConfirmHandler = () => {
+  const toggleShowConfirmHandler = () =>
     setShowConfirm((prevState) => !prevState);
-  };
 
-  const BuyAlgorithmChangeHandler = (event) => {
+  const BuyAlgorithmChangeHandler = (event) =>
     setBuyAlgorithm(event.target.value);
-  };
 
-  const sellAlgorithmChangeHandler = (event) => {
+  const sellAlgorithmChangeHandler = (event) =>
     setSellAlgorithm(event.target.value);
-  };
 
   return (
     <Card>

@@ -18,11 +18,11 @@ const AlgorithmDetailOption = (props) => {
           </button>
         </li>
       </ul>
-      <div>
+      <Fragment>
         <Link className="float--right mt-5" to="/algorithms">
           Back to list
         </Link>
-      </div>
+      </Fragment>
     </Fragment>
   );
 };

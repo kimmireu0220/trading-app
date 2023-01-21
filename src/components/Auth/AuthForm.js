@@ -8,9 +8,7 @@ const AuthForm = (props) => {
 
   const [isLoginMode, setIsLoginMode] = useState(true);
 
-  const switchAuthModeHandler = () => {
-    setIsLoginMode((prevState) => !prevState);
-  };
+  const switchAuthModeHandler = () => setIsLoginMode((prevState) => !prevState);
 
   const submitHandler = (event) => {
     event.preventDefault();

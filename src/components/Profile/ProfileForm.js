@@ -6,8 +6,10 @@ import classes from "./ProfileForm.module.css";
 const ProfileForm = (props) => {
   const newPasswordInputRef = useRef();
   const confirmPasswordInputRef = useRef();
-  const [formIsInValid, setFormIsInValid] = useState(false);
+
   const token = useSelector((state) => state.auth.token);
+
+  const [formIsInValid, setFormIsInValid] = useState(false);
 
   const submitHandler = (event) => {
     event.preventDefault();

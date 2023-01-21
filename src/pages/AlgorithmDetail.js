@@ -1,18 +1,22 @@
 import { Fragment, useEffect, useState } from "react";
 import { useParams, useLocation, useHistory } from "react-router-dom";
 
-import useHttp from "../hooks/use-http";
-import Card from "../components/UI/Card";
-import { getSingleAlgorithm } from "../lib/api";
-import ConfirmModal from "../components/UI/ConfirmModal";
-import LoadingSpinner from "../components/UI/LoadingSpinner";
 import HighlightedAlgorithm from "../components/Algorithm/HighlightedAlgorithm";
 import AlgorithmDetailOption from "../components/Algorithm/AlgorithmDetailOption";
+import Card from "../components/UI/Card";
+import ConfirmModal from "../components/UI/ConfirmModal";
+import LoadingSpinner from "../components/UI/LoadingSpinner";
+
+import useHttp from "../hooks/use-http";
+import { getSingleAlgorithm } from "../lib/api";
 
 const AlgorithmDetail = () => {
   const history = useHistory();
+
   const { pathname } = useLocation();
+
   const { algorithmId } = useParams();
+
   const [showConfirm, setShowConfirm] = useState(false);
 
   const {
@@ -22,21 +26,13 @@ const AlgorithmDetail = () => {
     error,
   } = useHttp(getSingleAlgorithm, true);
 
-  const goToEditPageHandler = () => {
-    history.push(`${pathname}/edit`);
-  };
+  const goToEditPageHandler = () => history.push(`${pathname}/edit`);
 
-  const deleteAlgorithmHandler = () => {
-    history.push(`${pathname}/delete`);
-  };
+  const deleteAlgorithmHandler = () => history.push(`${pathname}/delete`);
 
-  const backToPrevPageHandler = () => {
-    history.goBack();
-  };
+  const backToPrevPageHandler = () => history.goBack();
 
-  const toggleConfirmHandler = () => {
-    setShowConfirm((prevState) => !prevState);
-  };
+  const toggleConfirmHandler = () => setShowConfirm((prevState) => !prevState);
 
   useEffect(() => {
     sendRequest(algorithmId);
@@ -82,17 +78,10 @@ const AlgorithmDetail = () => {
     );
   }
 
-  if (status === "pending") {
-    return <LoadingSpinner />;
-  }
-
-  if (error) {
-    return <p className="centered">{error}</p>;
-  }
-
-  if (!loadedAlgorithm || !loadedAlgorithm.title) {
+  if (status === "pending") return <LoadingSpinner />;
+  if (error) return <p className="centered">{error}</p>;
+  if (!loadedAlgorithm || !loadedAlgorithm.title)
     return <p className="centered">No algorithm found!</p>;
-  }
 };
 
 export default AlgorithmDetail;
