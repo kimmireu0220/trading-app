@@ -7,11 +7,11 @@ const Backdrop = (props) => (
   <div className={classes.backdrop} onClick={props.onConfirm} />
 );
 
-const ModalOverlay = (props) => {
+const ErrorModalOverlay = (props) => {
   return (
     <div className={classes.modal}>
       <header className={classes.header}>
-        <h2>{props.title}</h2>
+        <h2 className={classes.title}>{props.title}</h2>
       </header>
       <div className={classes.content}>
         <p>{props.message}</p>
@@ -35,7 +35,7 @@ const ErrorModal = (props) => {
         document.getElementById("backdrop-root")
       )}
       {ReactDOM.createPortal(
-        <ModalOverlay
+        <ErrorModalOverlay
           title={props.title}
           message={props.message}
           onConfirm={props.onConfirm}

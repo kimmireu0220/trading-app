@@ -5,11 +5,11 @@
 
 .buttons button {
   margin: 1rem 1.25rem 0 0;
-  width: 7rem;
+  width: 6.25rem;
   border-radius: 0.5rem;
   color: white;
   height: 3rem;
-  font-size: 1rem;
+  font-size: 1.25rem;
 }
 
 .buttons button:hover {

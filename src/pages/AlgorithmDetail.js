@@ -79,7 +79,7 @@ const AlgorithmDetail = () => {
   }
 
   if (status === "pending") return <LoadingSpinner />;
-  if (error) return <p className="centered">{error}</p>;
+  if (error) return <p className="centered mb-3">{error}</p>;
   if (!loadedAlgorithm || !loadedAlgorithm.title)
     return <p className="centered">No algorithm found!</p>;
 };

@@ -1,5 +1,5 @@
 import { Fragment, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,8 +10,6 @@ import SearchForm from "./SearchForm";
 import classes from "./Navigation.module.css";
 
 const MainNavigation = () => {
-  const history = useHistory();
-
   const [showMenu, setShowMenu] = useState(false);
 
   const toggleMenuHandler = () => setShowMenu((prevState) => !prevState);
@@ -22,7 +20,7 @@ const MainNavigation = () => {
         <Link className={classes.link} to="/trading">
           <div className={classes.logo}>Trading App</div>
         </Link>
-        <SearchForm history={history} />
+        <SearchForm />
         <NavLinks size="normal" />
         {!showMenu && (
           <div className={classes.icon} onClick={toggleMenuHandler}>

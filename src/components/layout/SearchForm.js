@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 import classes from "./SearchForm.module.css";
 
 const SearchForm = (props) => {
+  const history = useHistory();
+
   const [searchedTicker, setSearchedTicker] = useState("");
 
   const tickerChangeHandler = (event) => setSearchedTicker(event.target.value);
@@ -10,7 +13,7 @@ const SearchForm = (props) => {
   const searchStockHandler = (event) => {
     event.preventDefault();
 
-    props.history.push(`/trading/${searchedTicker}`);
+    history.push(`/trading/${searchedTicker}`);
   };
 
   return (

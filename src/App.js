@@ -23,13 +23,7 @@ function App() {
 
   return (
     <Layout>
-      <Suspense
-        fallback={
-          <div className="centered">
-            <LoadingSpinner />
-          </div>
-        }
-      >
+      <Suspense fallback={<LoadingSpinner />}>
         <Switch>
           <Route path="/algorithms" exact>
             {isLoggedIn && <AllAlgorithms />}

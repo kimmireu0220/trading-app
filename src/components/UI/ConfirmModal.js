@@ -23,12 +23,17 @@ const ModalOverlay = (props) => {
       mountOnEnter
     >
       {(state) => {
-        const animationClass = state === "exiting" ? classes.ModalClosed : null;
+        const animationClass =
+          state === "entering"
+            ? classes.ModalOpen
+            : state === "exiting"
+            ? classes.ModalClosed
+            : null;
 
         return (
           <div className={`${classes.modal} ${animationClass} `}>
             <header className={classes.header}>
-              <h2>{props.title}</h2>
+              <h2 className={classes.title}>{props.title}</h2>
             </header>
             <div className={classes.content}>
               <p>{props.message}</p>

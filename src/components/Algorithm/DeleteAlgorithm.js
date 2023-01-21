@@ -21,8 +21,6 @@ const DeleteAlgorithm = () => {
 
   if (status === "pending") return <LoadingSpinner />;
   if (error) return <p className="centered mb-3">{error}</p>;
-
-  return null;
 };
 
 export default DeleteAlgorithm;

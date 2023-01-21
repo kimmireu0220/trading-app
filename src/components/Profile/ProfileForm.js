@@ -39,7 +39,7 @@ const ProfileForm = (props) => {
         />
         <label htmlFor="confirm-password">Confirm Password</label>
         <input
-          className={formIsInValid ? classes.invalid : ""}
+          className={formIsInValid ? classes.invalid : undefined}
           required
           type="password"
           id="confirm-password"

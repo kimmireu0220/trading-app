@@ -4,11 +4,16 @@
 
 .control {
   margin-bottom: 0.5rem;
+  font-size: 1.25rem;
 }
 
 .control label {
   display: block;
-  margin-bottom: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+.control input {
+  margin-bottom: 1rem;
 }
 
 .control input,
@@ -24,7 +29,8 @@
 }
 
 .control input:focus,
-.control textarea:focus {
+.control textarea:focus,
+.logicControl input:focus {
   background-color: #cbf8f8;
   outline-color: teal;
 }
@@ -33,9 +39,14 @@
   display: flex;
 }
 
+.logicControl label {
+  font-size: 1.25rem;
+}
+
 .signal {
   display: flex;
   flex-direction: column;
+  margin-right: 1rem;
 }
 
 .signal * {
@@ -44,8 +55,16 @@
   font-size: 1rem;
 }
 
+.signal .buy {
+  color: rgb(209, 14, 14);
+}
+
+.signal .sell {
+  color: rgb(22, 22, 169);
+}
+
 .signal input {
-  width: 15rem;
+  width: 12.5rem;
 }
 
 .actions {
@@ -64,8 +83,21 @@
 
 .cancel {
   background-color: rgb(235, 42, 42);
+  border: rgb(235, 42, 42);
 }
 
 .action {
   background-color: rgb(37, 217, 37);
+  border: rgb(37, 217, 37);
+}
+
+@media screen and (max-width: 1000px) {
+  .wrapper,
+  .signal input {
+    width: 90%;
+  }
+
+  .wrapper {
+    margin-left: 1rem;
+  }
 }

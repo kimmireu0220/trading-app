@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, Fragment } from "react";
 import { useHistory } from "react-router-dom";
 
 import ConfirmModal from "../UI/ConfirmModal";
@@ -75,79 +75,87 @@ const AlgorithmForm = (props) => {
   };
 
   return (
-    <Card>
-      <form className={classes.form} onSubmit={submitFormHandler}>
-        <div className={classes.control}>
-          <label htmlFor="title">Title</label>
-          <input
-            type="text"
-            id="title"
-            ref={titleInputRef}
-            defaultValue={props.action === "edit" ? props.title : undefined}
-          />
-        </div>
-        <div className={classes.logicControl}>
-          <div className={classes.signal}>
-            <label htmlFor="buy">Buy</label>
-            <select
-              ref={buyAlgorithmInputRef}
-              defaultValue={
-                props.action === "edit" ? props.buyAlgorithm : undefined
-              }
-            >
-              <option value="price">Price</option>
-            </select>
-            <input
-              type="number"
-              ref={buyTargetInutRef}
-              defaultValue={
-                props.action === "edit" ? props.buyTarget : undefined
-              }
-            />
-          </div>
-          <div className={classes.signal}>
-            <label htmlFor="sell">Sell</label>
-            <select
-              ref={sellAlgorithmInputRef}
-              defaultValue={
-                props.action === "edit" ? props.sellAlgorithm : undefined
-              }
-            >
-              <option value="price">Price</option>
-            </select>
-            <input
-              type="number"
-              ref={sellTargetInputRef}
-              defaultValue={
-                props.action === "edit" ? props.sellTarget : undefined
-              }
-            />
-          </div>
-        </div>
-        <div className={classes.control}>
-          <label htmlFor="description">Description</label>
-          <textarea
-            id="description"
-            rows="5"
-            ref={descriptionInputRef}
-            defaultValue={
-              props.action === "edit" ? props.description : undefined
-            }
-          ></textarea>
-        </div>
-        <div className={classes.actions}>
-          <button
-            className={classes.cancel}
-            type="button"
-            onClick={toggleShowConfirmHandler}
-          >
-            Cancel
-          </button>
-          <button className={classes.action}>
-            {props.action === "edit" ? "Edit" : "Add"}
-          </button>
-        </div>
-      </form>
+    <Fragment>
+      <div className={classes.wrapper}>
+        <Card>
+          <form className={classes.form} onSubmit={submitFormHandler}>
+            <div className={classes.control}>
+              <label htmlFor="title">Title</label>
+              <input
+                type="text"
+                id="title"
+                ref={titleInputRef}
+                defaultValue={props.action === "edit" ? props.title : undefined}
+              />
+            </div>
+            <div className={classes.logicControl}>
+              <div className={classes.signal}>
+                <label className={classes.buy} htmlFor="buy">
+                  Buy
+                </label>
+                <select
+                  ref={buyAlgorithmInputRef}
+                  defaultValue={
+                    props.action === "edit" ? props.buyAlgorithm : undefined
+                  }
+                >
+                  <option value="price">Price</option>
+                </select>
+                <input
+                  type="number"
+                  ref={buyTargetInutRef}
+                  defaultValue={
+                    props.action === "edit" ? props.buyTarget : undefined
+                  }
+                />
+              </div>
+              <div className={classes.signal}>
+                <label className={classes.sell} htmlFor="sell">
+                  Sell
+                </label>
+                <select
+                  ref={sellAlgorithmInputRef}
+                  defaultValue={
+                    props.action === "edit" ? props.sellAlgorithm : undefined
+                  }
+                >
+                  <option value="price">Price</option>
+                </select>
+                <input
+                  type="number"
+                  ref={sellTargetInputRef}
+                  defaultValue={
+                    props.action === "edit" ? props.sellTarget : undefined
+                  }
+                />
+              </div>
+            </div>
+            <div className={classes.control}>
+              <label htmlFor="description">Description</label>
+              <textarea
+                id="description"
+                rows="5"
+                ref={descriptionInputRef}
+                defaultValue={
+                  props.action === "edit" ? props.description : undefined
+                }
+              />
+            </div>
+            <div className={classes.actions}>
+              <button
+                className={classes.cancel}
+                type="button"
+                onClick={toggleShowConfirmHandler}
+              >
+                Cancel
+              </button>
+              <button className={classes.action}>
+                {props.action === "edit" ? "Edit" : "Add"}
+              </button>
+            </div>
+          </form>
+        </Card>
+      </div>
       <ConfirmModal
         show={showConfirm}
         title={
@@ -170,7 +178,7 @@ const AlgorithmForm = (props) => {
           onConfirm={closeErrorModalHandler}
         />
       )}
-    </Card>
+    </Fragment>
   );
 };
 
