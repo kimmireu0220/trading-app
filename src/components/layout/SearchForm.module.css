@@ -8,15 +8,13 @@
   width: 25rem;
 }
 
-@media screen and (max-width: 524px) {
-  .input {
-    width: 380px;
-  }
-}
-
 @media screen and (max-width: 1000px) {
   .input,
   .search {
     margin: 1rem 0;
+  }
+
+  .input {
+    width: 23.5rem;
   }
 }

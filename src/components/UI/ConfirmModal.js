@@ -6,7 +6,7 @@ import classes from "./Modal.module.css";
 
 const animationTiming = {
   enter: 750,
-  exit: 500,
+  exit: 750,
 };
 
 const Backdrop = (props) => {

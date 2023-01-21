@@ -1,0 +1,25 @@
+.title {
+  text-align: center;
+}
+
+.title p {
+  animation: blink 1s;
+}
+
+.first {
+  color: rgb(41, 146, 71);
+}
+
+.second {
+  color: rgba(0, 0, 0, 0.791);
+}
+
+.third {
+  color: rgb(33, 138, 159);
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}

@@ -15,12 +15,12 @@ const DeleteAlgorithm = () => {
 
   useEffect(() => {
     sendRequest(algorithmId);
-  }, [sendRequest, algorithmId]);
+
+    if (status === "completed") history.push("/algorithms");
+  }, [sendRequest, algorithmId, status, history]);
 
   if (status === "pending") return <LoadingSpinner />;
-  if (error) return <p className="centered focused mt-3">{error}</p>;
-
-  history.push("/algorithms");
+  if (error) return <p className="centered mb-3">{error}</p>;
 
   return null;
 };

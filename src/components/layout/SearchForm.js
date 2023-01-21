@@ -14,7 +14,7 @@ const SearchForm = (props) => {
   };
 
   return (
-    <form onSubmit={searchStockHandler}>
+    <form className={classes.form} onSubmit={searchStockHandler}>
       <label htmlFor="ticker" />
       <input
         className={classes.input}

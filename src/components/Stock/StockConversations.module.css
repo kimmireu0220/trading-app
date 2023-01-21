@@ -25,14 +25,15 @@ p {
   border-radius: 0.25rem;
 }
 
-.button {
-  padding: 2rem;
+.enter {
+  padding: 2.125rem;
   background-color: rgb(179, 208, 223);
   border: rgb(179, 208, 223);
   border-radius: 0.5rem;
   margin-left: 1rem;
+  font-size: 1.25rem;
 }
 
-.button:hover {
+.enter:hover {
   background-color: rgb(99, 200, 200);
 }

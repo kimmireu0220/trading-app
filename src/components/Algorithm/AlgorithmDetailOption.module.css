@@ -4,19 +4,24 @@
 }
 
 .buttons button {
-  margin-top: 1rem;
-  margin-right: 1.25rem;
-  width: 7.5rem;
-  border: none;
+  margin: 1rem 1.25rem 0 0;
+  width: 7rem;
   border-radius: 0.5rem;
   color: white;
   height: 3rem;
+  font-size: 1rem;
+}
+
+.buttons button:hover {
+  cursor: pointer;
+}
+
+.edit {
+  border: rgb(39, 39, 194);
+  background-color: rgb(39, 39, 194);
 }
 
 .delete {
   background-color: rgb(205, 31, 31);
-}
-
-.edit {
-  background-color: rgb(39, 39, 194);
+  border: rgb(205, 31, 31);
 }

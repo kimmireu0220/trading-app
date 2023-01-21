@@ -19,16 +19,16 @@
 }
 
 .ModalClosed {
-  animation: closeModal 0.5s ease-out;
+  animation: closeModal 0.75s ease-out;
 }
 
 .header {
-  background: #941b1b;
+  background: #951e1e;
   padding: 1rem;
 }
 
 .header h2 {
-  margin: 0;
+  margin: 0 0 0 0.5rem;
   color: white;
 }
 
@@ -45,6 +45,7 @@
 
 .actions button {
   margin: 0 1rem;
+  font-size: 1.25rem;
 }
 
 .no {

@@ -12,9 +12,7 @@ const AddAlgorithm = () => {
   const { sendRequest, status } = useHttp(addAlgorithm);
 
   useEffect(() => {
-    if (status === "completed") {
-      history.push("/algorithms");
-    }
+    if (status === "completed") history.push("/algorithms");
   }, [status, history]);
 
   const addAlgorithmHandler = (algorithmData) => sendRequest(algorithmData);

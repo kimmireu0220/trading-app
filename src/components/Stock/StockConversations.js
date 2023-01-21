@@ -71,7 +71,7 @@ const StockConversations = (props) => {
             rows="3"
             className={classes.textarea}
           />
-          <button className={classes.button}>Enter</button>
+          <button className={classes.enter}>Enter</button>
         </form>
       </Card>
     </Fragment>

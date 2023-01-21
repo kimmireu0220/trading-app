@@ -67,7 +67,7 @@ const StockAlgoritm = ({ algorithmConfig }) => {
               </option>
             ))}
           </select>
-          <button className="btn">Trade</button>
+          <button className={classes.trade}>Trade</button>
         </form>
         {selectedAlgorithm && (
           <StockTradeResult

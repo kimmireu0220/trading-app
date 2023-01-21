@@ -10,7 +10,7 @@ const AlgorithmList = () => {
   const {
     sendRequest,
     status,
-    data: algorithms,
+    data: loadedAlgorithms,
     error,
   } = useHttp(getAllAlgorithms, true);
 
@@ -18,17 +18,14 @@ const AlgorithmList = () => {
     sendRequest();
   }, [sendRequest]);
 
-  if (status === "pending") {
-    return <LoadingSpinner />;
-  }
-
-  if (error) {
-    return <p className="centered focused mt-3">{error}</p>;
-  }
+  if (status === "pending") return <LoadingSpinner />;
+  if (error) return <p className="centered mb-3">{error}</p>;
+  if (loadedAlgorithms.length === 0)
+    return <p className="centered mb-3">There is no algoritm! Add it!</p>;
 
   return (
     <ul>
-      {algorithms.map((algorithm) => {
+      {loadedAlgorithms.map((algorithm) => {
         const {
           id,
           title,

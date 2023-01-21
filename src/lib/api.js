@@ -148,7 +148,7 @@ export const getAllAlgorithms = async () => {
   const response = await fetch(FIREBASE_ALL_ALGORITHMS_API);
   const data = await response.json();
 
-  if (!data.test_id_1 && !response.ok) {
+  if (data && !data.test_id_1 && !response.ok) {
     throw new Error(data.message || "Could not fetch algorithms");
   }
 
