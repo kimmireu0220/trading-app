@@ -1,5 +1,6 @@
 import { Fragment, useState } from "react";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,33 +8,55 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import NavLinks from "./NavLinks";
 import SearchForm from "./SearchForm";
 
+import { authActions } from "../../store/auth";
+
 import classes from "./Navigation.module.css";
 
 const MainNavigation = () => {
+  const history = useHistory();
+
+  const dispatch = useDispatch();
+
   const [showMenu, setShowMenu] = useState(false);
+
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+
+  const logoutHandler = () => dispatch(authActions.logout());
+
+  const goToHomeHandler = () => history.push("/");
+
+  const goToAuthHandler = () => history.push("/auth");
 
   const toggleMenuHandler = () => setShowMenu((prevState) => !prevState);
 
   return (
     <Fragment>
       <header className={classes.header}>
-        <Link className={classes.link} to="/trading">
-          <div className={classes.logo}>Trading App</div>
-        </Link>
+        <button className={classes.logo} onClick={goToHomeHandler}>
+          Trading App
+        </button>
         <SearchForm />
         <NavLinks size="normal" />
-        {!showMenu && (
-          <div className={classes.icon} onClick={toggleMenuHandler}>
-            <FontAwesomeIcon icon={faBars} />
-          </div>
-        )}
-        {showMenu && (
-          <div className={classes.icon} onClick={toggleMenuHandler}>
-            <FontAwesomeIcon icon={faXmark} />
-          </div>
-        )}
+        <div className={classes.smallMenu}>
+          <button
+            onClick={isLoggedIn ? logoutHandler : goToAuthHandler}
+            className={classes.auth}
+          >
+            {isLoggedIn ? "Log out" : "Log in"}
+          </button>
+          {isLoggedIn && !showMenu && (
+            <div className={classes.icon} onClick={toggleMenuHandler}>
+              <FontAwesomeIcon icon={faBars} />
+            </div>
+          )}
+          {isLoggedIn && showMenu && (
+            <div className={classes.icon} onClick={toggleMenuHandler}>
+              <FontAwesomeIcon icon={faXmark} />
+            </div>
+          )}
+        </div>
       </header>
-      {showMenu && <NavLinks size="small" />}
+      {showMenu && <NavLinks onToggle={toggleMenuHandler} size="small" />}
     </Fragment>
   );
 };

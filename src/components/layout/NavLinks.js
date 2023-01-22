@@ -10,7 +10,9 @@ const NavLinks = (props) => {
 
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
-  const logoutHandler = () => dispatch(authActions.logout());
+  const logoutHandler = () => {
+    dispatch(authActions.logout());
+  };
 
   return (
     <nav className={props.size === "normal" ? classes.nav : classes.smallNav}>
@@ -18,6 +20,7 @@ const NavLinks = (props) => {
         <ul>
           <li>
             <NavLink
+              onClick={props.onToggle}
               to="/algorithms"
               activeClassName={classes.active}
               className={classes.navLink}
@@ -27,6 +30,7 @@ const NavLinks = (props) => {
           </li>
           <li>
             <NavLink
+              onClick={props.onToggle}
               to="/profile"
               activeClassName={classes.active}
               className={classes.navLink}
@@ -34,21 +38,24 @@ const NavLinks = (props) => {
               Profile
             </NavLink>
           </li>
-          <li>
-            <Link
-              to="/"
-              onClick={logoutHandler}
-              className={`${classes.navLink} ${classes.logout}`}
-            >
-              Log out
-            </Link>
-          </li>
+          {props.size === "normal" && (
+            <li>
+              <Link
+                to="/"
+                onClick={logoutHandler}
+                className={`${classes.navLink} ${classes.logout}`}
+              >
+                Log out
+              </Link>
+            </li>
+          )}
         </ul>
       )}
-      {!isLoggedIn && (
+      {!isLoggedIn && props.size === "normal" && (
         <ul>
           <li>
             <NavLink
+              onClick={props.onToggle}
               to="/auth"
               activeClassName={classes.active}
               className={classes.navLink}

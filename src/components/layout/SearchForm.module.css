@@ -1,3 +1,7 @@
+.form {
+  margin: 0 0.5rem;
+}
+
 .input,
 .search {
   font-size: 1.25rem;
@@ -5,7 +9,7 @@
 }
 
 .input {
-  width: 25rem;
+  width: 430px;
 }
 
 @media screen and (max-width: 1000px) {
@@ -14,7 +18,13 @@
     margin: 1rem 0;
   }
 
+  .form {
+    margin-left: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 1100px) {
   .input {
-    width: 23.5rem;
+    width: 360px;
   }
 }

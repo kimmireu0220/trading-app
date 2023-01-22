@@ -15,7 +15,7 @@
 
 @media screen and (max-width: 700px) {
   .image img {
-    margin-left: 1rem;
+    margin-left: 0.75rem;
     width: 95%;
     transform: none;
   }
