@@ -18,6 +18,7 @@ const MainNavigation = () => {
   const dispatch = useDispatch();
 
   const [showMenu, setShowMenu] = useState(false);
+  const [iconAnimation, setIconAnimation] = useState(false);
 
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
@@ -27,7 +28,11 @@ const MainNavigation = () => {
 
   const goToAuthHandler = () => history.push("/auth");
 
-  const toggleMenuHandler = () => setShowMenu((prevState) => !prevState);
+  const toggleMenuHandler = () => {
+    setShowMenu((prevState) => !prevState);
+
+    setIconAnimation(true);
+  };
 
   return (
     <Fragment>
@@ -45,12 +50,26 @@ const MainNavigation = () => {
             {isLoggedIn ? "Log out" : "Log in"}
           </button>
           {isLoggedIn && !showMenu && (
-            <div className={classes.icon} onClick={toggleMenuHandler}>
+            <div
+              className={
+                iconAnimation
+                  ? `${classes.icon} ${classes.iconAnimation}`
+                  : classes.icon
+              }
+              onClick={toggleMenuHandler}
+            >
               <FontAwesomeIcon icon={faBars} />
             </div>
           )}
           {isLoggedIn && showMenu && (
-            <div className={classes.icon} onClick={toggleMenuHandler}>
+            <div
+              className={
+                iconAnimation
+                  ? `${classes.icon} ${classes.iconAnimation}`
+                  : classes.icon
+              }
+              onClick={toggleMenuHandler}
+            >
               <FontAwesomeIcon icon={faXmark} />
             </div>
           )}

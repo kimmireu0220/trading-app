@@ -15,6 +15,7 @@
   color: white;
 }
 
+.icon:hover,
 .logo:hover {
   cursor: pointer;
 }
@@ -44,14 +45,14 @@
     margin: 1rem 0 0.5rem 1.5rem;
   }
 
+  .icon {
+    margin-top: 0.25rem;
+  }
+
   .smallMenu {
     position: absolute;
     left: 20rem;
     top: 1.25rem;
-  }
-
-  .icon {
-    margin-top: 0.25rem;
   }
 }
 
@@ -66,5 +67,27 @@
     align-items: center;
     font-size: 1.5rem;
     color: rgb(141, 235, 208);
+  }
+
+  .iconAnimation {
+    animation: fadeOut, rotate 0.5s;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
   }
 }
