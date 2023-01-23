@@ -31,7 +31,13 @@
   justify-content: space-between;
 }
 
-hr {
+.hr hr {
   margin: 1.25rem 0 1.5rem 2.5rem;
   border: 1px solid rgb(148, 145, 145);
+}
+
+@media screen and (max-width: 700px) {
+  .wrapper {
+    flex-direction: column;
+  }
 }

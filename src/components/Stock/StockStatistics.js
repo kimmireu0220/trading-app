@@ -116,7 +116,9 @@ const StockStatistics = (props) => {
       <div className={classes.wrapper}>
         <div>
           <p className={classes.title}>Valuation Measures</p>
-          <hr />
+          <div className={classes.hr}>
+            <hr />
+          </div>
           <ul className={classes.statistics}>
             {valuationMeasureArr.map((valuationMeasure, index) => (
               <li key={index}>
@@ -125,10 +127,14 @@ const StockStatistics = (props) => {
               </li>
             ))}
           </ul>
-          <hr />
+          <div className={classes.hr}>
+            <hr />
+          </div>
           <br />
           <p className={classes.title}>Financial Hightlights</p>
-          <hr />
+          <div className={classes.hr}>
+            <hr />
+          </div>
           <ul className={classes.statistics}>
             {fiscalYearArr.map((fiscalYear, index) => (
               <li key={index}>
@@ -137,7 +143,9 @@ const StockStatistics = (props) => {
               </li>
             ))}
           </ul>
-          <hr />
+          <div className={classes.hr}>
+            <hr />
+          </div>
           <ul className={classes.statistics}>
             {profitablityArr.map((profitablity, index) => (
               <li key={index}>
@@ -146,7 +154,9 @@ const StockStatistics = (props) => {
               </li>
             ))}
           </ul>
-          <hr />
+          <div className={classes.hr}>
+            <hr />
+          </div>
           <ul className={classes.statistics}>
             {managementEffectivenessArr.map(
               (managementEffectiveness, index) => (
@@ -157,7 +167,9 @@ const StockStatistics = (props) => {
               )
             )}
           </ul>
-          <hr />
+          <div className={classes.hr}>
+            <hr />
+          </div>
           <ul className={classes.statistics}>
             {incomeStatementArr.map((incomeStatement, index) => (
               <li key={index}>
@@ -166,7 +178,9 @@ const StockStatistics = (props) => {
               </li>
             ))}
           </ul>
-          <hr />
+          <div className={classes.hr}>
+            <hr />
+          </div>
           <ul className={classes.statistics}>
             {balanceSheetArr.map((balanceSheet, index) => (
               <li key={index}>
@@ -178,7 +192,9 @@ const StockStatistics = (props) => {
         </div>
         <div>
           <p className={classes.title}>Trading Information</p>
-          <hr />
+          <div className={classes.hr}>
+            <hr />
+          </div>
           <ul className={classes.statistics}>
             {stockPriceHistoryArr.map((stockPriceHistory, index) => (
               <li key={index}>
@@ -187,7 +203,9 @@ const StockStatistics = (props) => {
               </li>
             ))}
           </ul>
-          <hr />
+          <div className={classes.hr}>
+            <hr />
+          </div>
           <ul className={classes.statistics}>
             {shareStatisticArr.map((shareStatistic, index) => (
               <li key={index}>
@@ -196,7 +214,9 @@ const StockStatistics = (props) => {
               </li>
             ))}
           </ul>
-          <hr />
+          <div className={classes.hr}>
+            <hr />
+          </div>
           <ul className={classes.statistics}>
             {dividendsArr.map((dividends, index) => (
               <li key={index}>

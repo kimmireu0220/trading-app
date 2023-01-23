@@ -2,10 +2,6 @@
   margin: 1.75rem 2rem 0 0;
 }
 
-li {
-  margin-bottom: 0.75rem;
-}
-
 .title {
   display: flex;
   justify-content: space-around;

@@ -9,7 +9,7 @@ const Backdrop = (props) => (
 
 const ErrorModalOverlay = (props) => {
   return (
-    <div className={classes.modal}>
+    <div className={`${classes.modal} ${classes.ModalOpen}`}>
       <header className={classes.header}>
         <h2 className={classes.title}>{props.title}</h2>
       </header>

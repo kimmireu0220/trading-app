@@ -70,7 +70,7 @@ const MainNavigation = () => {
               }
               onClick={toggleMenuHandler}
             >
-              <FontAwesomeIcon icon={faXmark} />
+              <FontAwesomeIcon icon={faXmark} size="lg" />
             </div>
           )}
         </div>

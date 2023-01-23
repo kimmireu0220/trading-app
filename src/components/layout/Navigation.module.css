@@ -15,23 +15,33 @@
   color: white;
 }
 
-.icon:hover,
-.logo:hover {
-  cursor: pointer;
-}
-
-.smallMenu {
-  display: none;
-}
-
 .auth {
-  margin-right: 2rem;
+  margin-right: 1.5rem;
   font-size: 1.25rem;
   color: white;
   background-color: teal;
   border: 1px solid white;
   padding: 0.5rem 0.75rem;
   border-radius: 0.5rem;
+}
+
+.icon {
+  padding: 0.25rem 0.5rem;
+}
+
+.logo:hover,
+.auth:hover,
+.icon:hover {
+  cursor: pointer;
+}
+
+.icon:hover {
+  background-color: rgb(155, 193, 193);
+  border-radius: 50%;
+}
+
+.smallMenu {
+  display: none;
 }
 
 @media screen and (max-width: 1000px) {
@@ -70,7 +80,7 @@
   }
 
   .iconAnimation {
-    animation: fadeOut, rotate 0.5s;
+    animation: fadeOut, rotate 0.75s;
   }
 }
 

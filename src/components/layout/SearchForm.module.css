@@ -9,7 +9,11 @@
 }
 
 .input {
-  width: 430px;
+  width: 440px;
+}
+
+.search {
+  cursor: pointer;
 }
 
 @media screen and (max-width: 1000px) {
