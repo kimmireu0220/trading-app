@@ -17,12 +17,16 @@ const StockTradeInfo = ({ result }) => {
   return (
     <div className={classes.result}>
       <div className={classes.info}>
-        <div>{`${buyDay.year}-${buyDay.month}-${buyDay.date}`}</div>
+        <div
+          className={classes.day}
+        >{`${buyDay.year}-${buyDay.month}-${buyDay.date}`}</div>
         <div className={classes.buyPrice}>{`$${buy.price}`}</div>
       </div>
       <div className={classes.info}>${profit}</div>
       <div className={classes.info}>
-        <div>{`${sellDay.year}-${sellDay.month}-${sellDay.date}`}</div>
+        <div
+          className={classes.day}
+        >{`${sellDay.year}-${sellDay.month}-${sellDay.date}`}</div>
         <div className={classes.sellPrice}>{`$${sell.price}`}</div>
       </div>
     </div>

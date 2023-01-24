@@ -1,8 +1,8 @@
 .result {
   display: flex;
-  flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  margin-top: 0.5rem;
 }
 
 .info {
@@ -10,6 +10,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
+}
+
+.day {
+  width: 90px;
 }
 
 .buyPrice {

@@ -17,7 +17,10 @@ const StockTradeResult = (props) => {
   for (let i = 0; i < days.length; i++) {
     if (+closes[99 - i] < buyTarget) {
       const filteredBuyDay = new Date(days[99 - i]);
-      buyTargets.push({ day: filteredBuyDay, price: closes[99 - i] });
+      buyTargets.push({
+        day: filteredBuyDay,
+        price: Number(closes[99 - i]).toFixed(2),
+      });
       break;
     }
   }
@@ -28,7 +31,7 @@ const StockTradeResult = (props) => {
         if (+closes[99 - i] > sellTarget) {
           const day = new Date(days[99 - i]);
           if (buyTargets[buyTargets.length - 1].day < day) {
-            sellTargets.push({ day, price: closes[99 - i] });
+            sellTargets.push({ day, price: Number(closes[99 - i]).toFixed(2) });
             checkSellTarget = false;
           }
         }
@@ -36,7 +39,7 @@ const StockTradeResult = (props) => {
         if (+closes[99 - i] < buyTarget) {
           const day = new Date(days[99 - i]);
           if (sellTargets[sellTargets.length - 1].day < day) {
-            buyTargets.push({ day, price: closes[99 - i] });
+            buyTargets.push({ day, price: Number(closes[99 - i]).toFixed(2) });
             checkSellTarget = true;
           }
         }
