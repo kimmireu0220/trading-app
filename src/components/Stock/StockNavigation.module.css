@@ -1,5 +1,5 @@
 .nav {
-  margin: 3rem 0;
+  margin: 2.5rem 0;
 }
 
 .ul {
@@ -15,10 +15,11 @@
   padding-top: 0.5rem;
 }
 
-.ul li button {
+.ul button {
   border: none;
   background-color: #e7f8f8;
-  padding: 1.25rem 1rem 1rem;
+  padding: 1.25rem 1rem;
+  margin-bottom: 0.5rem;
   font-size: 1.25rem;
 }
 

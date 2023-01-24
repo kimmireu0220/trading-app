@@ -1,5 +1,5 @@
-p {
-  margin-top: 3rem;
+.comment_length {
+  padding-left: 1rem;
 }
 
 .ul {
@@ -9,6 +9,7 @@ p {
 
 .li {
   display: flex;
+  margin: 0.75rem 0;
 }
 
 .email {

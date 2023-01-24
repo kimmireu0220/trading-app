@@ -8,7 +8,7 @@ const StockHistory = ({ historyConfig }) => {
   return (
     <Card>
       <p className={classes.current}>( Current : USD )</p>
-      <div className={classes.wrapper}>
+      <div className={classes.container}>
         <ul className={classes.history}>
           <div className={classes.title}>Date</div>
           {days.map((day, index) => (

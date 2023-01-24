@@ -111,9 +111,9 @@ const StockStatistics = (props) => {
   const dividendsArr = Object.entries(dividendsObj);
 
   return (
-    <Card class="width">
+    <Card>
       <p className={classes.current}>( Current : USD )</p>
-      <div className={classes.wrapper}>
+      <div className={classes.container}>
         <div>
           <p className={classes.title}>Valuation Measures</p>
           <div className={classes.hr}>

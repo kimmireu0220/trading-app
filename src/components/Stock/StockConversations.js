@@ -44,14 +44,14 @@ const StockConversations = (props) => {
 
   return (
     <Fragment>
-      {loadedComments.length === 0 ? (
-        <p className="font-20 pl-1">
-          There is no comment yet. Be the first comment writer!
-        </p>
-      ) : loadedComments.length === 1 ? (
-        <p className="pl-1">1 Comment</p>
+      {loadedComments.length === 0 || loadedComments.length === 1 ? (
+        <p
+          className={classes.comment_length}
+        >{`${loadedComments.length} Comment`}</p>
       ) : (
-        <p className="pl-1">{`${loadedComments.length} Comments`}</p>
+        <p
+          className={classes.comment_length}
+        >{`${loadedComments.length} Comments`}</p>
       )}
       <Card>
         <ul className={classes.ul}>

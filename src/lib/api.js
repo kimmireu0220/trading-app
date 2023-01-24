@@ -43,30 +43,23 @@ export const getDailyStockData = async (ticker) => {
     throw new Error(data.message || "Could not get daily stock data");
   }
 
-  let days = [];
-  let opens = [];
-  let highs = [];
-  let lows = [];
-  let closes = [];
-  let volumes = [];
+  const result = {
+    days: [],
+    opens: [],
+    highs: [],
+    lows: [],
+    closes: [],
+    volumes: [],
+  };
 
   for (const key in data["Time Series (Daily)"]) {
-    days.push(key);
-    opens.push(data["Time Series (Daily)"][key]["1. open"]);
-    highs.push(data["Time Series (Daily)"][key]["2. high"]);
-    lows.push(data["Time Series (Daily)"][key]["3. low"]);
-    closes.push(data["Time Series (Daily)"][key]["4. close"]);
-    volumes.push(data["Time Series (Daily)"][key]["6. volume"]);
+    result.days.push(key);
+    result.opens.push(data["Time Series (Daily)"][key]["1. open"]);
+    result.highs.push(data["Time Series (Daily)"][key]["2. high"]);
+    result.lows.push(data["Time Series (Daily)"][key]["3. low"]);
+    result.closes.push(data["Time Series (Daily)"][key]["4. close"]);
+    result.volumes.push(data["Time Series (Daily)"][key]["6. volume"]);
   }
-
-  const result = {
-    days,
-    opens,
-    highs,
-    lows,
-    closes,
-    volumes,
-  };
 
   return result;
 };
