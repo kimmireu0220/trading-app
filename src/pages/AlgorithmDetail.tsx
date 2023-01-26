@@ -13,9 +13,9 @@ import { getSingleAlgorithm } from "../lib/api";
 const AlgorithmDetail = () => {
   const navigate = useNavigate();
 
-  const { algorithmId } = useParams<{ algorithmId: string }>();
-
   const [showConfirm, setShowConfirm] = useState(false);
+
+  const { algorithmId } = useParams<{ algorithmId: string }>();
 
   const {
     sendRequest,
@@ -38,28 +38,10 @@ const AlgorithmDetail = () => {
   }, [sendRequest, algorithmId]);
 
   if (loadedAlgorithm) {
-    const {
-      title,
-      buyAlgorithm,
-      buyTarget,
-      sellAlgorithm,
-      sellTarget,
-      description,
-    } = loadedAlgorithm;
-
     return (
       <Fragment>
         <Card>
-          <HighlightedAlgorithm
-            algorithmConfig={{
-              title,
-              buyAlgorithm,
-              buyTarget,
-              sellAlgorithm,
-              sellTarget,
-              description,
-            }}
-          />
+          <HighlightedAlgorithm algorithmConfig={loadedAlgorithm} />
           <AlgorithmDetailOption
             onGoToEdit={goToEditPageHandler}
             onToggle={toggleConfirmHandler}

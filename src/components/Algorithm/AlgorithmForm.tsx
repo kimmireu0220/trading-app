@@ -1,37 +1,35 @@
 import React, { useState, Fragment, createRef } from "react";
 import { useNavigate } from "react-router";
 
-import Algorithm from "../../models/algorithm";
 import ConfirmModal from "../UI/ConfirmModal";
 import ErrorModal from "../UI/ErrorModal";
 import Card from "../UI/Card";
 
+import Algorithm from "../../models/algorithm";
+
 import classes from "./AlgorithmForm.module.css";
 
 type Props = {
-  title?: string;
-  buyAlgorithm?: string;
-  buyTarget?: string;
-  sellAlgorithm?: string;
-  sellTarget?: string;
-  description?: string;
-  algorithmId: string;
   action: string;
-  onAddAlgorithm: (algorithmData: {
-    title: string;
-    buyAlgorithm: string;
-    buyTarget: string;
-    sellAlgorithm: string;
-    sellTarget: string;
-    description: string;
-  }) => void;
+  onAddAlgorithm: (algorithmData: Algorithm) => void;
   onEditAlgorithm: (algorithmData: Algorithm) => void;
+  algorithmId?: string;
+  algorithmConfig?: Algorithm;
 };
 
 const AlgorithmForm: React.FC<Props> = (props) => {
   const navigate = useNavigate();
 
-  const { algorithmId } = props;
+  const { action, onAddAlgorithm, onEditAlgorithm, algorithmId } = props;
+
+  const {
+    title,
+    buyAlgorithm,
+    buyTarget,
+    sellAlgorithm,
+    sellTarget,
+    description,
+  } = props.algorithmConfig!;
 
   const [showConfirm, setShowConfirm] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -71,8 +69,8 @@ const AlgorithmForm: React.FC<Props> = (props) => {
       ? setFormIsVallid(true)
       : setFormIsVallid(false);
 
-    if (props.action === "edit" && formIsValid && isSubmitted) {
-      props.onEditAlgorithm({
+    if (action === "edit" && formIsValid && isSubmitted) {
+      onEditAlgorithm({
         title,
         buyAlgorithm,
         buyTarget,
@@ -83,8 +81,8 @@ const AlgorithmForm: React.FC<Props> = (props) => {
       });
     }
 
-    if (props.action === "add" && formIsValid && isSubmitted) {
-      props.onAddAlgorithm({
+    if (action === "add" && formIsValid && isSubmitted) {
+      onAddAlgorithm({
         title,
         buyAlgorithm,
         buyTarget,
@@ -106,7 +104,7 @@ const AlgorithmForm: React.FC<Props> = (props) => {
                 type="text"
                 id="title"
                 ref={titleInputRef}
-                defaultValue={props.action === "edit" ? props.title : undefined}
+                defaultValue={action === "edit" ? title : undefined}
               />
             </div>
             <div className={classes.logicControl}>
@@ -116,18 +114,14 @@ const AlgorithmForm: React.FC<Props> = (props) => {
                 </label>
                 <select
                   ref={buyAlgorithmInputRef}
-                  defaultValue={
-                    props.action === "edit" ? props.buyAlgorithm : undefined
-                  }
+                  defaultValue={action === "edit" ? buyAlgorithm : undefined}
                 >
                   <option value="price">Price</option>
                 </select>
                 <input
                   type="number"
                   ref={buyTargetInutRef}
-                  defaultValue={
-                    props.action === "edit" ? props.buyTarget : undefined
-                  }
+                  defaultValue={action === "edit" ? buyTarget : undefined}
                 />
               </div>
               <div className={classes.signal}>
@@ -136,18 +130,14 @@ const AlgorithmForm: React.FC<Props> = (props) => {
                 </label>
                 <select
                   ref={sellAlgorithmInputRef}
-                  defaultValue={
-                    props.action === "edit" ? props.sellAlgorithm : undefined
-                  }
+                  defaultValue={action === "edit" ? sellAlgorithm : undefined}
                 >
                   <option value="price">Price</option>
                 </select>
                 <input
                   type="number"
                   ref={sellTargetInputRef}
-                  defaultValue={
-                    props.action === "edit" ? props.sellTarget : undefined
-                  }
+                  defaultValue={action === "edit" ? sellTarget : undefined}
                 />
               </div>
             </div>
@@ -157,9 +147,7 @@ const AlgorithmForm: React.FC<Props> = (props) => {
                 id="description"
                 rows={5}
                 ref={descriptionInputRef}
-                defaultValue={
-                  props.action === "edit" ? props.description : undefined
-                }
+                defaultValue={action === "edit" ? description : undefined}
               />
             </div>
             <div className={classes.actions}>
@@ -171,7 +159,7 @@ const AlgorithmForm: React.FC<Props> = (props) => {
                 Cancel
               </button>
               <button className={classes.action}>
-                {props.action === "edit" ? "Edit" : "Add"}
+                {action === "edit" ? "Edit" : "Add"}
               </button>
             </div>
           </form>
@@ -180,12 +168,12 @@ const AlgorithmForm: React.FC<Props> = (props) => {
       <ConfirmModal
         show={showConfirm}
         title={
-          props.action === "edit"
+          action === "edit"
             ? "Do you want to stop editting this algorithm?"
             : "Do you want to stop adding this algorithm?"
         }
         message={
-          props.action === "edit"
+          action === "edit"
             ? "If you really want to stop editting , click 'Okay' button"
             : "If you really want to stop adding , click 'Okay' button"
         }

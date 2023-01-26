@@ -31,7 +31,6 @@ const MainNavigation = () => {
 
   const toggleMenuHandler = () => {
     setShowMenu((prevState) => !prevState);
-
     setIconAnimation(true);
   };
 

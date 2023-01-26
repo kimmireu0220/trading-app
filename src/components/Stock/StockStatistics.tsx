@@ -1,6 +1,8 @@
 import React from "react";
-import Statistics from "../../models/statistics";
+
 import Card from "../UI/Card";
+
+import StockDetail from "../../models/stock-detail";
 
 import classes from "./StockStatistics.module.css";
 
@@ -9,7 +11,7 @@ type Props = {
   WeekHigh_52: string;
   DayMovingAverage_50: string;
   DayMovingAverage_200: string;
-  detailData: Statistics;
+  detailData: StockDetail;
 };
 
 const StockStatistics: React.FC<Props> = ({

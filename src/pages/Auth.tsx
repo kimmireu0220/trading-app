@@ -10,15 +10,11 @@ import useHttp from "../hooks/use-http";
 import { signUp, signIn } from "../lib/api";
 import { authActions } from "../store/auth";
 
-type Auth = {
-  email: string;
-  password: string;
-};
+import LoginAuth from "../models/login-auth";
 
 const AuthPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
   const { pathname } = useLocation();
 
   const {
@@ -34,9 +30,9 @@ const AuthPage = () => {
     data: userData,
   } = useHttp(signIn);
 
-  const signUpHandler = (authData: Auth) => userSignUp(authData);
+  const signUpHandler = (authData: LoginAuth) => userSignUp(authData);
 
-  const signInHandler = (authData: Auth) => userSignIn(authData);
+  const signInHandler = (authData: LoginAuth) => userSignIn(authData);
 
   const goToAuthPage = () => {
     navigate("/auth");
@@ -46,7 +42,6 @@ const AuthPage = () => {
     if (userData) {
       const { token, email, expirationTime } = userData;
       dispatch(authActions.login({ token, email }));
-
       navigate("/trading");
 
       setTimeout(() => {

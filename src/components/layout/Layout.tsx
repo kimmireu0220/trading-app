@@ -5,13 +5,11 @@ import Navigation from "./Navigation";
 
 import classes from "./Layout.module.css";
 
-type Props = { children: React.ReactNode };
-
-const Layout: React.FC<Props> = (props) => {
+const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <Fragment>
       <Navigation />
-      <main className={classes.main}>{props.children}</main>;
+      <main className={classes.main}>{children}</main>;
       <Footer />
     </Fragment>
   );

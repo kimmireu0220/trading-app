@@ -8,19 +8,17 @@ import useHttp from "../../hooks/use-http";
 import { updatePassword } from "../../lib/api";
 import { authActions } from "../../store/auth";
 
-import classes from "./UserProfile.module.css";
+import PasswordAuth from "../../models/password-auth";
 
-type Auth = {
-  token: string;
-  password: string;
-};
+import classes from "./UserProfile.module.css";
 
 const UserProfile = () => {
   const dispatch = useDispatch();
 
   const { sendRequest, status } = useHttp(updatePassword);
 
-  const updatePasswordHandler = (authData: Auth) => sendRequest(authData);
+  const updatePasswordHandler = (authData: PasswordAuth) =>
+    sendRequest(authData);
 
   useEffect(() => {
     if (status === "completed") dispatch(authActions.logout());

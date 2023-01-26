@@ -1,26 +1,23 @@
 import React, { createRef, useState } from "react";
 import { useSelector } from "react-redux";
 
+import PasswordAuth from "../../models/password-auth";
+
 import classes from "./ProfileForm.module.css";
 
-type Auth = {
-  token: string;
-  password: string;
-};
-
 type Props = {
-  onUpdatePassword: (authData: Auth) => void;
+  onUpdatePassword: (authData: PasswordAuth) => void;
 };
 
 const ProfileForm: React.FC<Props> = ({ onUpdatePassword }) => {
+  const [formIsInValid, setFormIsInValid] = useState(false);
+
   const newPasswordInputRef = createRef<HTMLInputElement>();
   const confirmPasswordInputRef = createRef<HTMLInputElement>();
 
   const token = useSelector<{ auth: { token: string } }>(
     (state) => state.auth.token
   ) as string;
-
-  const [formIsInValid, setFormIsInValid] = useState(false);
 
   const submitHandler = (event: React.FormEvent) => {
     event.preventDefault();
@@ -32,9 +29,7 @@ const ProfileForm: React.FC<Props> = ({ onUpdatePassword }) => {
     if (password === confirmPassword) {
       setFormIsInValid(false);
       onUpdatePassword(authData);
-    } else {
-      setFormIsInValid(true);
-    }
+    } else setFormIsInValid(true);
   };
 
   return (

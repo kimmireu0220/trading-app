@@ -1,4 +1,4 @@
-class DailyData {
+class DailyStock {
   days: string[];
   opens: string[];
   highs: string[];
@@ -23,4 +23,4 @@ class DailyData {
   }
 }
 
-export default DailyData;
+export default DailyStock;

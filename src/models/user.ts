@@ -1,4 +1,4 @@
-class Auth {
+class User {
   isLoggedIn: boolean;
   token: string;
   email: string;
@@ -10,4 +10,4 @@ class Auth {
   }
 }
 
-export default Auth;
+export default User;

@@ -12,9 +12,8 @@ export const getStockDetailData = async (ticker: string) => {
   const response = await fetch(ALPHA_VANTAGE_OVERVIEW_API);
   const data = await response.json();
 
-  if (!response.ok) {
+  if (!response.ok)
     throw new Error(data.message || "Could not get today stock data");
-  }
 
   return data;
 };
@@ -24,9 +23,8 @@ export const getTodayStockData = async (ticker: string) => {
   const response = await fetch(ALPHA_VANTAGE_GLOBAL_QUOTE_API);
   const data = await response.json();
 
-  if (!response.ok) {
+  if (!response.ok)
     throw new Error(data.message || "Could not get today stock data");
-  }
 
   const result = {
     price: +data["Global Quote"]["05. price"],
@@ -41,9 +39,8 @@ export const getDailyStockData = async (ticker: string) => {
   const response = await fetch(ALPHA_VANTAGE_TIME_SERIES_DAILY_ADJUSTED_API);
   const data = await response.json();
 
-  if (!response.ok) {
+  if (!response.ok)
     throw new Error(data.message || "Could not get daily stock data");
-  }
 
   const result = {
     days: [] as string[],
@@ -77,9 +74,8 @@ export const addAlgorithm = async (algorithmData: Algorithm) => {
   });
   const data = await response.json();
 
-  if (!response.ok) {
+  if (!response.ok)
     throw new Error(data.message || "Could not create algorithm");
-  }
 
   return null;
 };
@@ -114,9 +110,7 @@ export const editAlgorithm = async (algorithmData: Algorithm) => {
   });
   const data = await response.json();
 
-  if (!response.ok) {
-    throw new Error(data.message || "Could not edit algorithm");
-  }
+  if (!response.ok) throw new Error(data.message || "Could not edit algorithm");
 
   return null;
 };
@@ -131,9 +125,8 @@ export const deleteAlgorithm = async (algorithmId: string) => {
   });
   const data = await response.json();
 
-  if (!response.ok) {
+  if (!response.ok)
     throw new Error(data.message || "Could not delete algorithm");
-  }
 
   return null;
 };
@@ -143,9 +136,8 @@ export const getAllAlgorithms = async () => {
   const response = await fetch(FIREBASE_ALL_ALGORITHMS_API);
   const data = await response.json();
 
-  if (data && !data.test_id_1 && !response.ok) {
+  if (data && !data.test_id_1 && !response.ok)
     throw new Error(data.message || "Could not fetch algorithms");
-  }
 
   const transformedAlgorithms = [];
 
@@ -166,9 +158,8 @@ export const getSingleAlgorithm = async (algorithmId: string) => {
   const response = await fetch(FIREBASE_SINGLE_ALGORITHM_API);
   const data = await response.json();
 
-  if (!response.ok) {
+  if (!response.ok)
     throw new Error(data.message || "Could not fetch single algorithm data");
-  }
 
   const loaedAlgorithm = {
     algorithmId,
@@ -217,9 +208,7 @@ export const signIn = async (authData: { email: string; password: string }) => {
   });
   const data = await response.json();
 
-  if (!response.ok) {
-    throw new Error(data.message || "Failed to sign in");
-  }
+  if (!response.ok) throw new Error(data.message || "Failed to sign in");
 
   const result = {
     email,
@@ -248,9 +237,8 @@ export const updatePassword = async (authData: {
   });
   const data = await response.json();
 
-  if (!response.ok) {
+  if (!response.ok)
     throw new Error(data.message || "Could not update password");
-  }
 
   return null;
 };
@@ -272,9 +260,7 @@ export const addComment = async (commentData: {
   });
   const data = await response.json();
 
-  if (!response.ok) {
-    throw new Error(data.message || "Could not send comment");
-  }
+  if (!response.ok) throw new Error(data.message || "Could not send comment");
 
   return null;
 };
@@ -284,9 +270,7 @@ export const getAllComments = async (ticker: string) => {
   const response = await fetch(FIREBASE_ALL_COMMENTS_API);
   const data = await response.json();
 
-  if (!response.ok) {
-    throw new Error(data.message || "Could not load comments");
-  }
+  if (!response.ok) throw new Error(data.message || "Could not load comments");
 
   const transformedComments = [];
 

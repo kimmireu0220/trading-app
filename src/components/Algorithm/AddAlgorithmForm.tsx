@@ -1,15 +1,10 @@
 import React from "react";
 import AlgorithmForm from "./AlgorithmForm";
 
+import Algorithm from "../../models/algorithm";
+
 type Props = {
-  onAddAlgorithm: (algorithmData: {
-    title: string;
-    buyAlgorithm: string;
-    buyTarget: string;
-    sellAlgorithm: string;
-    sellTarget: string;
-    description: string;
-  }) => void;
+  onAddAlgorithm: (algorithmData: Algorithm) => void;
 };
 
 const AddAlgorithmForm: React.FC<Props> = ({ onAddAlgorithm }) => (

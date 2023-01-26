@@ -4,7 +4,7 @@ import { Transition } from "react-transition-group";
 
 import classes from "./Modal.module.css";
 
-type Props = {
+type ModalProps = {
   onClose: () => void;
   show: boolean;
   title: string;
@@ -12,25 +12,24 @@ type Props = {
   onConfirm: () => void;
 };
 
+type BackdropProps = { onClose: () => void; show: boolean };
+
 const animationTiming = {
   enter: 750,
   exit: 750,
 };
 
-const Backdrop: React.FC<{ onClose: () => void; show: boolean }> = (props) => {
-  if (props.show)
-    return <div className={classes.backdrop} onClick={props.onClose} />;
+const Backdrop: React.FC<BackdropProps> = (props) => {
+  const { show, onClose } = props;
+
+  if (show) return <div className={classes.backdrop} onClick={onClose} />;
   return null;
 };
 
-const ModalOverlay: React.FC<Props> = (props) => {
+const ModalOverlay: React.FC<ModalProps> = (props) => {
+  const { show, title, message, onClose, onConfirm } = props;
   return (
-    <Transition
-      in={props.show}
-      timeout={animationTiming}
-      unmountOnExit
-      mountOnEnter
-    >
+    <Transition in={show} timeout={animationTiming} unmountOnExit mountOnEnter>
       {(state) => {
         const animationClass =
           state === "entering"
@@ -42,19 +41,19 @@ const ModalOverlay: React.FC<Props> = (props) => {
         return (
           <div className={`${classes.modal} ${animationClass} `}>
             <header className={classes.header}>
-              <h2 className={classes.title}>{props.title}</h2>
+              <h2 className={classes.title}>{title}</h2>
             </header>
             <div className={classes.content}>
-              <p>{props.message}</p>
+              <p>{message}</p>
             </div>
             <ul className={classes.actions}>
               <li>
-                <button className={`btn ${classes.no}`} onClick={props.onClose}>
+                <button className={`btn ${classes.no}`} onClick={onClose}>
                   No
                 </button>
               </li>
               <li>
-                <button className="btn" onClick={props.onConfirm}>
+                <button className="btn" onClick={onConfirm}>
                   Okay
                 </button>
               </li>
@@ -66,20 +65,22 @@ const ModalOverlay: React.FC<Props> = (props) => {
   );
 };
 
-const ConfirmModal: React.FC<Props> = (props) => {
+const ConfirmModal: React.FC<ModalProps> = (props) => {
+  const { show, title, message, onClose, onConfirm } = props;
+
   return (
     <Fragment>
       {ReactDOM.createPortal(
-        <Backdrop onClose={props.onClose} show={props.show} />,
+        <Backdrop onClose={onClose} show={show} />,
         (document.getElementById("backdrop-root") as HTMLElement) || null
       )}
       {ReactDOM.createPortal(
         <ModalOverlay
-          show={props.show}
-          title={props.title}
-          message={props.message}
-          onClose={props.onClose}
-          onConfirm={props.onConfirm}
+          show={show}
+          title={title}
+          message={message}
+          onClose={onClose}
+          onConfirm={onConfirm}
         />,
         document.getElementById("overlay-root") as HTMLElement
       )}

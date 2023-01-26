@@ -1,9 +1,8 @@
 import Card from "../UI/Card";
 
-import DailyData from "../../models/dailyData";
+import DailyData from "../../models/daily-stock";
 
 import classes from "./StockHistory.module.css";
-import React from "react";
 
 type Props = {
   historyConfig: DailyData;

@@ -1,7 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import DailyData from "../models/dailyData";
 import NotFound from "../pages/NotFound";
 import StockInfo from "../components/Stock/StockInfo";
 import StockChart from "../components/Stock/StockChart";
@@ -18,10 +17,10 @@ import {
   getTodayStockData,
   getDailyStockData,
 } from "../lib/api";
+import DailyStock from "../models/daily-stock";
 
 const Stock = () => {
   const { ticker } = useParams<{ ticker: string }>();
-
   const [selectedMenu, setSelectedMenu] = useState("chart");
 
   const infoSelectHandler = (event: React.MouseEvent<HTMLButtonElement>) =>
@@ -57,7 +56,7 @@ const Stock = () => {
 
   if (detailData && todayData && dailyData) {
     const { days, opens, highs, lows, closes, volumes } =
-      dailyData as DailyData;
+      dailyData as DailyStock;
 
     content = (
       <Fragment>

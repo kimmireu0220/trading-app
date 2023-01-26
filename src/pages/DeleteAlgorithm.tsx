@@ -8,7 +8,6 @@ import { deleteAlgorithm } from "../lib/api";
 
 const DeleteAlgorithm = () => {
   const navigate = useNavigate();
-
   const { algorithmId } = useParams();
 
   const { sendRequest, status, error } = useHttp(deleteAlgorithm, true);

@@ -1,15 +1,12 @@
 import React, { createRef, useState } from "react";
 
+import LoginAuth from "../../models/login-auth";
+
 import classes from "./AuthForm.module.css";
 
-type Auth = {
-  email: string;
-  password: string;
-};
-
 type Props = {
-  onSignUp: (authData: Auth) => any;
-  onSignIn: (authData: Auth) => any;
+  onSignUp: (authData: LoginAuth) => any;
+  onSignIn: (authData: LoginAuth) => any;
 };
 
 const AuthForm: React.FC<Props> = ({ onSignUp, onSignIn }) => {

@@ -29,7 +29,6 @@ const StockAlgoritm: React.FC<Props> = ({ algorithmConfig }) => {
   const { days, closes } = algorithmConfig;
 
   const [isSubmitted, setIsSubmitted] = useState(false);
-
   const [selectedAlgorithm, setSelectedAlgorithm] =
     useState<SelectedAlgorithm>();
 

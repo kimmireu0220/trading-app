@@ -1,21 +1,20 @@
 import React, { Fragment, useEffect } from "react";
 
 import AlgorithmForm from "./AlgorithmForm";
-import Algorithm from "../../models/algorithm";
 import LoadingSpinner from "../UI/LoadingSpinner";
 
 import useHttp from "../../hooks/use-http";
 import { getSingleAlgorithm } from "../../lib/api";
+import Algorithm from "../../models/algorithm";
 
 type Props = {
-  onEditAlgorithm: (algorithmData: Algorithm) => Promise<void>;
   algorithmId: string;
+  onEditAlgorithm: (algorithmData: Algorithm) => Promise<void>;
 };
 
-const EditAlgorithmForm: React.FC<Props> = ({
-  onEditAlgorithm,
-  algorithmId,
-}) => {
+const EditAlgorithmForm: React.FC<Props> = (props) => {
+  const { algorithmId, onEditAlgorithm } = props;
+
   const {
     sendRequest,
     status,
@@ -27,34 +26,17 @@ const EditAlgorithmForm: React.FC<Props> = ({
     sendRequest(algorithmId);
   }, [sendRequest, algorithmId]);
 
-  if (loadedAlgorithm) {
-    const {
-      title,
-      buyAlgorithm,
-      buyTarget,
-      sellAlgorithm,
-      sellTarget,
-      description,
-    } = loadedAlgorithm;
-
-    return (
-      <AlgorithmForm
-        action="edit"
-        title={title}
-        buyAlgorithm={buyAlgorithm}
-        buyTarget={buyTarget}
-        sellAlgorithm={sellAlgorithm}
-        sellTarget={sellTarget}
-        description={description}
-        algorithmId={algorithmId}
-        onAddAlgorithm={() => {}}
-        onEditAlgorithm={onEditAlgorithm}
-      />
-    );
-  }
-
   return (
     <Fragment>
+      {loadedAlgorithm && (
+        <AlgorithmForm
+          action="edit"
+          algorithmId={algorithmId}
+          onAddAlgorithm={() => {}}
+          onEditAlgorithm={onEditAlgorithm}
+          algorithmConfig={loadedAlgorithm}
+        />
+      )}
       {status === "pending" && <LoadingSpinner />}
       {error && <p className="centered mb-3">{error}</p>}
     </Fragment>

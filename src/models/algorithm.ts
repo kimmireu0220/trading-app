@@ -5,7 +5,7 @@ class Algorithm {
   sellAlgorithm: string;
   sellTarget: string;
   description: string;
-  algorithmId: string;
+  algorithmId?: string;
 
   constructor(
     title: string,
@@ -14,7 +14,7 @@ class Algorithm {
     sellAlgorithm: string,
     sellTarget: string,
     description: string,
-    algorithmId: string
+    algorithmId?: string
   ) {
     this.title = title;
     this.buyAlgorithm = buyAlgorithm;

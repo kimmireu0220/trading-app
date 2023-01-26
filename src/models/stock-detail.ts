@@ -1,4 +1,4 @@
-class Statistics {
+class StockDetail {
   Beta: string;
   EBITDA: string;
   PEGRatio: string;
@@ -83,4 +83,4 @@ class Statistics {
   }
 }
 
-export default Statistics;
+export default StockDetail;

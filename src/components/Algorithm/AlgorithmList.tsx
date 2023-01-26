@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 
 import AlgorithmItem from "./AlgorithmItem";
-import Algorithm from "../../models/algorithm";
 import LoadingSpinner from "../UI/LoadingSpinner";
 
 import useHttp from "../../hooks/use-http";
 import { getAllAlgorithms } from "../../lib/api";
+import Algorithm from "../../models/algorithm";
 
 const AlgorithmList = () => {
   const {

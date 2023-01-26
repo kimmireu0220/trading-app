@@ -11,14 +11,16 @@ type Props = {
 };
 
 const StockInfo: React.FC<Props> = (props) => {
+  const { ticker, name, price, change } = props;
+
   return (
     <Card>
-      <h1>{`${props.name} (${props.ticker})`}</h1>
+      <h1>{`${name} (${ticker})`}</h1>
       <div>
-        <span className={classes.price}>{`$${props.price} `}</span>
+        <span className={classes.price}>{`$${price} `}</span>
         <span
-          className={props.change > 0 ? classes.up : classes.down}
-        >{`(${props.change}%)`}</span>
+          className={change > 0 ? classes.up : classes.down}
+        >{`(${change}%)`}</span>
       </div>
     </Card>
   );

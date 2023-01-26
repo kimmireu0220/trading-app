@@ -2,10 +2,10 @@ import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import EditAlgorithmForm from "../components/Algorithm/EditAlgorithmForm";
-import Algorithm from "../models/algorithm";
 
 import useHttp from "../hooks/use-http";
 import { editAlgorithm } from "../lib/api";
+import Algorithm from "../models/algorithm";
 
 const EditAlgorithm = () => {
   const navigate = useNavigate();

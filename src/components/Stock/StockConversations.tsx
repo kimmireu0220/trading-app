@@ -9,19 +9,13 @@ import { addComment, getAllComments } from "../../lib/api";
 
 import classes from "./StockConversations.module.css";
 
-type Props = {
-  ticker: string;
-};
-
 type Comment = {
   id: string;
   email: string;
   comment: string;
 };
 
-const StockConversations: React.FC<Props> = (props) => {
-  const { ticker } = props;
-
+const StockConversations: React.FC<{ ticker: string }> = ({ ticker }) => {
   const commentInputRef = createRef<HTMLTextAreaElement>();
 
   const email = useSelector<{ auth: { email: string } }>(

@@ -5,6 +5,7 @@ import AddAlgorithmForm from "../components/Algorithm/AddAlgorithmForm";
 
 import useHttp from "../hooks/use-http";
 import { addAlgorithm } from "../lib/api";
+import Algorithm from "../models/algorithm";
 
 const AddAlgorithm = () => {
   const navigate = useNavigate();
@@ -15,14 +16,8 @@ const AddAlgorithm = () => {
     if (status === "completed") navigate("/algorithms");
   }, [status, navigate]);
 
-  const addAlgorithmHandler = (algorithmData: {
-    title: string;
-    buyAlgorithm: string;
-    buyTarget: string;
-    sellAlgorithm: string;
-    sellTarget: string;
-    description: string;
-  }) => sendRequest(algorithmData);
+  const addAlgorithmHandler = (algorithmData: Algorithm) =>
+    sendRequest(algorithmData);
 
   return <AddAlgorithmForm onAddAlgorithm={addAlgorithmHandler} />;
 };

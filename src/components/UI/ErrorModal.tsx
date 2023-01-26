@@ -3,28 +3,30 @@ import ReactDOM from "react-dom";
 
 import classes from "./Modal.module.css";
 
-type Props = {
+type ModalProps = {
   title: string;
   message: string | null;
   onConfirm: () => void;
 };
 
-const Backdrop: React.FC<{ onConfirm: () => void }> = (props) => (
-  <div className={classes.backdrop} onClick={props.onConfirm} />
+const Backdrop: React.FC<{ onConfirm: () => void }> = ({ onConfirm }) => (
+  <div className={classes.backdrop} onClick={onConfirm} />
 );
 
-const ErrorModalOverlay: React.FC<Props> = (props) => {
+const ErrorModalOverlay: React.FC<ModalProps> = (props) => {
+  const { title, message, onConfirm } = props;
+
   return (
     <div className={`${classes.modal} ${classes.ModalOpen}`}>
       <header className={classes.header}>
-        <h2 className={classes.title}>{props.title}</h2>
+        <h2 className={classes.title}>{title}</h2>
       </header>
       <div className={classes.content}>
-        <p>{props.message}</p>
+        <p>{message}</p>
       </div>
       <ul className={classes.actions}>
         <li>
-          <button className="btn" onClick={props.onConfirm}>
+          <button className="btn" onClick={onConfirm}>
             Okay
           </button>
         </li>
@@ -33,18 +35,20 @@ const ErrorModalOverlay: React.FC<Props> = (props) => {
   );
 };
 
-const ErrorModal: React.FC<Props> = (props) => {
+const ErrorModal: React.FC<ModalProps> = (props) => {
+  const { onConfirm, title, message } = props;
+
   return (
     <Fragment>
       {ReactDOM.createPortal(
-        <Backdrop onConfirm={props.onConfirm} />,
+        <Backdrop onConfirm={onConfirm} />,
         (document.getElementById("backdrop-root") as HTMLElement) || null
       )}
       {ReactDOM.createPortal(
         <ErrorModalOverlay
-          title={props.title}
-          message={props.message}
-          onConfirm={props.onConfirm}
+          title={title}
+          message={message}
+          onConfirm={onConfirm}
         />,
         document.getElementById("overlay-root") as HTMLElement
       )}

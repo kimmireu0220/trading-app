@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import Algorithm from "../../models/algorithm";
-
 import classes from "./AlgorithmItem.module.css";
 
-const AlgorithmItem: React.FC<{ algorithmConfig: Algorithm }> = ({
-  algorithmConfig,
-}) => {
+import Algorithm from "../../models/algorithm";
+
+type Props = { algorithmConfig: Algorithm };
+
+const AlgorithmItem: React.FC<Props> = ({ algorithmConfig }) => {
   const {
     title,
     buyAlgorithm,
