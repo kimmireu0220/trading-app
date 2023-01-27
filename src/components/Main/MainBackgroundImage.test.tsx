@@ -8,13 +8,13 @@ describe("MainBackgroundImage component", () => {
     render(<MainBackgroundImage />);
 
     const testImage = screen.getByRole("img");
-    expect(testImage.src).toContain(backgroundImg);
+    expect(testImage.getAttribute("src")).toContain(backgroundImg);
   });
 
   test('renders image which has correct alt value, "background"', () => {
     render(<MainBackgroundImage />);
 
     const testImage = screen.getByRole("img");
-    expect(testImage.alt).toContain("background");
+    expect(testImage.getAttribute("alt")).toContain("background");
   });
 });

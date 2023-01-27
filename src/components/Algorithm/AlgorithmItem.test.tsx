@@ -8,9 +8,9 @@ describe("AlgorithmItem component", () => {
     const testConfig = {
       title: "Test",
       buyAlgorithm: "Price",
-      buyTarget: Math.random() * 100,
+      buyTarget: (Math.random() * 100).toString(),
       sellAlgorithm: "Price",
-      sellTarget: Math.random() * 100 + 100,
+      sellTarget: (Math.random() * 100 + 100).toString(),
       algorithmId: "test",
     };
     render(
@@ -20,8 +20,8 @@ describe("AlgorithmItem component", () => {
     );
 
     const link = screen.getByRole("link", { name: "View Detail" });
-    expect(link.href).toBe(
-      `http://localhost/algorithms/${testConfig.algorithmId}`
+    expect(link.getAttribute("href")).toBe(
+      `/algorithms/${testConfig.algorithmId}`
     );
   });
 });

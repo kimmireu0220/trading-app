@@ -12,6 +12,6 @@ describe("AllAlgorithms page", () => {
     );
 
     const link = screen.getByRole("link", { name: "Add an Algorithm" });
-    expect(link.href).toBe("http://localhost/add-algorithm");
+    expect(link.getAttribute("href")).toBe("/add-algorithm");
   });
 });

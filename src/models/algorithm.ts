@@ -4,7 +4,7 @@ class Algorithm {
   buyTarget: string;
   sellAlgorithm: string;
   sellTarget: string;
-  description: string;
+  description?: string;
   algorithmId?: string;
 
   constructor(

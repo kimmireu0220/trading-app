@@ -16,6 +16,6 @@ describe("Navigation component", () => {
     );
 
     const link = screen.getByRole("link", { name: "Login" });
-    expect(link.href).toBe("http://localhost/auth");
+    expect(link.getAttribute("href")).toBe("/auth");
   });
 });
