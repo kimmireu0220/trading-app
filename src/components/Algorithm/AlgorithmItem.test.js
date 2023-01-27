@@ -6,13 +6,12 @@ import AlgorithmItem from "./AlgorithmItem";
 describe("AlgorithmItem component", () => {
   test('renders "View Detail" link', () => {
     const testConfig = {
-      id: "test",
       title: "Test",
       buyAlgorithm: "Price",
       buyTarget: Math.random() * 100,
       sellAlgorithm: "Price",
       sellTarget: Math.random() * 100 + 100,
-      description: "test",
+      algorithmId: "test",
     };
     render(
       <BrowserRouter>
@@ -21,6 +20,8 @@ describe("AlgorithmItem component", () => {
     );
 
     const link = screen.getByRole("link", { name: "View Detail" });
-    expect(link.href).toBe(`http://localhost/algorithms/${testConfig.id}`);
+    expect(link.href).toBe(
+      `http://localhost/algorithms/${testConfig.algorithmId}`
+    );
   });
 });
