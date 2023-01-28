@@ -22,14 +22,16 @@ const AlgorithmForm: React.FC<Props> = (props) => {
 
   const { action, onAddAlgorithm, onEditAlgorithm, algorithmId } = props;
 
-  const {
-    title,
-    buyAlgorithm,
-    buyTarget,
-    sellAlgorithm,
-    sellTarget,
-    description,
-  } = props.algorithmConfig!;
+  let title, buyAlgorithm, buyTarget, sellAlgorithm, sellTarget, description;
+
+  if (props.algorithmConfig) {
+    title = props.algorithmConfig.title;
+    buyAlgorithm = props.algorithmConfig.buyAlgorithm;
+    buyTarget = props.algorithmConfig.buyTarget;
+    sellAlgorithm = props.algorithmConfig.sellAlgorithm;
+    sellTarget = props.algorithmConfig.sellTarget;
+    description = props.algorithmConfig.description;
+  }
 
   const [showConfirm, setShowConfirm] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
