@@ -9,7 +9,7 @@ import Algorithm from "../../models/algorithm";
 
 type Props = {
   algorithmId: string;
-  onEditAlgorithm: (algorithmData: Algorithm) => Promise<void>;
+  onEditAlgorithm: (algorithmData: Algorithm) => void;
 };
 
 const EditAlgorithmForm: React.FC<Props> = (props) => {
@@ -32,7 +32,6 @@ const EditAlgorithmForm: React.FC<Props> = (props) => {
         <AlgorithmForm
           action="edit"
           algorithmId={algorithmId}
-          onAddAlgorithm={() => {}}
           onEditAlgorithm={onEditAlgorithm}
           algorithmConfig={loadedAlgorithm}
         />

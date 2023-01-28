@@ -12,9 +12,7 @@ const NavLinks: React.FC<{ size: string; onToggle: () => void }> = (props) => {
     (state) => state.auth.isLoggedIn
   ) as boolean;
 
-  const logoutHandler = () => {
-    dispatch(authActions.logout());
-  };
+  const logoutHandler = () => dispatch(authActions.logout());
 
   return (
     <nav className={props.size === "normal" ? classes.nav : classes.smallNav}>

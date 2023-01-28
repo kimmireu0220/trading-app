@@ -1,8 +1,8 @@
 import React from "react";
 
-import Card from "../UI/Card";
-
 import StockDetail from "../../models/stock-detail";
+
+import Card from "../UI/Card";
 
 import classes from "./StockStatistics.module.css";
 

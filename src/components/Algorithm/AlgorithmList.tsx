@@ -27,28 +27,10 @@ const AlgorithmList = () => {
   return (
     <ul>
       {loadedAlgorithms.map((algorithm: Algorithm) => {
-        const {
-          title,
-          buyAlgorithm,
-          buyTarget,
-          sellAlgorithm,
-          sellTarget,
-          description,
-          algorithmId,
-        } = algorithm;
-
         return (
           <AlgorithmItem
-            key={algorithmId}
-            algorithmConfig={{
-              title,
-              buyAlgorithm,
-              buyTarget,
-              sellAlgorithm,
-              sellTarget,
-              description,
-              algorithmId,
-            }}
+            key={algorithm.algorithmId}
+            algorithmConfig={algorithm}
           />
         );
       })}

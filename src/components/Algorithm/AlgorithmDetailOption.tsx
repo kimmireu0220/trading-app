@@ -6,7 +6,6 @@ import classes from "./AlgorithmDetailOption.module.css";
 type Props = {
   onGoToEdit: () => void;
   onToggle: () => void;
-  onGoBack: () => void;
 };
 
 const AlgorithmDetailOption: React.FC<Props> = ({ onGoToEdit, onToggle }) => {

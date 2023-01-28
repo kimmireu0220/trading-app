@@ -2,15 +2,10 @@ import React, { Fragment } from "react";
 
 import classes from "./HighlightedAlgorithm.module.css";
 
+import Algorithm from "../../models/algorithm";
+
 type Props = {
-  algorithmConfig: {
-    title: string;
-    buyAlgorithm: string;
-    buyTarget: string;
-    sellAlgorithm: string;
-    sellTarget: string;
-    description: string;
-  };
+  algorithmConfig: Algorithm;
 };
 
 const HighlightedAlgorithm: React.FC<Props> = ({ algorithmConfig }) => {

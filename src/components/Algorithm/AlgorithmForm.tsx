@@ -11,27 +11,33 @@ import classes from "./AlgorithmForm.module.css";
 
 type Props = {
   action: string;
-  onAddAlgorithm: (algorithmData: Algorithm) => void;
-  onEditAlgorithm: (algorithmData: Algorithm) => void;
+  onAddAlgorithm?: (algorithmData: Algorithm) => void;
+  onEditAlgorithm?: (algorithmData: Algorithm) => void;
   algorithmId?: string;
   algorithmConfig?: Algorithm;
 };
 
 const AlgorithmForm: React.FC<Props> = (props) => {
-  const navigate = useNavigate();
-
-  const { action, onAddAlgorithm, onEditAlgorithm, algorithmId } = props;
+  const {
+    action,
+    onAddAlgorithm,
+    onEditAlgorithm,
+    algorithmId,
+    algorithmConfig,
+  } = props;
 
   let title, buyAlgorithm, buyTarget, sellAlgorithm, sellTarget, description;
 
-  if (props.algorithmConfig) {
-    title = props.algorithmConfig.title;
-    buyAlgorithm = props.algorithmConfig.buyAlgorithm;
-    buyTarget = props.algorithmConfig.buyTarget;
-    sellAlgorithm = props.algorithmConfig.sellAlgorithm;
-    sellTarget = props.algorithmConfig.sellTarget;
-    description = props.algorithmConfig.description;
+  if (algorithmConfig) {
+    title = algorithmConfig.title;
+    buyAlgorithm = algorithmConfig.buyAlgorithm;
+    buyTarget = algorithmConfig.buyTarget;
+    sellAlgorithm = algorithmConfig.sellAlgorithm;
+    sellTarget = algorithmConfig.sellTarget;
+    description = algorithmConfig.description;
   }
+
+  const navigate = useNavigate();
 
   const [showConfirm, setShowConfirm] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -72,7 +78,7 @@ const AlgorithmForm: React.FC<Props> = (props) => {
       : setFormIsVallid(false);
 
     if (action === "edit" && formIsValid && isSubmitted) {
-      onEditAlgorithm({
+      onEditAlgorithm!({
         title,
         buyAlgorithm,
         buyTarget,
@@ -84,7 +90,7 @@ const AlgorithmForm: React.FC<Props> = (props) => {
     }
 
     if (action === "add" && formIsValid && isSubmitted) {
-      onAddAlgorithm({
+      onAddAlgorithm!({
         title,
         buyAlgorithm,
         buyTarget,

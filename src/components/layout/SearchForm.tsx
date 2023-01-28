@@ -5,7 +5,6 @@ import classes from "./SearchForm.module.css";
 
 const SearchForm = () => {
   const navigate = useNavigate();
-
   const [searchedTicker, setSearchedTicker] = useState("");
 
   const tickerChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) =>

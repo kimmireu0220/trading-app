@@ -32,7 +32,7 @@ const ProfileForm: React.FC<Props> = ({ onUpdatePassword }) => {
   };
 
   useEffect(() => {
-    setFormIsInValid(newPassword !== confirmPassword);
+    setFormIsInValid(newPassword === confirmPassword);
   }, [newPassword, confirmPassword]);
 
   const submitHandler = (event: React.FormEvent) => {
@@ -60,7 +60,7 @@ const ProfileForm: React.FC<Props> = ({ onUpdatePassword }) => {
         />
         <label htmlFor="confirm-password">Confirm Password</label>
         <input
-          className={formIsInValid ? classes.invalid : undefined}
+          className={formIsInValid ? undefined : classes.invalid}
           required
           type="password"
           id="confirm-password"
@@ -69,13 +69,13 @@ const ProfileForm: React.FC<Props> = ({ onUpdatePassword }) => {
           onChange={confirmPasswordChangeHandler}
         />
       </div>
-      {formIsInValid && (
+      {!formIsInValid && (
         <p className={classes.warning}>
           Password fields mismatch or less than 6 characters.
         </p>
       )}
       <div className={classes.action}>
-        <button className={classes.change} disabled={formIsInValid}>
+        <button className={classes.change} disabled={!formIsInValid}>
           Change Password
         </button>
       </div>

@@ -8,12 +8,7 @@ type Props = {
 };
 
 const AddAlgorithmForm: React.FC<Props> = ({ onAddAlgorithm }) => (
-  <AlgorithmForm
-    algorithmId=""
-    action="add"
-    onAddAlgorithm={onAddAlgorithm}
-    onEditAlgorithm={() => {}}
-  />
+  <AlgorithmForm action="add" onAddAlgorithm={onAddAlgorithm} />
 );
 
 export default AddAlgorithmForm;

@@ -1,8 +1,8 @@
 import React, { createRef, useState } from "react";
 
-import LoginAuth from "../../models/login-auth";
-
 import classes from "./AuthForm.module.css";
+
+import LoginAuth from "../../models/login-auth";
 
 type Props = {
   onSignUp: (authData: LoginAuth) => any;
@@ -10,10 +10,10 @@ type Props = {
 };
 
 const AuthForm: React.FC<Props> = ({ onSignUp, onSignIn }) => {
+  const [isLoginMode, setIsLoginMode] = useState(true);
+
   const emailInputRef = createRef<HTMLInputElement>();
   const passwordInputRef = createRef<HTMLInputElement>();
-
-  const [isLoginMode, setIsLoginMode] = useState(true);
 
   const switchAuthModeHandler = () => setIsLoginMode((prevState) => !prevState);
 

@@ -9,9 +9,8 @@ import Algorithm from "../models/algorithm";
 
 const EditAlgorithm = () => {
   const navigate = useNavigate();
-  const { algorithmId = "" } = useParams<{ algorithmId: string }>();
-
   const { sendRequest, status } = useHttp(editAlgorithm);
+  const { algorithmId = "" } = useParams<{ algorithmId: string }>();
 
   useEffect(() => {
     if (status === "completed") navigate("/algorithms");
