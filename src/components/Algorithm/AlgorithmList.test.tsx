@@ -24,10 +24,9 @@ describe("AlgorithmList component", () => {
       },
     };
 
-    window.fetch = jest.fn();
-    window.fetch.mockResolvedValueOnce({
-      json: async () => DUMMY_ALGORITHMS,
-    });
+    window.fetch = jest
+      .fn()
+      .mockResolvedValue({ json: () => DUMMY_ALGORITHMS });
 
     render(
       <BrowserRouter>
@@ -57,10 +56,9 @@ describe("AlgorithmList component", () => {
   test('renders "Could not fetch algorithms" if there is no response data', async () => {
     const EMPTY_DUMMY_ALGORITHM = {};
 
-    window.fetch = jest.fn();
-    window.fetch.mockResolvedValueOnce({
-      json: async () => EMPTY_DUMMY_ALGORITHM,
-    });
+    window.fetch = jest
+      .fn()
+      .mockResolvedValue({ json: () => EMPTY_DUMMY_ALGORITHM });
 
     render(
       <BrowserRouter>

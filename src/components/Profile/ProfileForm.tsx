@@ -1,4 +1,4 @@
-import React, { createRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 import PasswordAuth from "../../models/password-auth";
@@ -12,21 +12,35 @@ type Props = {
 const ProfileForm: React.FC<Props> = ({ onUpdatePassword }) => {
   const [formIsInValid, setFormIsInValid] = useState(false);
 
-  const newPasswordInputRef = createRef<HTMLInputElement>();
-  const confirmPasswordInputRef = createRef<HTMLInputElement>();
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmNewPassword] = useState("");
 
   const token = useSelector<{ auth: { token: string } }>(
     (state) => state.auth.token
   ) as string;
 
+  const newPasswordChangeHandler = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setNewPassword(event.target.value);
+  };
+
+  const confirmPasswordChangeHandler = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setConfirmNewPassword(event.target.value);
+  };
+
+  useEffect(() => {
+    setFormIsInValid(newPassword !== confirmPassword);
+  }, [newPassword, confirmPassword]);
+
   const submitHandler = (event: React.FormEvent) => {
     event.preventDefault();
 
-    const password = newPasswordInputRef.current!.value;
-    const confirmPassword = confirmPasswordInputRef.current!.value;
-    const authData = { token, password };
+    const authData = { token, password: newPassword };
 
-    if (password === confirmPassword) {
+    if (newPassword === confirmPassword && newPassword.length >= 6) {
       setFormIsInValid(false);
       onUpdatePassword(authData);
     } else setFormIsInValid(true);
@@ -41,7 +55,8 @@ const ProfileForm: React.FC<Props> = ({ onUpdatePassword }) => {
           type="password"
           id="new-password"
           minLength={6}
-          ref={newPasswordInputRef}
+          value={newPassword}
+          onChange={newPasswordChangeHandler}
         />
         <label htmlFor="confirm-password">Confirm Password</label>
         <input
@@ -50,11 +65,19 @@ const ProfileForm: React.FC<Props> = ({ onUpdatePassword }) => {
           type="password"
           id="confirm-password"
           minLength={6}
-          ref={confirmPasswordInputRef}
+          value={confirmPassword}
+          onChange={confirmPasswordChangeHandler}
         />
       </div>
+      {formIsInValid && (
+        <p className={classes.warning}>
+          Password fields mismatch or less than 6 characters.
+        </p>
+      )}
       <div className={classes.action}>
-        <button>Change Password</button>
+        <button className={classes.change} disabled={formIsInValid}>
+          Change Password
+        </button>
       </div>
     </form>
   );

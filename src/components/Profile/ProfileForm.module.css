@@ -30,11 +30,15 @@
   background-color: #f7f0fa;
 }
 
+.warning {
+  color: red;
+}
+
 .action {
   margin-top: 3rem;
 }
 
-.action button {
+.change {
   font: inherit;
   cursor: pointer;
   padding: 0.5rem 1.5rem;
@@ -44,7 +48,17 @@
   color: rgb(60, 52, 52);
 }
 
-.action button:hover {
+.change:hover {
   background-color: #19a134;
   color: rgb(255, 255, 255);
+}
+
+.change:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  pointer-events: none;
+  background-color: grey;
+  color: white;
+  text-decoration: line-through;
+  font-style: italic;
 }
