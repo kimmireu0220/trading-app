@@ -10,18 +10,20 @@
 
 .links li {
   margin: 0 0.75rem;
+  font-size: 1.75rem;
 }
 
-.links li * {
-  font-size: 1.25rem;
+.twitter,
+.github {
+  color: rgb(126, 122, 122);
 }
 
-.twitter {
+.twitter:hover {
   color: rgb(29, 161, 242);
 }
 
-.github {
-  color: black;
+.github:hover {
+  color: rgb(17, 17, 17);
 }
 
 .copyright {

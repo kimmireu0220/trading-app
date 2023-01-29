@@ -9,7 +9,7 @@
 
 .li {
   display: flex;
-  margin: 0.75rem 0;
+  margin-top: 1rem;
 }
 
 .email {
@@ -31,7 +31,7 @@
   background-color: rgb(179, 208, 223);
   border: rgb(179, 208, 223);
   border-radius: 0.5rem;
-  margin-left: 1rem;
+  margin: 0 1rem;
   font-size: 1.25rem;
 }
 

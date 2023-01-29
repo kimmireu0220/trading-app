@@ -1,4 +1,12 @@
-span {
+.company {
+  padding: 1rem 1.5rem;
+}
+
+.info {
+  padding-bottom: 1rem;
+}
+
+.info span {
   font-size: 1.5rem;
 }
 

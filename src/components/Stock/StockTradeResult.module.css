@@ -1,11 +1,11 @@
 .hr {
-  margin: 1.75rem 2rem 0 0;
+  margin-right: 2.5rem;
 }
 
 .title {
   display: flex;
   justify-content: space-around;
-  margin-top: 1rem;
+  padding: 0.5rem 0;
 }
 
 .title p {

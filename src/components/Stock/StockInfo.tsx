@@ -15,8 +15,8 @@ const StockInfo: React.FC<Props> = (props) => {
 
   return (
     <Card>
-      <h1>{`${name} (${ticker})`}</h1>
-      <div>
+      <h1 className={classes.company}>{`${name} (${ticker})`}</h1>
+      <div className={classes.info}>
         <span className={classes.price}>{`$${price} `}</span>
         <span
           className={change > 0 ? classes.up : classes.down}
