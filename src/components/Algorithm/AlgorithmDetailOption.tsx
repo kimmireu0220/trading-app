@@ -24,7 +24,7 @@ const AlgorithmDetailOption: React.FC<Props> = ({ onGoToEdit, onToggle }) => {
         </li>
       </ul>
       <Fragment>
-        <Link className="float--right mt-5" to="/algorithms">
+        <Link className="float--right mt-3" to="/algorithms">
           Back to list
         </Link>
       </Fragment>

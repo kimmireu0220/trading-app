@@ -43,7 +43,16 @@
   outline-color: teal;
 }
 
+.trading_algorithm {
+  font-weight: bold;
+  font-size: 1.25rem;
+  padding-left: 1rem;
+}
+
 .logicControl {
+  margin: 1rem;
+  border: 1px solid black;
+  border-radius: 0.5rem;
   display: flex;
 }
 
@@ -63,20 +72,21 @@
   font-size: 1rem;
 }
 
-.signal .buy {
+.buy {
   color: rgb(209, 14, 14);
 }
 
-.signal .sell {
+.sell {
   color: rgb(22, 22, 169);
 }
 
 .signal input {
-  width: 12.5rem;
+  width: 15rem;
 }
 
 .actions {
   text-align: right;
+  padding: 0 1rem 1rem 0;
 }
 
 .actions button {

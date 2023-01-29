@@ -115,34 +115,45 @@ const AlgorithmForm: React.FC<Props> = (props) => {
                 defaultValue={action === "edit" ? title : undefined}
               />
             </div>
+            <div className={classes.trading_algorithm}>Trading Algorithm</div>
             <div className={classes.logicControl}>
               <div className={classes.signal}>
-                <label className={classes.buy} htmlFor="buy">
-                  Buy
+                <label className={classes.buy} htmlFor="buyAlgorithm">
+                  Buy Algorithm
                 </label>
                 <select
+                  id="buyAlgorithm"
                   ref={buyAlgorithmInputRef}
                   defaultValue={action === "edit" ? buyAlgorithm : undefined}
                 >
-                  <option value="price">Price</option>
+                  <option value="Price">Price</option>
                 </select>
+                <label className={classes.buy} htmlFor="buyTarget">
+                  Buy Target
+                </label>
                 <input
+                  id="buyTarget"
                   type="number"
                   ref={buyTargetInutRef}
                   defaultValue={action === "edit" ? buyTarget : undefined}
                 />
               </div>
               <div className={classes.signal}>
-                <label className={classes.sell} htmlFor="sell">
-                  Sell
+                <label className={classes.sell} htmlFor="sellAlgorithm">
+                  Sell Algorithm
                 </label>
                 <select
+                  id="sellAlgorithm"
                   ref={sellAlgorithmInputRef}
                   defaultValue={action === "edit" ? sellAlgorithm : undefined}
                 >
-                  <option value="price">Price</option>
+                  <option value="Price">Price</option>
                 </select>
+                <label className={classes.sell} htmlFor="sellTarget">
+                  Sell Target
+                </label>
                 <input
+                  id="sellTarget"
                   type="number"
                   ref={sellTargetInputRef}
                   defaultValue={action === "edit" ? sellTarget : undefined}
