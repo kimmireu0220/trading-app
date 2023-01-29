@@ -2,6 +2,14 @@
   position: relative;
 }
 
+.form * {
+  padding: 0.25rem 0.5rem;
+}
+
+.form select {
+  padding: 0 0.5rem;
+}
+
 .control {
   margin-bottom: 0.5rem;
   font-size: 1.25rem;
