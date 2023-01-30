@@ -21,7 +21,7 @@ const store = configureStore({
 });
 
 describe("StockConversation component", () => {
-  test("it should render without errors", async () => {
+  test("should render without errors", async () => {
     (useHttp as jest.Mock).mockReturnValue({
       sendRequest: jest.fn().mockResolvedValue({}),
       data: [
