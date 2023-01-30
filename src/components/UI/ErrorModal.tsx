@@ -10,7 +10,11 @@ type ModalProps = {
 };
 
 const Backdrop: React.FC<{ onConfirm: () => void }> = ({ onConfirm }) => (
-  <div className={classes.backdrop} onClick={onConfirm} />
+  <div
+    className={classes.backdrop}
+    onClick={onConfirm}
+    data-testid="test-backdrop"
+  />
 );
 
 const ErrorModalOverlay: React.FC<ModalProps> = (props) => {

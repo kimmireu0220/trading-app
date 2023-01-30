@@ -1,7 +1,7 @@
 type Trade = { day: Date; price: string };
 
 class Result {
-  id: number;
+  id?: number;
   buy: Trade;
   profit: string;
   sell: Trade;

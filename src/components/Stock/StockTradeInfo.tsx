@@ -1,7 +1,6 @@
 import classes from "./StockTradeInfo.module.css";
 
 import Result from "../../models/result";
-import React from "react";
 
 type Props = {
   result: Result;
