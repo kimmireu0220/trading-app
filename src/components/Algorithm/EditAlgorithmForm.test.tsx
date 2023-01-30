@@ -1,16 +1,18 @@
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
+import userEvent from "@testing-library/user-event";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+
 import AlgorithmForm from "./AlgorithmForm";
 
 import Algorithm from "../../models/algorithm";
 
-describe("AddAlgorithmForm component", () => {
+describe("EditAlgorithmForm component", () => {
   let backdropRoot: HTMLDivElement;
   let overlayRoot: HTMLDivElement;
 
   let props: {
     action: string;
-    onAddAlgorithm: (algorithmData: Algorithm) => void;
+    onEditAlgorithm: (algorithmData: Algorithm) => void;
   };
 
   beforeEach(() => {
@@ -23,8 +25,8 @@ describe("AddAlgorithmForm component", () => {
     document.body.appendChild(overlayRoot);
 
     props = {
-      action: "add",
-      onAddAlgorithm: jest.fn(),
+      action: "edit",
+      onEditAlgorithm: jest.fn(),
     };
   });
 
@@ -51,13 +53,13 @@ describe("AddAlgorithmForm component", () => {
       target: { value: "Test Description" },
     });
 
-    const addButton = screen.getByText("Add");
+    const editButton = screen.getByText("Edit");
 
-    fireEvent.click(addButton);
-    fireEvent.click(addButton);
+    fireEvent.click(editButton);
+    fireEvent.click(editButton);
 
     await waitFor(() => {
-      expect(props.onAddAlgorithm).toHaveBeenCalledWith({
+      expect(props.onEditAlgorithm).toHaveBeenCalledWith({
         title: "Test Algorithm",
         buyAlgorithm: "Price",
         buyTarget: "10",
@@ -75,13 +77,14 @@ describe("AddAlgorithmForm component", () => {
       </BrowserRouter>
     );
 
-    const addButton = screen.getByText("Add");
+    const editButton = screen.getByText("Edit");
 
-    fireEvent.click(addButton);
-    fireEvent.click(addButton);
+    userEvent.clear(screen.getByLabelText("Title"));
+    fireEvent.click(editButton);
+    fireEvent.click(editButton);
 
     await waitFor(() => {
-      expect(props.onAddAlgorithm).not.toHaveBeenCalled();
+      expect(props.onEditAlgorithm).not.toHaveBeenCalled();
     });
   });
 });
