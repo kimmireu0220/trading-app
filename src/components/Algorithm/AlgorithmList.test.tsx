@@ -9,17 +9,17 @@ describe("AlgorithmList component", () => {
       test_id_1: {
         title: "Test",
         buyAlgorithm: "Price",
-        buyTarget: Math.random() * 100,
+        buyTarget: (Math.random() * 100).toFixed(2),
         sellAlgorithm: "Price",
-        sellTarget: Math.random() * 100 + 100,
+        sellTarget: (Math.random() * 100 + 100).toFixed(2),
         description: "test",
       },
       test_id_2: {
         title: "Test 2",
         buyAlgorithm: "Price",
-        buyTarget: Math.random() * 100,
+        buyTarget: (Math.random() * 100).toFixed(2),
         sellAlgorithm: "Price",
-        sellTarget: Math.random() * 100 + 100,
+        sellTarget: (Math.random() * 100 + 100).toFixed(2),
         description: "test 2",
       },
     };

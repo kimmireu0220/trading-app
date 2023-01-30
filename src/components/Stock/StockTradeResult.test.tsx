@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+
 import StockTradeResult from "./StockTradeResult";
 
 describe("StockTradeResult component", () => {
@@ -11,17 +12,6 @@ describe("StockTradeResult component", () => {
     sellAlgorithm: "Price",
     sellTarget: "60",
   };
-
-  test("renders the component", () => {
-    render(
-      <StockTradeResult
-        days={days}
-        closes={closes}
-        isSubmitted={isSubmitted}
-        algorithm={algorithm}
-      />
-    );
-  });
 
   test("displays buy algorithm, net profit, and sell algorithm", () => {
     render(

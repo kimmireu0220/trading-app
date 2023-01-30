@@ -8,6 +8,7 @@ describe("StockNavigation component", () => {
     render(<StockNavigation menu="chart" onSelect={onSelect} />);
 
     const chartButton = screen.getByRole("button", { name: /chart/i });
+
     expect(chartButton).toHaveClass("bold");
   });
 

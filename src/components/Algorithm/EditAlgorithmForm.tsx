@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import { Fragment, useEffect } from "react";
 
 import AlgorithmForm from "./AlgorithmForm";
 import LoadingSpinner from "../UI/LoadingSpinner";
@@ -26,6 +26,9 @@ const EditAlgorithmForm: React.FC<Props> = (props) => {
     sendRequest(algorithmId);
   }, [sendRequest, algorithmId]);
 
+  if (status === "pending") return <LoadingSpinner />;
+  if (error) return <p className="centered mb-3">{error}</p>;
+
   return (
     <Fragment>
       {loadedAlgorithm && (
@@ -36,8 +39,6 @@ const EditAlgorithmForm: React.FC<Props> = (props) => {
           algorithmConfig={loadedAlgorithm}
         />
       )}
-      {status === "pending" && <LoadingSpinner />}
-      {error && <p className="centered mb-3">{error}</p>}
     </Fragment>
   );
 };

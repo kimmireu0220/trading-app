@@ -1,5 +1,6 @@
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+
 import AlgorithmForm from "./AlgorithmForm";
 
 import Algorithm from "../../models/algorithm";

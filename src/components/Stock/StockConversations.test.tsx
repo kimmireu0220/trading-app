@@ -1,5 +1,5 @@
-import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
+import { render, screen } from "@testing-library/react";
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 
 import StockConversations from "./StockConversations";
@@ -36,7 +36,7 @@ describe("StockConversation component", () => {
           comment: "comment2",
         },
       ],
-      status: "resolved",
+      status: "completed",
       error: null,
     });
     render(

@@ -32,6 +32,7 @@ describe("StockAlgorithm component", () => {
     render(<StockAlgorithm algorithmConfig={algorithmConfig} />);
 
     const options = await screen.findAllByRole("option");
+
     expect(options.length).toBeGreaterThan(0);
   });
 
@@ -55,6 +56,7 @@ describe("StockAlgorithm component", () => {
     const errorMessage = await screen.findByText(
       "Please select your algorithm"
     );
+
     expect(errorMessage).toBeInTheDocument();
   });
 });

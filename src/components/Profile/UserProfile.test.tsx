@@ -1,6 +1,6 @@
-import { render, screen } from "@testing-library/react";
-import { Provider } from "react-redux";
 import { createStore } from "redux";
+import { Provider } from "react-redux";
+import { render, screen } from "@testing-library/react";
 
 import UserProfile from "./UserProfile";
 

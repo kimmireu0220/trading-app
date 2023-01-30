@@ -1,5 +1,5 @@
 import { BrowserRouter } from "react-router-dom";
-import { render, fireEvent, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 
 import AlgorithmDetailOption from "./AlgorithmDetailOption";
 
@@ -30,7 +30,7 @@ describe("AlgorithmDetailOption component", () => {
       </BrowserRouter>
     );
 
-    fireEvent.click(screen.getByText("Edit"));
+    screen.getByText("Edit").click();
 
     expect(onGoToEdit).toHaveBeenCalled();
   });
@@ -42,7 +42,7 @@ describe("AlgorithmDetailOption component", () => {
       </BrowserRouter>
     );
 
-    fireEvent.click(screen.getByText("Delete"));
+    screen.getByText("Delete").click();
 
     expect(onToggle).toHaveBeenCalled();
   });

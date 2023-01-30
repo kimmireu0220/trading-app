@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 
 import MainBackgroundImage from "./MainBackgroundImage";
+
 import backgroundImg from "../../assets/main-page-background.jpeg";
 
 describe("MainBackgroundImage component", () => {

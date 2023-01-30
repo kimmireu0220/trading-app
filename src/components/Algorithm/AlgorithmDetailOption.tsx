@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 import { Link } from "react-router-dom";
 
 import classes from "./AlgorithmDetailOption.module.css";
@@ -23,11 +23,9 @@ const AlgorithmDetailOption: React.FC<Props> = ({ onGoToEdit, onToggle }) => {
           </button>
         </li>
       </ul>
-      <Fragment>
-        <Link className="float--right mt-3" to="/algorithms">
-          Back to list
-        </Link>
-      </Fragment>
+      <Link className="float--right mt-3" to="/algorithms">
+        Back to list
+      </Link>
     </Fragment>
   );
 };

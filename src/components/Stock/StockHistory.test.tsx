@@ -16,21 +16,17 @@ describe("StockHistory component", () => {
     render(<StockHistory historyConfig={historyConfig} />);
 
     const dayList = screen.getAllByText("Date");
-    expect(dayList.length).toBe(1);
-
     const openList = screen.getAllByText("Open");
-    expect(openList.length).toBe(1);
-
     const highList = screen.getAllByText("High");
-    expect(highList.length).toBe(1);
-
     const lowList = screen.getAllByText("Low");
-    expect(lowList.length).toBe(1);
-
     const closeList = screen.getAllByText("Close");
-    expect(closeList.length).toBe(1);
-
     const volumeList = screen.getAllByText("Volume");
+
+    expect(dayList.length).toBe(1);
+    expect(openList.length).toBe(1);
+    expect(highList.length).toBe(1);
+    expect(lowList.length).toBe(1);
+    expect(closeList.length).toBe(1);
     expect(volumeList.length).toBe(1);
   });
 });

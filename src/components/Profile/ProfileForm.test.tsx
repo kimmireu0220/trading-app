@@ -1,6 +1,6 @@
-import { render, fireEvent, screen } from "@testing-library/react";
-import { Provider } from "react-redux";
 import { createStore } from "redux";
+import { Provider } from "react-redux";
+import { render, fireEvent, screen } from "@testing-library/react";
 
 import ProfileForm from "./ProfileForm";
 
@@ -58,6 +58,7 @@ describe("ProfileForm component", () => {
     const warningMessage = screen.getByText(
       "Password fields mismatch or less than 6 characters."
     );
+
     expect(warningMessage).toBeInTheDocument();
   });
 });

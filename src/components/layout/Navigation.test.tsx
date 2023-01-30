@@ -1,9 +1,10 @@
-import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
 import { render, screen } from "@testing-library/react";
 
-import store from "../../store";
 import Navigation from "./Navigation";
+
+import store from "../../store";
 
 describe("Navigation component", () => {
   test('renders "Login" link', () => {

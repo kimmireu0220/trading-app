@@ -1,4 +1,5 @@
 import React from "react";
+
 import classes from "./StockNavigation.module.css";
 
 type Props = {

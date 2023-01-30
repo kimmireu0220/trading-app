@@ -30,12 +30,11 @@ describe("SearchForm component", () => {
     const input = screen.getByPlaceholderText(
       "Search a ticker"
     ) as HTMLInputElement;
-    const button = screen.getByRole("button");
+    const searchButton = screen.getByRole("button");
 
     fireEvent.input(input, { target: { value: "ticker" } });
-    fireEvent.click(button);
+    fireEvent.click(searchButton);
 
-    expect(input.value).toBe("ticker");
     expect(window.location.pathname).toBe("/trading/ticker");
   });
 });

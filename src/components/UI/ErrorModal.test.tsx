@@ -57,6 +57,7 @@ describe("ErrorModal component", () => {
     );
 
     const backdrop = screen.getByTestId("test-backdrop");
+
     fireEvent.click(backdrop);
 
     expect(onConfirmMock).toHaveBeenCalled();

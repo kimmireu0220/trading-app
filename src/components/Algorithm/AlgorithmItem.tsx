@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import classes from "./AlgorithmItem.module.css";
-
 import Algorithm from "../../models/algorithm";
+
+import classes from "./AlgorithmItem.module.css";
 
 type Props = { algorithmConfig: Algorithm };
 

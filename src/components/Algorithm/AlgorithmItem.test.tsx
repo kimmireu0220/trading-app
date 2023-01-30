@@ -13,6 +13,7 @@ describe("AlgorithmItem component", () => {
       sellTarget: (Math.random() * 100 + 100).toString(),
       algorithmId: "test",
     };
+
     render(
       <BrowserRouter>
         <AlgorithmItem algorithmConfig={testConfig} />

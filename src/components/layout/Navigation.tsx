@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import NavLinks from "./NavLinks";
 import SearchForm from "./SearchForm";
+
 import { authActions } from "../../store/auth";
 
 import classes from "./Navigation.module.css";

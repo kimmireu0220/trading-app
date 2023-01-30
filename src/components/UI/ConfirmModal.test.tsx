@@ -45,8 +45,7 @@ describe("ConfirmModal component", () => {
       />
     );
 
-    const noButton = screen.getByText("No");
-    noButton.click();
+    screen.getByText("No").click();
 
     expect(onClose).toHaveBeenCalled();
   });
@@ -64,8 +63,7 @@ describe("ConfirmModal component", () => {
       />
     );
 
-    const okayButton = screen.getByText("Okay");
-    okayButton.click();
+    screen.getByText("Okay").click();
 
     expect(onConfirm).toHaveBeenCalled();
   });

@@ -1,4 +1,4 @@
-import React, { useReducer, useCallback } from "react";
+import { useReducer, useCallback } from "react";
 
 type HttpState = {
   data: any;
@@ -41,7 +41,7 @@ const httpReducer: React.Reducer<HttpState, HttpAction> = (
 };
 
 const useHttp = (
-  requestFunction: (data?: any) => void,
+  requestFunction: (data?: any) => any,
   startWithPending = false
 ) => {
   const initialState: HttpState = {

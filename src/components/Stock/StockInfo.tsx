@@ -1,4 +1,5 @@
 import React from "react";
+
 import Card from "../UI/Card";
 
 import classes from "./StockInfo.module.css";
