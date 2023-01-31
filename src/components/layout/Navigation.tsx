@@ -2,9 +2,7 @@ import { Fragment, useState } from "react";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 
-import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import NavIcon from "./NavIcon";
 import NavLinks from "./NavLinks";
 import SearchForm from "./SearchForm";
 
@@ -17,7 +15,6 @@ const MainNavigation = () => {
   const dispatch = useDispatch();
 
   const [showMenu, setShowMenu] = useState(false);
-  const [iconAnimation, setIconAnimation] = useState(false);
 
   const isLoggedIn = useSelector<{ auth: { isLoggedIn: boolean } }>(
     (state) => state.auth.isLoggedIn
@@ -29,10 +26,7 @@ const MainNavigation = () => {
 
   const goToAuthHandler = () => navigate("/auth");
 
-  const toggleMenuHandler = () => {
-    setShowMenu((prevState) => !prevState);
-    setIconAnimation(true);
-  };
+  const toggleMenuHandler = () => setShowMenu((prevState) => !prevState);
 
   return (
     <Fragment>
@@ -49,30 +43,11 @@ const MainNavigation = () => {
           >
             {isLoggedIn ? "Log out" : "Log in"}
           </button>
-          {isLoggedIn && !showMenu && (
-            <div
-              className={
-                iconAnimation
-                  ? `${classes.icon} ${classes.iconAnimation}`
-                  : classes.icon
-              }
-              onClick={toggleMenuHandler}
-            >
-              <FontAwesomeIcon icon={faBars} />
-            </div>
-          )}
-          {isLoggedIn && showMenu && (
-            <div
-              className={
-                iconAnimation
-                  ? `${classes.icon} ${classes.iconAnimation}`
-                  : classes.icon
-              }
-              onClick={toggleMenuHandler}
-            >
-              <FontAwesomeIcon icon={faXmark} size="lg" />
-            </div>
-          )}
+          <NavIcon
+            isLoggedIn={isLoggedIn}
+            showMenu={showMenu}
+            toggleMenuHandler={toggleMenuHandler}
+          />
         </div>
       </header>
       {showMenu && <NavLinks onToggle={toggleMenuHandler} size="small" />}

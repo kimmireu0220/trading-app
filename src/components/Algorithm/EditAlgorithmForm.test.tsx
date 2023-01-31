@@ -6,6 +6,15 @@ import AlgorithmForm from "./AlgorithmForm";
 
 import Algorithm from "../../models/algorithm";
 
+const DUMMY_ALGORITHM = {
+  title: "Test",
+  buyAlgorithm: "Price",
+  buyTarget: "100",
+  sellAlgorithm: "Price",
+  sellTarget: "200",
+  description: "test",
+};
+
 describe("EditAlgorithmForm component", () => {
   let backdropRoot: HTMLDivElement;
   let overlayRoot: HTMLDivElement;
@@ -13,6 +22,7 @@ describe("EditAlgorithmForm component", () => {
   let props: {
     action: string;
     onEditAlgorithm: (algorithmData: Algorithm) => void;
+    algorithmConfig: Algorithm;
   };
 
   beforeEach(() => {
@@ -27,6 +37,7 @@ describe("EditAlgorithmForm component", () => {
     props = {
       action: "edit",
       onEditAlgorithm: jest.fn(),
+      algorithmConfig: DUMMY_ALGORITHM,
     };
   });
 

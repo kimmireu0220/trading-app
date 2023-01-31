@@ -5,6 +5,15 @@ import AlgorithmForm from "./AlgorithmForm";
 
 import Algorithm from "../../models/algorithm";
 
+const DUMMY_ALGORITHM = {
+  title: "",
+  buyAlgorithm: "",
+  buyTarget: "",
+  sellAlgorithm: "",
+  sellTarget: "",
+  description: "",
+};
+
 describe("AddAlgorithmForm component", () => {
   let backdropRoot: HTMLDivElement;
   let overlayRoot: HTMLDivElement;
@@ -12,6 +21,7 @@ describe("AddAlgorithmForm component", () => {
   let props: {
     action: string;
     onAddAlgorithm: (algorithmData: Algorithm) => void;
+    algorithmConfig: Algorithm;
   };
 
   beforeEach(() => {
@@ -26,6 +36,7 @@ describe("AddAlgorithmForm component", () => {
     props = {
       action: "add",
       onAddAlgorithm: jest.fn(),
+      algorithmConfig: DUMMY_ALGORITHM,
     };
   });
 

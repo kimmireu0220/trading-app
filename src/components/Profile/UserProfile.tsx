@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 import ProfileForm from "./ProfileForm";
@@ -22,14 +22,13 @@ const UserProfile = () => {
     if (status === "completed") dispatch(authActions.logout());
   }, [status, dispatch]);
 
+  if (status === "pending") return <LoadingSpinner />;
+
   return (
-    <Fragment>
-      <section className={classes.profile}>
-        <h1>User Profile</h1>
-        <ProfileForm onUpdatePassword={updatePasswordHandler} />
-      </section>
-      {status === "pending" && <LoadingSpinner />}
-    </Fragment>
+    <section className={classes.profile}>
+      <h1>User Profile</h1>
+      <ProfileForm onUpdatePassword={updatePasswordHandler} />
+    </section>
   );
 };
 

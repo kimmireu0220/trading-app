@@ -25,19 +25,9 @@
   border-radius: 0.5rem;
 }
 
-.icon {
-  padding: 0.25rem 0.5rem;
-}
-
 .logo:hover,
-.auth:hover,
-.icon:hover {
+.auth:hover {
   cursor: pointer;
-}
-
-.icon:hover {
-  background-color: rgb(155, 193, 193);
-  border-radius: 50%;
 }
 
 .smallMenu {
@@ -53,10 +43,6 @@
 
   .logo {
     margin: 1rem 0 0.5rem 1.5rem;
-  }
-
-  .icon {
-    margin-top: 0.25rem;
   }
 
   .smallMenu {
@@ -77,27 +63,5 @@
     align-items: center;
     font-size: 1.5rem;
     color: rgb(141, 235, 208);
-  }
-
-  .iconAnimation {
-    animation: fadeOut, rotate 0.75s;
-  }
-}
-
-@keyframes fadeOut {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(180deg);
   }
 }

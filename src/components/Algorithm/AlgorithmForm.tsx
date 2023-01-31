@@ -11,31 +11,29 @@ import classes from "./AlgorithmForm.module.css";
 
 type Props = {
   action: string;
+  algorithmConfig: Algorithm;
+  algorithmId?: string;
   onAddAlgorithm?: (algorithmData: Algorithm) => void;
   onEditAlgorithm?: (algorithmData: Algorithm) => void;
-  algorithmId?: string;
-  algorithmConfig?: Algorithm;
 };
 
 const AlgorithmForm: React.FC<Props> = (props) => {
   const {
     action,
+    algorithmConfig,
+    algorithmId,
     onAddAlgorithm,
     onEditAlgorithm,
-    algorithmId,
-    algorithmConfig,
   } = props;
 
-  let title, buyAlgorithm, buyTarget, sellAlgorithm, sellTarget, description;
-
-  if (algorithmConfig) {
-    title = algorithmConfig.title;
-    buyAlgorithm = algorithmConfig.buyAlgorithm;
-    buyTarget = algorithmConfig.buyTarget;
-    sellAlgorithm = algorithmConfig.sellAlgorithm;
-    sellTarget = algorithmConfig.sellTarget;
-    description = algorithmConfig.description;
-  }
+  const {
+    title,
+    buyAlgorithm,
+    buyTarget,
+    sellAlgorithm,
+    sellTarget,
+    description,
+  } = algorithmConfig!;
 
   const navigate = useNavigate();
 
@@ -112,7 +110,7 @@ const AlgorithmForm: React.FC<Props> = (props) => {
                 type="text"
                 id="title"
                 ref={titleInputRef}
-                defaultValue={action === "edit" ? title : undefined}
+                defaultValue={title}
               />
             </div>
             <div className={classes.trading_algorithm}>Trading Algorithm</div>
@@ -124,7 +122,7 @@ const AlgorithmForm: React.FC<Props> = (props) => {
                 <select
                   id="buyAlgorithm"
                   ref={buyAlgorithmInputRef}
-                  defaultValue={action === "edit" ? buyAlgorithm : undefined}
+                  defaultValue={buyAlgorithm}
                 >
                   <option value="Price">Price</option>
                 </select>
@@ -135,7 +133,7 @@ const AlgorithmForm: React.FC<Props> = (props) => {
                   id="buyTarget"
                   type="number"
                   ref={buyTargetInutRef}
-                  defaultValue={action === "edit" ? buyTarget : undefined}
+                  defaultValue={buyTarget}
                 />
               </div>
               <div className={classes.signal}>
@@ -145,7 +143,7 @@ const AlgorithmForm: React.FC<Props> = (props) => {
                 <select
                   id="sellAlgorithm"
                   ref={sellAlgorithmInputRef}
-                  defaultValue={action === "edit" ? sellAlgorithm : undefined}
+                  defaultValue={sellAlgorithm}
                 >
                   <option value="Price">Price</option>
                 </select>
@@ -156,7 +154,7 @@ const AlgorithmForm: React.FC<Props> = (props) => {
                   id="sellTarget"
                   type="number"
                   ref={sellTargetInputRef}
-                  defaultValue={action === "edit" ? sellTarget : undefined}
+                  defaultValue={sellTarget}
                 />
               </div>
             </div>
@@ -166,7 +164,7 @@ const AlgorithmForm: React.FC<Props> = (props) => {
                 id="description"
                 rows={5}
                 ref={descriptionInputRef}
-                defaultValue={action === "edit" ? description : undefined}
+                defaultValue={description}
               />
             </div>
             <div className={classes.actions}>

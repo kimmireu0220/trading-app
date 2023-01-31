@@ -1,0 +1,39 @@
+.icon {
+  padding: 0.25rem 0.5rem;
+}
+
+.icon:hover {
+  cursor: pointer;
+  background-color: rgb(155, 193, 193);
+  border-radius: 50%;
+}
+
+@media screen and (max-width: 1000px) {
+  .icon {
+    margin-top: 0.25rem;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .iconAnimation {
+    animation: fadeOut, rotate 0.75s;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
+}
