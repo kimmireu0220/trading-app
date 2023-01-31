@@ -36,6 +36,7 @@ const AuthPage = () => {
 
   const goToAuthPage = () => {
     navigate("/auth");
+    window.location.reload();
   };
 
   useEffect(() => {
